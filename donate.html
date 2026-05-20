@@ -123,7 +123,7 @@
       box-shadow: 5px 5px 0 var(--ink);
     }
     .give-card--monarch { background: var(--monarch); color: #fff; }
-    .give-card--ink     { background: var(--ink);     color: #fff; }
+    .give-card--ink     { background: var(--cream2, #f0ebe1); color: var(--ink); border-color: var(--ink); }
 
     .give-card__label {
       font-size: 11px;
@@ -175,6 +175,17 @@
       background: #fef5ec;
       color: var(--ink);
       border-color: #fef5ec;
+    }
+    .give-card--ink .give-card__btn {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+      box-shadow: 3px 3px 0 rgba(26,20,16,.18);
+    }
+    .give-card--ink .give-card__btn:hover {
+      background: var(--cream, #faf7f2);
+      color: var(--ink);
+      border-color: var(--ink);
     }
     .give-card__note {
       font-size: 12px;
@@ -355,6 +366,7 @@
       font-weight: 800;
       font-size: 16px;
       letter-spacing: .01em;
+      color: var(--ink, #1a1410);
     }
     .way-card__back {
       font-size: 22px;
@@ -476,6 +488,7 @@
         <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
       </div>
       <nav class="masthead__nav">
+        <div class="nav-item"><a href="index.html">Home</a></div>
         <div class="nav-item">
           <a href="about.html">
             Our School &amp; Programs
@@ -673,7 +686,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--monarch)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--monarch)">Benefit-Mobile</div>
+            <div class="way-card__name">Benefit-Mobile</div>
             <div class="way-card__back" style="color:var(--monarch)">Up to 9% back</div>
             <div class="way-card__desc">Amazon, Whole Foods, Target, Walmart, American Airlines and more. Switch your wireless plan and Monroe earns every month.</div>
             <a class="way-card__link" style="color:var(--monarch)" href="https://www.benefit-mobile.com/" target="_blank" rel="noopener">benefit-mobile.com →</a>
@@ -684,7 +697,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--cyan)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--cyan)">Sports Basement</div>
+            <div class="way-card__name">Sports Basement</div>
             <div class="way-card__back" style="color:var(--cyan)">10% back</div>
             <div class="way-card__desc">Sign up for Basementeers: get 10% off your purchase and Sports Basement donates 10% of profits to Monroe. Gear up, give back.</div>
             <a class="way-card__link" style="color:var(--cyan)" href="http://www.sportsbasement.com/" target="_blank" rel="noopener">sportsbasement.com →</a>
@@ -695,7 +708,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--jade)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--jade)">Rainbow Grocery</div>
+            <div class="way-card__name">Rainbow Grocery</div>
             <div class="way-card__back" style="color:var(--jade)">10% back</div>
             <div class="way-card__desc">10% back on all purchases through the SCRIP program. Just ask Customer Service to sign you up — it takes less than five minutes.</div>
             <a class="way-card__link" style="color:var(--jade)" href="http://www.rainbow.coop/" target="_blank" rel="noopener">rainbow.coop →</a>
@@ -706,7 +719,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--marigold)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--marigold)">Scholastic Book Clubs</div>
+            <div class="way-card__name">Scholastic Book Clubs</div>
             <div class="way-card__back" style="color:var(--marigold)">2% back</div>
             <div class="way-card__desc">Order through Monroe's Scholastic page and 2% comes back year-round. Books for the kids, support for the school.</div>
             <a class="way-card__link" style="color:var(--marigold)" href="http://www.scholastic.com/bf/monroe" target="_blank" rel="noopener">scholastic.com/bf/monroe →</a>
@@ -717,7 +730,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--plum)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--plum)">AmazonSmile</div>
+            <div class="way-card__name">AmazonSmile</div>
             <div class="way-card__back" style="color:var(--plum)">0.5% back</div>
             <div class="way-card__desc">Shop at smile.amazon.com instead of amazon.com and 0.5% of eligible purchases is donated to Monroe PTA automatically — at no extra cost.</div>
             <a class="way-card__link" style="color:var(--plum)" href="https://smile.amazon.com/" target="_blank" rel="noopener">smile.amazon.com →</a>
@@ -728,7 +741,7 @@
         <div class="way-card">
           <div class="way-card__accent" style="background:var(--magenta)"></div>
           <div class="way-card__body">
-            <div class="way-card__name" style="color:var(--magenta)">Office Depot</div>
+            <div class="way-card__name">Office Depot</div>
             <div class="way-card__back" style="color:var(--magenta)">5% back</div>
             <div class="way-card__desc">5% back in school supply credit. Simply show Monroe's ID number at checkout or online. Great for back-to-school shopping.</div>
             <div class="way-card__link" style="color:var(--magenta); cursor:default;">ID available at the school office</div>

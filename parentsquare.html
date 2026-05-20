@@ -15,12 +15,13 @@
       background: #fef5ec; position: relative; overflow: hidden;
       padding: 80px 40px 96px;
     }
-    .hero__inner { max-width: 700px; margin: 0 auto; }
+    .hero__inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+    .hero__deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .kicker {
       display: inline-flex; align-items: center;
       background: var(--cyan, #00869b); color: #fff;
       font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+      padding: 5px 14px; border-radius: 3px; margin-bottom: 24px;
     }
     .hero h1 {
       font-family: 'Outfit', sans-serif; font-weight: 900;
@@ -32,11 +33,11 @@
       font-size: 18px; line-height: 1.65; color: rgba(26,20,16,.75);
       max-width: 620px; margin-bottom: 28px; font-weight: 400;
     }
-    .hero__lang-chips { display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
+    .hero__lang-chips { display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; justify-content: center; }
     .lang-chip {
       display: inline-flex; align-items: center;
       font-size: 13px; font-weight: 700;
-      padding: 5px 14px; border-radius: 100px;
+      padding: 5px 14px; border-radius: 3px;
     }
     .lang-chip--es { background: var(--marigold, #f5a623); color: var(--ink, #1a1410); }
     .lang-chip--zh { background: var(--cyan, #00869b); color: #fff; }
@@ -44,7 +45,7 @@
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--monarch, #d8392e); color: #fff;
       font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700;
-      padding: 14px 28px; border-radius: 6px;
+      padding: 14px 28px; border-radius: 4px;
       border: none; cursor: pointer; transition: opacity .15s;
       text-decoration: none;
     }
@@ -54,6 +55,31 @@
       display: flex; height: 6px;
     }
     .hero__rainbow span { flex: 1; }
+
+    /* ── Get the App bar ── */
+    .section-getapp {
+      background: var(--ink, #1a1410);
+      padding: 32px 40px;
+    }
+    .section-getapp__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap;
+    }
+    .getapp-label {
+      color: rgba(255,255,255,.55); font-size: 13px; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase; flex-shrink: 0;
+    }
+    .getapp-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .getapp-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.08); color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
+      padding: 10px 20px; border-radius: 4px;
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,.18);
+      transition: background .15s, border-color .15s;
+    }
+    .getapp-btn:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); }
+    .getapp-btn svg { flex-shrink: 0; }
 
     /* ── Section: What is ParentSquare ── */
     .section-what {
@@ -82,7 +108,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
     }
     .feature-tile {
-      background: #fff; border-radius: 10px;
+      background: #fff; border-radius: 4px;
       overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.06);
     }
     .feature-tile__accent { height: 5px; width: 100%; }
@@ -132,12 +158,12 @@
     .step-list { display: flex; flex-direction: column; gap: 20px; }
     .step-card {
       display: flex; gap: 20px; align-items: flex-start;
-      background: #fff; border-radius: 10px;
+      background: #fff; border-radius: 4px;
       padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
     }
     .step-num {
       flex-shrink: 0; width: 44px; height: 44px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
       font-size: 18px; font-weight: 900; color: #fff;
       font-family: 'Outfit', sans-serif;
     }
@@ -154,7 +180,7 @@
     .step-pill {
       display: inline-flex; align-items: center;
       font-size: 13px; font-weight: 700;
-      padding: 6px 14px; border-radius: 100px;
+      padding: 6px 14px; border-radius: 4px;
       border: none; cursor: pointer; text-decoration: none;
     }
     .step-pill--dark { background: var(--ink, #1a1410); color: #fff; }
@@ -162,12 +188,12 @@
 
     .callout-warning {
       background: var(--marigold, #f5a623); color: var(--ink, #1a1410);
-      border-radius: 6px; padding: 12px 16px;
+      border-radius: 0; border-left: 4px solid rgba(26,20,16,.3); padding: 12px 16px;
       font-size: 14px; font-weight: 600; margin-top: 14px; line-height: 1.5;
     }
     .callout-tip {
       background: var(--cream2, #f0ebe1); color: rgba(26,20,16,.8);
-      border-radius: 6px; padding: 12px 16px;
+      border-radius: 0; border-left: 4px solid rgba(26,20,16,.18); padding: 12px 16px;
       font-size: 14px; margin-top: 14px; line-height: 1.5;
     }
 
@@ -189,10 +215,10 @@
       display: inline-flex; align-items: center;
       background: var(--jade, #2e7d4f); color: #fff;
       font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+      padding: 5px 14px; border-radius: 3px; margin-bottom: 18px;
     }
     .use-card {
-      background: #fff; border-radius: 10px;
+      background: #fff; border-radius: 4px;
       padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
       border-left: 4px solid var(--jade, #2e7d4f);
       margin-bottom: 16px;
@@ -203,7 +229,7 @@
     }
     .use-card__icon {
       flex-shrink: 0; width: 40px; height: 40px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
       font-size: 18px;
     }
     .use-card__title {
@@ -237,7 +263,7 @@
 
     details {
       border: 1.5px solid rgba(26,20,16,.14);
-      border-radius: 6px; margin-bottom: 12px;
+      border-radius: 0; margin-bottom: 12px;
       background: #fff; overflow: hidden;
     }
     summary {
@@ -303,7 +329,7 @@
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--cyan, #00869b); color: #fff;
       font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
-      padding: 12px 24px; border-radius: 6px;
+      padding: 12px 24px; border-radius: 4px;
       border: none; cursor: pointer; transition: opacity .15s; text-decoration: none;
     }
     .btn-cyan:hover { opacity: .88; }
@@ -311,7 +337,7 @@
     .parentvue-card {
       background: var(--cream2, #f0ebe1);
       border: 1.5px solid rgba(26,20,16,.12);
-      border-radius: 10px; padding: 28px;
+      border-radius: 4px; padding: 28px;
     }
     .parentvue-card h3 {
       font-weight: 800; font-size: 17px; margin-bottom: 12px;
@@ -342,7 +368,7 @@
       display: inline-flex; align-items: center; gap: 6px;
       background: #fff; color: var(--ink, #1a1410);
       font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
-      padding: 13px 24px; border-radius: 6px;
+      padding: 13px 24px; border-radius: 4px;
       text-decoration: none; transition: opacity .15s;
     }
     .btn-white:hover { opacity: .88; }
@@ -350,43 +376,11 @@
       display: inline-flex; align-items: center; gap: 6px;
       background: transparent; color: #fff;
       font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
-      padding: 12px 24px; border-radius: 6px;
+      padding: 12px 24px; border-radius: 4px;
       border: 2px solid rgba(255,255,255,.6);
       text-decoration: none; transition: border-color .15s;
     }
     .btn-outline-white:hover { border-color: #fff; }
-
-    /* ── Footer ── */
-    .footer__stripe { position: absolute; top: 0; left: 0; right: 0; height: 6px; display: flex; }
-    .footer__stripe span { flex: 1; }
-    .footer {
-      background: var(--ink, #1a1410);
-      padding: 60px 40px 32px;
-      color: rgba(255,255,255,.7);
-    }
-    .footer__grid {
-      max-width: 1240px; margin: 0 auto 48px;
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;
-    }
-    .footer__logo img { height: 48px; width: auto; margin-bottom: 18px; filter: brightness(10); }
-    .footer__address { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.55); }
-    .footer__col-label {
-      font-size: 11px; font-weight: 800; letter-spacing: .1em;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .footer__links { list-style: none; }
-    .footer__links li { margin-bottom: 8px; }
-    .footer__links a { font-size: 14px; color: rgba(255,255,255,.55); }
-    .footer__links a:hover { color: #fff; }
-    .footer__bottom {
-      max-width: 1240px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px;
-      font-size: 12px; color: rgba(255,255,255,.35);
-    }
-    .footer__legal { display: flex; gap: 20px; }
-    .footer__legal span { cursor: pointer; }
-    .footer__legal span:hover { color: rgba(255,255,255,.65); }
 
     /* ── Responsive ── */
     @media (max-width: 860px) {
@@ -395,6 +389,7 @@
       .section-parentvue__inner { grid-template-columns: 1fr; gap: 32px; }
       .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     }
+    @media (max-width: 600px) {
       .feature-grid { grid-template-columns: 1fr; }
       .footer__grid { grid-template-columns: 1fr; }
       .section-tutorial { padding: 60px 20px; }
@@ -402,6 +397,8 @@
       .hero { padding: 60px 20px 80px; }
       .tab-btn { padding: 11px 16px; font-size: 14px; }
       .step-card { flex-direction: column; gap: 12px; }
+      .section-getapp { padding: 24px 20px; }
+      .getapp-label { width: 100%; }
     }
   </style>
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
@@ -442,6 +439,7 @@
         <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
       </div>
       <nav class="masthead__nav">
+        <div class="nav-item"><a href="index.html">Home</a></div>
         <div class="nav-item">
           <a href="about.html">
             Our School &amp; Programs
@@ -459,7 +457,7 @@
         <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
         <div class="nav-item"><a href="calendar.html">Calendar</a></div>
         <div class="nav-item"><a href="news.html">News</a></div>
-        <div class="nav-item"><a href="donate.html">Give</a></div>
+        
       </nav>
       <div class="masthead__actions">
         <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
@@ -504,6 +502,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero__deco" aria-hidden="true">
+      <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;right:80px;top:30px;width:120px;opacity:0.07;transform:rotate(15deg);pointer-events:none;" loading="lazy">
+      <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;right:200px;bottom:60px;width:80px;opacity:0.06;transform:rotate(-10deg);pointer-events:none;" loading="lazy">
+      <img src="assets/images/chinese-cloud-lines.png" alt="" style="position:absolute;right:-20px;top:0;width:260px;opacity:0.05;pointer-events:none;" loading="lazy">
+    </div>
     <div class="hero__inner">
       <div class="kicker">Monroe Elementary · Family Communication</div>
       <h1>Your guide to <span class="brush-wrap">ParentSquare<span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-ps" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-ps)"/></svg></span></span></h1>
@@ -512,7 +515,7 @@
         <span class="lang-chip lang-chip--es">En Español</span>
         <span class="lang-chip lang-chip--zh">繁體中文</span>
       </div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
         <a href="#tutorial" class="btn-monarch" id="hero-cta">How to join ↓</a>
         <a href="#navigate" class="btn-monarch" id="hero-cta-use" style="background:var(--jade);">How to use it ↓</a>
       </div>
@@ -532,6 +535,27 @@
       <span style="background:var(--cyan)"></span>
       <span style="background:var(--plum)"></span>
       <span style="background:var(--magenta)"></span>
+    </div>
+  </section>
+
+  <!-- GET THE APP -->
+  <section class="section-getapp">
+    <div class="section-getapp__inner">
+      <span class="getapp-label">Access ParentSquare</span>
+      <div class="getapp-links">
+        <a class="getapp-btn" href="https://apps.apple.com/us/app/parentsquare/id908126197" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="getapp-btn" href="https://play.google.com/store/apps/details?id=com.parentsquare.psapp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.99.14l12.7-7.34-2.75-2.75-10.94 9.95zm-1.1-20.77c-.06.2-.08.42-.08.66v20.7c0 .24.02.46.08.66l.07.07L13 13.14v-.27L2.15 2.93l-.07.06zM20.49 10.7l-2.78-1.6-3.08 3.07 3.08 3.07 2.8-1.62c.8-.46.8-1.45-.02-1.92zM4.17.24C3.83.16 3.48.2 3.18.38L14.12 11.3l-2.75-2.75L4.17.24z"/></svg>
+          Google Play
+        </a>
+        <a class="getapp-btn" href="https://www.parentsquare.com" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          parentsquare.com
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1067,39 +1091,40 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer footer--stripe">
-    <div class="footer__stripe">
-      <span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span><span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span>
-    </div>
+  <footer class="footer">
     <div class="footer__grid">
       <div>
         <div class="footer__logo"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
-        <div class="footer__address">260 Madrid Street<br>San Francisco, CA 94112<br><span style="color:var(--poppy);font-weight:700;">(415) 469-4736</span></div>
+        <div class="footer__address">
+          260 Madrid Street<br>San Francisco, CA 94112<br>
+          <span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span>
+        </div>
       </div>
       <div>
-        <div class="footer__col-label" style="color:var(--cyan);">Our School &amp; Programs</div>
+        <div class="footer__col-label" style="color: var(--cyan);">Our School</div>
         <ul class="footer__links">
           <li><a href="about.html">About</a></li>
           <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
           <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
-          <li><a href="PTA.html">PTA</a></li>
-          <li><a href="familyliaisons.html">Family Liaisons</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer__col-label" style="color:var(--marigold);">Families</div>
+        <div class="footer__col-label" style="color: var(--marigold);">Families</div>
         <ul class="footer__links">
           <li><a href="communityhub.html">Community Hub</a></li>
-          <li><a href="calendar.html">Calendar</a></li>
-          <li><a href="parentsquare.html" style="color:var(--monarch);">ParentSquare</a></li>        </ul>
+          <li><a href="PTA.html">PTA</a></li>
+          <li><a href="familyliaisons.html">Family Liaisons</a></li>
+          <li><a href="parentsquare.html">ParentSquare</a></li>
+        </ul>
       </div>
       <div>
-        <div class="footer__col-label" style="color:var(--magenta);">Visit</div>
+        <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
         <ul class="footer__links">
           <li><a href="tour.html">Schedule a Tour</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Directions</a></li>
           <li><a href="#">Enrollment</a></li>
-          <li><a href="donate.html">Give</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>

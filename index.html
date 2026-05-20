@@ -208,21 +208,25 @@
       font-family: 'Outfit', system-ui, sans-serif;
       font-size: 14px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
       box-shadow: 4px 4px 0 var(--ink); text-decoration: none;
-      cursor: pointer;
+      cursor: pointer; transition: transform .12s, box-shadow .12s;
     }
+    .btn-community:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
     .btn-primary {
       background: var(--monarch); color: var(--cream);
       border: 1.5px solid var(--ink); padding: 14px 24px;
       font-family: 'Outfit', system-ui, sans-serif;
       font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-      box-shadow: 4px 4px 0 var(--ink);
+      box-shadow: 4px 4px 0 var(--ink); transition: transform .12s, box-shadow .12s;
     }
+    .btn-primary:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
     .btn-secondary {
       background: transparent; color: var(--ink);
       border: 1.5px solid var(--ink); padding: 14px 22px;
       font-family: 'Outfit', system-ui, sans-serif;
       font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      transition: background .15s, color .15s;
     }
+    .btn-secondary:hover { background: var(--ink); color: var(--cream); }
 
     /* ── About Monroe card ──────────────────────────────────────────────────── */
     .about-card {
@@ -451,7 +455,9 @@
     .program-card__more {
       font-size: 12px; color: var(--poppy); font-weight: 800;
       display: flex; gap: 4px; text-transform: uppercase; letter-spacing: .06em;
+      transition: gap .15s, color .15s;
     }
+    .program-card__more:hover { gap: 8px; color: var(--ink) !important; }
 
     /* ── News + Events ──────────────────────────────────────────────────────── */
     .news-events {
@@ -522,7 +528,9 @@
       margin-top: 16px; display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; font-weight: 800; color: var(--poppy);
       text-transform: uppercase; letter-spacing: .06em;
+      transition: gap .15s, color .15s;
     }
+    .events__full-cal:hover { gap: 10px; color: var(--ink); }
 
     /* ── Community photos ──────────────────────────────────────────────────── */
     .community {
@@ -568,57 +576,69 @@
 
     /* ── Annual Fund ──────────────────────────────────────────────────────── */
     .annual-fund {
-      background: rgba(240,168,46,0.85); color: var(--ink);
-      padding: 20px 40px; position: relative; overflow: hidden; z-index: 2;
-      border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
-    }
-    .annual-fund__monarch-1 {
-      position: absolute; left: -40px; top: -30px;
-      opacity: .18; transform: rotate(-12deg);
-    }
-    .annual-fund__monarch-2 {
-      position: absolute; right: 80px; bottom: -20px;
-      opacity: .22; transform: rotate(18deg);
+      background: var(--monarch, #e26a1f); color: var(--cream, #faf7f2);
+      padding: 48px 40px; position: relative; overflow: hidden; z-index: 2;
+      border-top: 1.5px solid rgba(26,20,16,.4); border-bottom: 1.5px solid rgba(26,20,16,.4);
     }
     .annual-fund__inner {
-      position: relative;
-      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      position: relative; max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
     }
-    .annual-fund__kicker {
-      display: flex; gap: 8px; align-items: baseline;
+    .annual-fund__text { flex: 1; min-width: 260px; }
+    .annual-fund__eyebrow {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(28px, 3.5vw, 46px); font-weight: 900;
+      letter-spacing: -.02em; line-height: 1.05;
+      margin-bottom: 12px;
     }
-    .annual-fund__kicker .label { color: var(--ink); }
-    .annual-fund__kicker .zh-sub { font-family: 'ZCOOL XiaoWei', 'Noto Serif TC', serif; font-size: 14px; color: rgba(26,20,16,.6); }
-    .annual-fund__kicker .es-sub { font-family: 'Outfit', system-ui, sans-serif; font-style: normal; font-size: 16px; color: rgba(26,20,16,.6); }
+    .annual-fund__eyebrow em {
+      font-style: normal; color: var(--cream, #faf7f2);
+    }
+    .annual-fund__eyebrow-words {
+      position: relative; display: inline-block;
+    }
+    .annual-fund__eyebrow .fund-brush {
+      position: absolute; left: -8px; bottom: -22px;
+      width: calc(100% + 16px); pointer-events: none; opacity: .72;
+    }
     .annual-fund__h2 {
       font-family: 'Outfit', system-ui, sans-serif;
-      font-size: 11px; font-weight: 800;
-      letter-spacing: .22em; text-transform: uppercase;
-      line-height: 1; margin: 0;
+      font-size: clamp(15px, 1.6vw, 18px); font-weight: 400;
+      line-height: 1.55; margin: 0; color: rgba(250,247,242,.75);
     }
-    .annual-fund__h2 em { font-style: normal; }
-    .annual-fund__progress-row {
-      display: flex; align-items: center; gap: 18px; margin-top: 8px;
+    .annual-fund__h2 em {
+      font-style: italic;
+    }
+    .annual-fund__right {
+      display: flex; flex-direction: column; gap: 16px;
+      align-items: flex-end; flex-shrink: 0;
+    }
+    .annual-fund__amount {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(28px, 3.5vw, 42px); font-weight: 900;
+      line-height: 1; letter-spacing: -.02em;
+    }
+    .annual-fund__amount span {
+      display: block; font-size: 13px; font-weight: 600;
+      letter-spacing: .04em; text-transform: uppercase;
+      opacity: .7; margin-top: 4px;
     }
     .annual-fund__bar-wrap {
-      flex: 1; max-width: 360px; height: 12px;
-      background: rgba(26,20,16,.12); border: 1.5px solid rgba(26,20,16,.25); overflow: hidden;
+      width: 260px; height: 8px;
+      background: rgba(250,247,242,.25); overflow: hidden;
     }
-    .annual-fund__bar-fill { width: 78%; height: 100%; background: var(--ink); }
-    .annual-fund__amount {
-      font-family: 'Outfit', system-ui, sans-serif; font-size: 22px;
-    }
-    .annual-fund__amount span { color: rgba(26,20,16,.55); font-size: 14px; }
-    .annual-fund__actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .annual-fund__bar-fill { width: 78%; height: 100%; background: var(--cream, #faf7f2); }
     .btn-give-fund {
-      background: var(--poppy); color: var(--cream);
-      border: 1.5px solid var(--poppy); padding: 10px 18px;
+      background: var(--ink, #1a1410); color: var(--cream, #faf7f2);
+      border: none; padding: 14px 28px;
       font-family: 'Outfit', system-ui, sans-serif;
-      font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 8px;
-      box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+      font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+      box-shadow: 4px 4px 0 rgba(26,20,16,.4);
     }
-    .annual-fund__legal { font-size: 12px; color: rgba(253,248,242,.8); }
+    .btn-give-fund:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(26,20,16,.35); }
+    .annual-fund__legal { font-size: 12px; color: rgba(250,247,242,.5); }
 
     /* ── Footer ──────────────────────────────────────────────────────────── */
     .footer {
@@ -682,12 +702,16 @@
     .hub-panel__nav { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
     .hub-panel__link { padding: 10px 12px 10px 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: var(--ink); background: #fff; display: flex; align-items: center; gap: 10px; text-decoration: none; border: 1px solid rgba(26,20,16,.14); border-left-width: 3px; border-radius: 0 6px 6px 0; }
     .hub-panel__link:hover { border-color: var(--ink); border-left-width: 3px; background: var(--cream2); }
-    .hub-panel__link--featured { border-left-color: var(--jade); background: rgba(77,140,92,.08); font-weight: 700; }
-    .hub-panel__link--featured:hover { background: rgba(77,140,92,.15); }
+    .hub-panel__heading-word { position: relative; display: inline-block; }
+    .hub-brush { position: absolute; left: -4px; bottom: -14px; width: calc(100% + 8px); pointer-events: none; }
+    .hub-panel__desc { font-family: 'Outfit', system-ui, sans-serif; font-size: 14px; line-height: 1.65; color: rgba(26,20,16,.65); margin: 0 0 16px; }
+    .hub-panel__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .hub-panel__chip { font-family: 'Outfit', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 4px 9px 4px 7px; border-left: 3px solid var(--chip); background: rgba(26,20,16,.04); color: var(--ink); }
     .hub-panel__link-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .hub-panel__link-arrow { margin-left: auto; font-size: 11px; color: rgba(26,20,16,.35); }
-    .hub-panel__cta { margin-top: auto; display: block; text-align: center; background: var(--monarch); color: var(--cream); border: 1.5px solid var(--ink); border-radius: 6px; padding: 13px 20px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; box-shadow: 3px 3px 0 var(--ink); }
-    .hero__welcome-col { position: relative; overflow: hidden; padding: 60px 44px 60px; display: flex; align-items: flex-start; }
+    .hub-panel__cta { margin-top: auto; display: block; text-align: center; background: var(--monarch); color: var(--cream); border: 1.5px solid var(--ink); border-radius: 6px; padding: 13px 20px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; box-shadow: 3px 3px 0 var(--ink); transition: transform .12s, box-shadow .12s; }
+    .hub-panel__cta:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+    .hero__welcome-col { position: relative; overflow: hidden; padding: 60px 44px 60px 96px; display: flex; align-items: flex-start; }
     .hero__welcome-col::before { display: none; }
     .hero__welcome-col::after  { display: none; }
 
@@ -741,10 +765,9 @@
       .community__grid { grid-template-columns: 1fr; gap: 24px; }
 
       /* ── Annual fund banner ───────────────────────────────── */
-      .annual-fund { padding: 20px; }
-      .annual-fund__inner { flex-direction: column; gap: 16px; align-items: flex-start; }
-      .annual-fund__monarch-1, .annual-fund__monarch-2 { display: none; }
-      .annual-fund__progress-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .annual-fund { padding: 32px 20px; }
+      .annual-fund__inner { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .annual-fund__right { align-items: flex-start; width: 100%; }
       .annual-fund__bar-wrap { width: 100%; }
     }
 
@@ -798,6 +821,7 @@
         <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
       </div>
       <nav class="masthead__nav">
+        <div class="nav-item active"><a href="index.html">Home</a></div>
         <div class="nav-item">
           <a href="about.html">
             Our School &amp; Programs
@@ -815,7 +839,7 @@
         <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
         <div class="nav-item"><a href="calendar.html">Calendar</a></div>
         <div class="nav-item"><a href="news.html">News</a></div>
-        <div class="nav-item"><a href="donate.html">Give</a></div>
+        
       </nav>
       <div class="masthead__actions">
         <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
@@ -922,39 +946,15 @@
             <span style="background:var(--marigold);"></span>
           </div>
           <div class="hub-panel__label">Community Hub</div>
-          <h2 class="hub-panel__heading">For Monroe<br>families</h2>
-          <nav class="hub-panel__nav">
-            <a class="hub-panel__link hub-panel__link--featured" href="communityhub.html" style="border-left-color:var(--jade);">
-              <span class="hub-panel__link-dot" style="background:var(--jade);"></span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              Mutual Aid
-              <span class="hub-panel__link-arrow">→</span>
-            </a>
-            <a class="hub-panel__link" href="communityhub.html#tab-lunch" style="border-left-color:var(--monarch);">
-              <span class="hub-panel__link-dot" style="background:var(--monarch);"></span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--monarch)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              Lunch Menu
-              <span class="hub-panel__link-arrow">→</span>
-            </a>
-            <a class="hub-panel__link" href="calendar.html" style="border-left-color:var(--cyan);">
-              <span class="hub-panel__link-dot" style="background:var(--cyan);"></span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-              Calendar
-              <span class="hub-panel__link-arrow">→</span>
-            </a>
-            <a class="hub-panel__link" href="communityhub.html" style="border-left-color:var(--plum);">
-              <span class="hub-panel__link-dot" style="background:var(--plum);"></span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Resources
-              <span class="hub-panel__link-arrow">→</span>
-            </a>
-            <a class="hub-panel__link" href="volunteer.html" style="border-left-color:var(--magenta);">
-              <span class="hub-panel__link-dot" style="background:var(--magenta);"></span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--magenta)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-              Volunteer
-              <span class="hub-panel__link-arrow">→</span>
-            </a>
-          </nav>
+          <h2 class="hub-panel__heading">For Monroe<br><span class="hub-panel__heading-word">families<span class="hub-brush"><svg viewBox="0 0 200 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-hub" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.2" numOctaves="2" seed="5"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs><path d="M 3 16 C 30 9, 80 7, 120 11 S 178 18, 197 13 L 196 18 C 170 24, 100 20, 60 17 S 18 22, 4 20 Z" fill="var(--cyan)" opacity="0.55" filter="url(#bs-hub)"/></svg></span></span></h2>
+          <p class="hub-panel__desc">One place for resources, mutual aid, volunteer opportunities, lunch menus, and everything that keeps our community connected.</p>
+          <div class="hub-panel__chips">
+            <span class="hub-panel__chip" style="--chip:var(--cyan);">Get Connected</span>
+            <span class="hub-panel__chip" style="--chip:var(--magenta);">Community Care</span>
+            <span class="hub-panel__chip" style="--chip:var(--jade);">Resources</span>
+            <span class="hub-panel__chip" style="--chip:var(--monarch);">Volunteer</span>
+            <span class="hub-panel__chip" style="--chip:var(--plum);">Lunch Menu</span>
+          </div>
           <a class="hub-panel__cta" href="communityhub.html">Enter hub →</a>
         </div>
       </div>
@@ -981,30 +981,32 @@
     <span style="background:var(--magenta);flex:1"></span>
   </div>
   <section class="annual-fund">
-    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-20px;width:200px;pointer-events:none;z-index:0;filter:brightness(0) invert(1);opacity:0.12;" loading="lazy">
+    <!-- top-right, flipped -->
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:25%;top:-38px;transform:rotate(180deg);width:240px;pointer-events:none;z-index:0;opacity:0.22;" loading="lazy">
+    <!-- bottom-left, normal -->
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:0;bottom:-50px;width:260px;pointer-events:none;z-index:0;opacity:0.22;" loading="lazy">
     <div class="annual-fund__inner">
-      <span class="label" style="color:var(--ink); white-space:nowrap; font-size:22px; letter-spacing:.05em; text-transform:none; font-style:normal;">Annual Fund</span>
-      <h2 class="annual-fund__h2">Every dollar buys a book, <em>a brush, an afternoon of art.</em></h2>
-      <div class="annual-fund__bar-wrap" style="flex:1; max-width:260px;">
-        <div class="annual-fund__bar-fill"></div>
+      <div class="annual-fund__text">
+        <div class="annual-fund__eyebrow">Annual <span class="annual-fund__eyebrow-words"><em>Fund Drive</em><span class="fund-brush"><svg viewBox="0 0 420 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-fund" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.1" numOctaves="2" seed="11"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs><path d="M 4 28 C 60 18, 150 14, 240 20 S 380 30, 416 22 L 415 28 C 360 38, 220 32, 140 28 S 40 34, 5 32 Z" fill="rgba(250,247,242,0.35)" filter="url(#bs-fund)"/></svg></span></span></div>
+        <h2 class="annual-fund__h2">2025–26 &nbsp;·&nbsp; Every dollar buys a book, <em>a brush, an afternoon of art.</em></h2>
       </div>
-      <div class="annual-fund__amount">$32,640 <span>of $42,000</span></div>
-      <a href="annualfund.html" class="btn-give-fund">
-        Give to the Fund
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
-      </a>
+      <div class="annual-fund__right">
+        <div class="annual-fund__amount">
+          $32,640
+          <span>raised of $42,000 goal</span>
+        </div>
+        <div class="annual-fund__bar-wrap">
+          <div class="annual-fund__bar-fill"></div>
+        </div>
+        <a href="annualfund.html" class="btn-give-fund">
+          Give to the Fund →
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- ── Ways to Connect / About Monroe ──────────────────────────────────── -->
   <section class="quick-actions">
-    <!-- Flowers — white on dark background -->
-    <img src="assets/images/chinese-flower-3.png" alt="" style="position:absolute;right:28px;top:18px;width:100px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(-8deg);" loading="lazy">
-    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-8px;bottom:-30px;width:200px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;" loading="lazy">
-    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:-8px;top:-30px;width:180px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(180deg);" loading="lazy">
-    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;left:180px;top:24px;width:72px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(15deg);" loading="lazy">
     <div class="quick-actions__mosaic">
       <svg id="mosaic-connect"></svg>
     </div>
@@ -1103,21 +1105,8 @@
 
   <!-- ── News + Events ─────────────────────────────────────────────────────── -->
   <section class="news-events">
-    <!-- Extra flowers — light bg -->
-    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;right:20px;bottom:30px;width:80px;pointer-events:none;z-index:1;opacity:0.08;transform:rotate(20deg);" loading="lazy">
-    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:-10px;bottom:10px;width:180px;pointer-events:none;z-index:1;opacity:0.06;" loading="lazy">
-    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;right:200px;top:16px;width:55px;pointer-events:none;z-index:1;opacity:0.07;transform:rotate(-25deg);" loading="lazy">
-    <!-- Floating monarch decorations -->
-    <div class="news-events__monarch-1">
-      <img src="assets/images/chinese-flower.png" width="60" height="58" alt="" style="opacity:0.36;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
-    </div>
-    <div class="news-events__monarch-2">
-      <img src="assets/images/chinese-flower.png" width="42" height="40" alt="" style="opacity:0.33;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(10deg) brightness(1.1)" loading="lazy">
-    </div>
-    <!-- Extra flower bottom-left -->
-    <div style="position:absolute;bottom:32px;left:180px;pointer-events:none;transform:rotate(10deg)">
-      <img src="assets/images/chinese-flower.png" width="36" height="35" alt="" style="opacity:0.28;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
-    </div>
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:50%;transform:translateX(-50%) rotate(180deg);top:-30px;width:220px;pointer-events:none;z-index:0;opacity:0.08;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:0;bottom:-30px;width:220px;pointer-events:none;z-index:0;opacity:0.08;" loading="lazy">
 
     <div class="news-events__grid">
       <!-- News column -->
@@ -1235,14 +1224,8 @@
 
   <!-- ── Community photo strip ─────────────────────────────────────────────── -->
   <section class="community">
-    <!-- Scattered flowers & half-circles: cream bg → colored -->
-    <img src="assets/images/chinese-flower-3.png" alt="" style="position:absolute;right:20px;top:18px;width:95px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(308deg);transform:rotate(-12deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-flower-2.png" alt="" style="position:absolute;left:20px;bottom:26px;width:80px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(100deg);transform:rotate(18deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;left:-10px;top:18px;width:140px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(-10deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-flower-5.png" alt="" style="position:absolute;right:180px;top:22px;width:70px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(255deg);transform:rotate(20deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;left:120px;bottom:20px;width:75px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(5deg);transform:rotate(-16deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-8px;width:160px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(328deg);transform:rotate(180deg);opacity:0.18;" loading="lazy">
-    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;right:60px;bottom:20px;width:65px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(10deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:0;top:-30px;transform:rotate(180deg);width:220px;pointer-events:none;z-index:0;opacity:0.12;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:0;bottom:-30px;width:220px;pointer-events:none;z-index:0;opacity:0.12;" loading="lazy">
     <div class="community__head">
       <div>
         <div style="display:flex;gap:8px;align-items:baseline;">

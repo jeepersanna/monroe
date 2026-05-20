@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Monroe Elementary — Our School &amp; Programs</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script src="assets/grain.js" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="assets/js/grain.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
@@ -197,7 +197,7 @@
     .programs::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url('assets/chinese-lattice-2.png');
+      background-image: url('assets/images/chinese-lattice-2.png');
       background-size: 500px auto; background-repeat: repeat;
       background-position: center top;
       opacity: 0.6;
@@ -565,7 +565,7 @@
     .visit::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url('assets/chinese-lattice-1.png');
+      background-image: url('assets/images/chinese-lattice-1.png');
       background-size: 360px auto; background-repeat: repeat;
       opacity: 0.06; filter: brightness(0) invert(1);
     }
@@ -689,8 +689,8 @@
     /* about.html overrides */
     .footer { background: var(--cream2); border-top: none; position: relative; }
   </style>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/fav.icon-32.png" />
 </head>
 <body>
   <div id="grain-overlay"></div>
@@ -725,7 +725,7 @@
     <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
     <header class="masthead">
       <div class="masthead__logo">
-        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+        <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
       </div>
       <nav class="masthead__nav">
         <div class="nav-item active">
@@ -759,7 +759,7 @@
     </header>
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
     <div class="mobile-nav__head">
-      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
       <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
     </div>
     <nav class="mobile-nav__links">
@@ -796,7 +796,7 @@
         width:100%; height:clamp(320px, 38vw, 500px);
         position:relative;
       ">
-        <img src="assets/community-4.jpg" alt="Monroe Elementary community" style="position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;object-position:right center;display:block;" / loading="lazy">
+        <img src="assets/images/community-4.jpg" alt="Monroe Elementary community" style="position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;object-position:right center;display:block;" / loading="lazy">
         <!-- cream fade — dense behind text, falls off quickly -->
         <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(253,248,242,0.96) 0%,rgba(253,248,242,0.92) 22%,rgba(253,248,242,0.6) 38%,rgba(253,248,242,0.1) 55%,rgba(253,248,242,0) 68%);pointer-events:none;"></div>
 
@@ -892,12 +892,12 @@
           </div>
         </div>
         <div class="story__photo-wrap">
-          <img class="story__photo-deco" src="assets/chinese-flower-6.png" alt="" aria-hidden="true" / loading="lazy">
+          <img class="story__photo-deco" src="assets/images/chinese-flower-6.png" alt="" aria-hidden="true" / loading="lazy">
           <div class="framed-photo story__photo">
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--monarch);"></div>
             <div class="framed-photo__img">
-              <img src="assets/garden.jpeg" alt="Monroe Elementary school garden." / loading="lazy">
+              <img src="assets/images/garden.jpeg" alt="Monroe Elementary school garden." / loading="lazy">
             </div>
             <div class="framed-photo__caption">The Monroe garden · built by families</div>
           </div>
@@ -1066,35 +1066,35 @@
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--cyan);"></div>
             <div class="framed-photo__img">
-              <img src="assets/monroekids2.jpeg" alt="Monroe students." / loading="lazy">
+              <img src="assets/images/monroekids2.jpeg" alt="Monroe students." / loading="lazy">
             </div>
           </div>
           <div class="framed-photo">
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--marigold);"></div>
             <div class="framed-photo__img">
-              <img src="assets/mural-3.jpg" alt="A detail of one of Monroe's hand-painted mosaic murals." / loading="lazy">
+              <img src="assets/images/mural-3.jpg" alt="A detail of one of Monroe's hand-painted mosaic murals." / loading="lazy">
             </div>
           </div>
           <div class="framed-photo">
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--magenta);"></div>
             <div class="framed-photo__img">
-              <img src="assets/monroekids3.jpeg" alt="Monroe students." / loading="lazy">
+              <img src="assets/images/monroekids3.jpeg" alt="Monroe students." / loading="lazy">
             </div>
           </div>
           <div class="framed-photo">
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--jade);"></div>
             <div class="framed-photo__img">
-              <img src="assets/monroeplayground2.jpg" alt="Monroe playground." / loading="lazy">
+              <img src="assets/images/monroeplayground2.jpg" alt="Monroe playground." / loading="lazy">
             </div>
           </div>
           <div class="framed-photo">
             <div class="framed-photo__outer"></div>
             <div class="framed-photo__dashed" style="border-color: var(--poppy);"></div>
             <div class="framed-photo__img">
-              <img src="assets/monroekids6.jpeg" alt="Monroe students." / loading="lazy">
+              <img src="assets/images/monroekids6.jpeg" alt="Monroe students." / loading="lazy">
             </div>
           </div>
         </div>
@@ -1108,7 +1108,7 @@
           <div class="framed-photo__outer"></div>
           <div class="framed-photo__dashed" style="border-color: var(--monarch);"></div>
           <div class="framed-photo__img">
-            <img src="assets/monroekids8.jpeg" alt="Monroe students." / loading="lazy">
+            <img src="assets/images/monroekids8.jpeg" alt="Monroe students." / loading="lazy">
           </div>
         </div>
         <div class="principal__letter">
@@ -1129,9 +1129,9 @@
 
     <!-- ── Visit band ─────────────────────────────────────────────── -->
     <section class="visit" data-screen-label="08 Visit">
-      <img class="visit__deco-1" src="assets/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
-      <img class="visit__deco-2" src="assets/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
-      <img class="visit__deco-flower" src="assets/chinese-flower-4.png" alt="" aria-hidden="true" / loading="lazy">
+      <img class="visit__deco-1" src="assets/images/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
+      <img class="visit__deco-2" src="assets/images/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
+      <img class="visit__deco-flower" src="assets/images/chinese-flower-4.png" alt="" aria-hidden="true" / loading="lazy">
 
       <div class="visit__inner">
         <div>
@@ -1188,7 +1188,7 @@
     <footer class="footer">
       <div class="footer__grid">
         <div>
-          <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+          <div class="footer__logo"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
           <div class="footer__address">
             260 Madrid Street<br>San Francisco, CA 94112<br>
             <span style="color: var(--poppy); font-weight: 700;">(415) 469-4734</span>
@@ -1261,6 +1261,6 @@
     }
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Design Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #fdf8f2;
+      --cream2:   #f5ede0;
+      --paper:    #fdf9ec;
+      --ink:      #1a1410;
+      --monarch:  #e26a1f;
+      --cyan:     #2bb8d4;
+      --marigold: #f0a82e;
+      --magenta:  #d83a6d;
+      --poppy:    #d8392e;
+      --jade:     #4d8c5c;
+      --plum:     #7c3f88;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'Outfit', system-ui, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Layout ── */
+    .guide-header {
+      background: var(--ink); color: var(--cream);
+      padding: 80px 60px 64px;
+      position: relative; overflow: hidden;
+    }
+    .guide-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, rgba(253,248,242,.03) 0px, rgba(253,248,242,.03) 1px, transparent 1px, transparent 12px);
+    }
+    .guide-header__inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+    .guide-header__kicker {
+      font-size: 11px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--marigold); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .guide-header__kicker::before { content: ''; display: block; width: 28px; height: 2px; background: var(--marigold); }
+    .guide-header h1 {
+      font-size: clamp(48px, 5vw, 72px); font-weight: 900;
+      line-height: 1; letter-spacing: -.025em;
+      margin-bottom: 20px;
+    }
+    .guide-header h1 em { font-style: normal; color: var(--monarch); }
+    .guide-header__sub { font-size: 16px; color: rgba(253,248,242,.65); max-width: 560px; }
+    .guide-header__meta {
+      margin-top: 40px; padding-top: 32px;
+      border-top: 1px solid rgba(253,248,242,.15);
+      display: flex; gap: 40px;
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(253,248,242,.4);
+    }
+    .guide-header__meta span { color: rgba(253,248,242,.7); }
+
+    /* Rainbow stripe */
+    .rainbow { display: flex; height: 6px; }
+    .rainbow div { flex: 1; }
+
+    /* ── Section chrome ── */
+    .section {
+      padding: 80px 60px;
+      border-bottom: 1.5px solid var(--ink);
+      max-width: 100%;
+    }
+    .section--alt { background: var(--cream2); }
+    .section--dark { background: var(--ink); color: var(--cream); }
+    .section__inner { max-width: 1100px; margin: 0 auto; }
+    .section__label {
+      font-size: 10px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--monarch); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section--dark .section__label { color: var(--marigold); }
+    .section__label::before { content: ''; display: block; width: 16px; height: 1.5px; background: currentColor; }
+    .section__title {
+      font-size: clamp(28px, 3vw, 40px); font-weight: 700;
+      letter-spacing: -.02em; line-height: 1.1;
+      margin-bottom: 48px;
+    }
+    .section__title em { font-style: normal; color: var(--monarch); }
+    .section--dark .section__title em { color: var(--marigold); }
+
+    /* ── Color palette ── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .swatch {
+      border: 1.5px solid var(--ink);
+    }
+    .swatch__color { height: 90px; }
+    .swatch__body { padding: 12px 14px; background: #fff; border-top: 1.5px solid var(--ink); }
+    .swatch__name { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .swatch__token { font-size: 11px; color: rgba(26,20,16,.5); margin-top: 2px; font-family: monospace; }
+    .swatch__hex { font-size: 11px; color: rgba(26,20,16,.4); font-family: monospace; }
+
+    /* ── Type specimens ── */
+    .type-stack { display: flex; flex-direction: column; gap: 40px; }
+    .type-row {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 24px; align-items: baseline;
+      padding-bottom: 32px;
+      border-bottom: 1px dashed rgba(26,20,16,.15);
+    }
+    .type-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .type-meta { display: flex; flex-direction: column; gap: 4px; }
+    .type-meta__role { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(26,20,16,.45); }
+    .type-meta__spec { font-size: 11px; color: rgba(26,20,16,.5); font-family: monospace; line-height: 1.6; }
+    .type-specimen__h1 { font-size: clamp(44px, 4.6vw, 68px); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+    .type-specimen__h2 { font-size: clamp(32px, 3vw, 44px); font-weight: 700; line-height: 1.04; letter-spacing: -.02em; }
+    .type-specimen__h2 em { font-style: normal; color: var(--monarch); }
+    .type-specimen__kicker {
+      font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--poppy);
+    }
+    .type-specimen__label {
+      font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .type-specimen__body { font-size: 16px; line-height: 1.6; color: rgba(26,20,16,.75); max-width: 540px; }
+    .type-specimen__small { font-size: 12px; color: rgba(26,20,16,.5); }
+    .type-specimen__zh { font-family: 'ZCOOL XiaoWei', 'Noto Serif TC', serif; font-size: 28px; }
+
+    /* ── Page structure ── */
+    .structure-diagram {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1.5px solid var(--ink);
+      max-width: 700px;
+    }
+    .struct-row {
+      padding: 14px 20px;
+      border-bottom: 1.5px solid var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .struct-row:last-child { border-bottom: none; }
+    .struct-row__tag { font-size: 10px; color: rgba(26,20,16,.4); font-family: monospace; font-weight: 400; text-transform: none; letter-spacing: 0; }
+    .struct-row--util { background: var(--cream2); }
+    .struct-row--masthead { background: var(--cream); min-height: 56px; }
+    .struct-row--header { background: #fef5ec; }
+    .struct-row--rainbow { background: linear-gradient(to right, var(--poppy) 0%, var(--poppy) 14.2%, var(--monarch) 14.2%, var(--monarch) 28.5%, var(--marigold) 28.5%, var(--marigold) 42.8%, var(--jade) 42.8%, var(--jade) 57.1%, var(--cyan) 57.1%, var(--cyan) 71.4%, var(--plum) 71.4%, var(--plum) 85.7%, var(--magenta) 85.7%); height: 6px; padding: 0; }
+    .struct-row--section1 { background: var(--cream); }
+    .struct-row--section2 { background: var(--cream2); }
+    .struct-row--dark { background: var(--ink); color: var(--cream); }
+    .struct-row--footer { background: var(--cream2); }
+
+    /* ── Components ── */
+    .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .component-card {
+      border: 1.5px solid var(--ink);
+      background: #fff;
+    }
+    .component-card__head {
+      padding: 10px 14px;
+      background: var(--ink); color: var(--cream);
+      font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    }
+    .component-card__body { padding: 28px 24px; }
+
+    /* Example UI components */
+    .ex-card {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--monarch);
+      padding: 24px;
+    }
+    .ex-card--cyan  { box-shadow: 5px 5px 0 var(--cyan); }
+    .ex-card--jade  { box-shadow: 5px 5px 0 var(--jade); }
+    .ex-card--plum  { box-shadow: 5px 5px 0 var(--plum); }
+    .ex-card__role { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgba(26,20,16,.5); margin-bottom: 6px; }
+    .ex-card__name { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+    .ex-card__sub  { font-size: 13px; color: rgba(26,20,16,.6); margin-top: 4px; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .ex-btn-give {
+      background: var(--monarch); color: var(--cream);
+      border: 1.5px solid var(--ink); border-radius: 999px;
+      padding: 10px 20px; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .ex-btn-tour {
+      background: var(--cream); color: var(--ink);
+      border: 1.5px solid var(--ink); border-radius: 999px;
+      padding: 9px 18px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .ex-btn-cta {
+      background: var(--ink); color: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 12px 22px; font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--monarch);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .ex-btn-donate {
+      background: var(--poppy); color: var(--cream);
+      border: 1.5px solid var(--poppy); padding: 10px 18px;
+      font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+
+    .ex-section-head { margin-bottom: 0; }
+    .ex-section-head__kicker { font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--monarch); margin-bottom: 8px; }
+    .ex-section-head__h2 { font-size: 32px; font-weight: 700; letter-spacing: -.02em; line-height: 1.04; }
+    .ex-section-head__h2 em { font-style: normal; color: var(--monarch); }
+    .ex-section-head__sub { font-size: 14px; color: rgba(26,20,16,.65); margin-top: 10px; max-width: 380px; line-height: 1.55; }
+
+    .ex-list-item {
+      display: grid; grid-template-columns: 80px 1fr auto;
+      gap: 14px; align-items: start;
+      padding: 14px 0 14px 12px;
+      border-top: 0.5px solid rgba(26,20,16,.12);
+      border-left: 3px solid var(--cyan);
+    }
+    .ex-list-item__kind { font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); }
+    .ex-list-item__title { font-size: 17px; font-weight: 400; line-height: 1.3; }
+    .ex-list-item__date { font-size: 11px; color: rgba(26,20,16,.45); margin-top: 4px; }
+
+    /* ── Rules grid ── */
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .rule-block {
+      padding: 24px 26px;
+      border: 1.5px solid var(--ink);
+    }
+    .rule-block--do { border-left: 5px solid var(--jade); }
+    .rule-block--dont { border-left: 5px solid var(--poppy); }
+    .rule-block__head {
+      font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .rule-block--do .rule-block__head   { color: var(--jade); }
+    .rule-block--dont .rule-block__head { color: var(--poppy); }
+    .rule-block ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .rule-block li { font-size: 14px; line-height: 1.4; display: flex; gap: 8px; align-items: flex-start; }
+    .rule-block li::before { flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+    .rule-block--do   li::before { content: '✓'; color: var(--jade); font-weight: 800; }
+    .rule-block--dont li::before { content: '✗'; color: var(--poppy); font-weight: 800; }
+
+    /* ── Tokens reference table ── */
+    .token-table { width: 100%; border-collapse: collapse; }
+    .token-table th, .token-table td {
+      padding: 10px 16px; text-align: left;
+      border-bottom: 1px solid rgba(26,20,16,.1);
+      font-size: 13px;
+    }
+    .token-table th { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgba(26,20,16,.45); }
+    .token-table td:first-child { font-family: monospace; font-size: 13px; color: var(--monarch); }
+    .token-table td:nth-child(3) { font-family: monospace; font-size: 12px; }
+    .token-swatch { display: inline-block; width: 16px; height: 16px; border: 1px solid rgba(26,20,16,.2); vertical-align: middle; margin-right: 8px; }
+
+    /* ── Background usage ── */
+    .bg-usage { display: flex; flex-direction: column; gap: 0; border: 1.5px solid var(--ink); }
+    .bg-row {
+      padding: 18px 24px; border-bottom: 1.5px solid var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .bg-row:last-child { border-bottom: none; }
+    .bg-row__label { font-size: 13px; font-weight: 700; }
+    .bg-row__desc  { font-size: 12px; color: rgba(26,20,16,.55); margin-top: 2px; }
+    .bg-row__token { font-family: monospace; font-size: 12px; color: var(--monarch); }
+  </style>
+</head>
+<body>
+
+<!-- ── Guide Header ─────────────────────────────────────────────────────────── -->
+<div class="guide-header">
+  <div class="guide-header__inner">
+    <div class="guide-header__kicker">Monroe Elementary · San Francisco</div>
+    <h1>Website <em>Design</em><br>Guide</h1>
+    <p class="guide-header__sub">Visual standards, component patterns, and rules of the road for the Monroe Elementary website — kept consistent across all pages.</p>
+    <div class="guide-header__meta">
+      Version <span>1.0</span> &nbsp;·&nbsp; Updated <span>May 2026</span> &nbsp;·&nbsp; Pages covered <span>15</span>
+    </div>
+  </div>
+</div>
+
+<!-- Rainbow -->
+<div class="rainbow">
+  <div style="background:var(--poppy)"></div><div style="background:var(--monarch)"></div>
+  <div style="background:var(--marigold)"></div><div style="background:var(--jade)"></div>
+  <div style="background:var(--cyan)"></div><div style="background:var(--plum)"></div>
+  <div style="background:var(--magenta)"></div><div style="background:var(--poppy)"></div>
+  <div style="background:var(--monarch)"></div><div style="background:var(--marigold)"></div>
+  <div style="background:var(--jade)"></div><div style="background:var(--cyan)"></div>
+  <div style="background:var(--plum)"></div><div style="background:var(--magenta)"></div>
+</div>
+
+<!-- ── 1. Color Palette ──────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="section__label">01</div>
+    <h2 class="section__title">Color <em>Palette</em></h2>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch__color" style="background:#fdf8f2"></div>
+        <div class="swatch__body"><div class="swatch__name">Cream</div><div class="swatch__token">--cream</div><div class="swatch__hex">#fdf8f2</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#f5ede0; border-bottom:1px solid #e8d8c4;"></div>
+        <div class="swatch__body"><div class="swatch__name">Cream 2</div><div class="swatch__token">--cream2</div><div class="swatch__hex">#f5ede0</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#fdf9ec"></div>
+        <div class="swatch__body"><div class="swatch__name">Paper</div><div class="swatch__token">--paper</div><div class="swatch__hex">#fdf9ec</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#1a1410"></div>
+        <div class="swatch__body"><div class="swatch__name">Ink</div><div class="swatch__token">--ink</div><div class="swatch__hex">#1a1410</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#e26a1f"></div>
+        <div class="swatch__body"><div class="swatch__name">Monarch</div><div class="swatch__token">--monarch</div><div class="swatch__hex">#e26a1f</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#2bb8d4"></div>
+        <div class="swatch__body"><div class="swatch__name">Cyan</div><div class="swatch__token">--cyan</div><div class="swatch__hex">#2bb8d4</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#f0a82e"></div>
+        <div class="swatch__body"><div class="swatch__name">Marigold</div><div class="swatch__token">--marigold</div><div class="swatch__hex">#f0a82e</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#d83a6d"></div>
+        <div class="swatch__body"><div class="swatch__name">Magenta</div><div class="swatch__token">--magenta</div><div class="swatch__hex">#d83a6d</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#d8392e"></div>
+        <div class="swatch__body"><div class="swatch__name">Poppy</div><div class="swatch__token">--poppy</div><div class="swatch__hex">#d8392e</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#4d8c5c"></div>
+        <div class="swatch__body"><div class="swatch__name">Jade</div><div class="swatch__token">--jade</div><div class="swatch__hex">#4d8c5c</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#7c3f88"></div>
+        <div class="swatch__body"><div class="swatch__name">Plum</div><div class="swatch__token">--plum</div><div class="swatch__hex">#7c3f88</div></div>
+      </div>
+      <div class="swatch" style="border-style:dashed; opacity:.6;">
+        <div class="swatch__color" style="background:#fef5ec"></div>
+        <div class="swatch__body"><div class="swatch__name">Hero Bg</div><div class="swatch__token">(page headers)</div><div class="swatch__hex">#fef5ec</div></div>
+      </div>
+    </div>
+
+    <p style="margin-top:28px; font-size:13px; color:rgba(26,20,16,.55); max-width:600px; line-height:1.6;">
+      All colors are defined once in <code style="font-family:monospace; font-size:12px; background:var(--cream2); padding:2px 6px;">assets/styles.css</code> as CSS custom properties. Never hardcode hex values in page files — always reference a token. Tints of a token color may use <code style="font-family:monospace; font-size:12px; background:var(--cream2); padding:2px 6px;">rgba(r,g,b, alpha)</code>.
+    </p>
+  </div>
+</section>
+
+<!-- ── 2. Typography ─────────────────────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="section__label">02</div>
+    <h2 class="section__title">Typography</h2>
+
+    <div class="type-stack">
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Page H1</div>
+          <div class="type-meta__spec">Outfit 900<br>clamp(44px–68px)<br>tracking: -0.02em</div>
+        </div>
+        <div class="type-specimen__h1">The people who <em style="font-style:normal;color:var(--monarch)">make</em> Monroe.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Section H2</div>
+          <div class="type-meta__spec">Outfit 700<br>clamp(32px–44px)<br>tracking: -0.02em</div>
+        </div>
+        <div class="type-specimen__h2">Classroom teachers, by <em>grade</em> and pathway.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Kicker / Label</div>
+          <div class="type-meta__spec">Outfit 800<br>11px<br>tracking: 0.22em<br>ALL CAPS</div>
+        </div>
+        <div>
+          <div class="type-specimen__kicker">Our School &amp; Programs</div>
+          <div style="margin-top:12px; font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--cyan);">Family Comm</div>
+          <div style="margin-top:12px; font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--jade);">Community</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Body</div>
+          <div class="type-meta__spec">Outfit 400<br>15–16px<br>line-height: 1.6</div>
+        </div>
+        <div class="type-specimen__body">Twenty-three classroom teachers, a leadership team of nine, three family liaisons, an inclusion specialist, and a full support staff — all here for the same 360 kids.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Small / Meta</div>
+          <div class="type-meta__spec">Outfit 400–700<br>11–13px<br>rgba(26,20,16,.5)</div>
+        </div>
+        <div>
+          <div class="type-specimen__small">Apr 18 · Sent via ParentSquare · 6 min read</div>
+          <div style="margin-top:8px; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:rgba(26,20,16,.45);">Room 14 · Kindergarten</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta__role">Chinese Text</div>
+          <div class="type-meta__spec">ZCOOL XiaoWei<br>or Noto Serif TC<br>Use for ZH content only</div>
+        </div>
+        <div class="type-specimen__zh">歡迎來到門羅小學</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; padding:24px 28px; background:rgba(26,20,16,.05); border-left:4px solid var(--poppy);">
+      <div style="font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--poppy); margin-bottom:10px;">Never use</div>
+      <p style="font-size:14px; color:rgba(26,20,16,.7);">Playfair Display, Georgia, or any other serif font anywhere in the site CSS. All headings, body copy, labels, and UI text use <strong>Outfit</strong> exclusively. Chinese-language text uses ZCOOL XiaoWei or Noto Serif TC.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. Page Structure ──────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="section__label">03</div>
+    <h2 class="section__title">Page <em>Structure</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;">
+      <div>
+        <div class="structure-diagram">
+          <div class="struct-row struct-row--util">
+            Utility Bar
+            <span class="struct-row__tag">address · hours · lang · ParentSquare</span>
+          </div>
+          <div class="struct-row struct-row--masthead">
+            Masthead &amp; Navigation
+            <span class="struct-row__tag">logo · nav · Tour · Give →</span>
+          </div>
+          <div class="struct-row struct-row--header">
+            Page Header
+            <span class="struct-row__tag">bg: #fef5ec · H1 wt:900</span>
+          </div>
+          <div class="struct-row struct-row--rainbow"></div>
+          <div class="struct-row struct-row--section1">
+            Content Section (light)
+            <span class="struct-row__tag">bg: var(--cream)</span>
+          </div>
+          <div class="struct-row struct-row--section2">
+            Content Section (mid)
+            <span class="struct-row__tag">bg: var(--cream2)</span>
+          </div>
+          <div class="struct-row struct-row--dark">
+            Accent Section (dark)
+            <span class="struct-row__tag">bg: var(--ink) · text: var(--cream)</span>
+          </div>
+          <div class="struct-row struct-row--section1">
+            Content Section (light)
+            <span class="struct-row__tag">bg: var(--cream)</span>
+          </div>
+          <div class="struct-row struct-row--footer">
+            Footer
+            <span class="struct-row__tag">logo · nav cols · address · copyright</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--monarch); margin-bottom:10px;">Rainbow Stripe</div>
+          <p style="font-size:14px; line-height:1.6; color:rgba(26,20,16,.7);">Required on every page directly after the page header section. 14 spans (7 colors × 2), height 6px. Order: poppy → monarch → marigold → jade → cyan → plum → magenta, repeat.</p>
+          <div style="display:flex; height:12px; margin-top:12px; border:1px solid rgba(26,20,16,.15);">
+            <div style="flex:1;background:var(--poppy)"></div><div style="flex:1;background:var(--monarch)"></div>
+            <div style="flex:1;background:var(--marigold)"></div><div style="flex:1;background:var(--jade)"></div>
+            <div style="flex:1;background:var(--cyan)"></div><div style="flex:1;background:var(--plum)"></div>
+            <div style="flex:1;background:var(--magenta)"></div><div style="flex:1;background:var(--poppy)"></div>
+            <div style="flex:1;background:var(--monarch)"></div><div style="flex:1;background:var(--marigold)"></div>
+            <div style="flex:1;background:var(--jade)"></div><div style="flex:1;background:var(--cyan)"></div>
+            <div style="flex:1;background:var(--plum)"></div><div style="flex:1;background:var(--magenta)"></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--monarch); margin-bottom:10px;">Section Background Rhythm</div>
+          <p style="font-size:14px; line-height:1.6; color:rgba(26,20,16,.7);">Sections alternate between <code style="font-family:monospace;font-size:12px;background:var(--cream2);padding:1px 5px;">--cream</code> and <code style="font-family:monospace;font-size:12px;background:var(--cream2);padding:1px 5px;">--cream2</code>. Use <code style="font-family:monospace;font-size:12px;background:var(--cream2);padding:1px 5px;">--ink</code> for a single dark accent section per page. Never use random hex values.</p>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--monarch); margin-bottom:10px;">Grain Texture</div>
+          <p style="font-size:14px; line-height:1.6; color:rgba(26,20,16,.7);">Every page loads <code style="font-family:monospace;font-size:12px;background:var(--cream2);padding:1px 5px;">assets/grain.js</code> via a deferred script tag. The grain overlay sits at z-index 9998 with <code style="font-family:monospace;font-size:12px;background:var(--cream2);padding:1px 5px;">mix-blend-mode: multiply</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. Components ──────────────────────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="section__label">04</div>
+    <h2 class="section__title">Components</h2>
+
+    <div class="component-grid">
+
+      <!-- Cards -->
+      <div class="component-card">
+        <div class="component-card__head">Cards</div>
+        <div class="component-card__body" style="display:flex; flex-direction:column; gap:16px;">
+          <div class="ex-card">
+            <div class="ex-card__role">Principal</div>
+            <div class="ex-card__name">Director Aguilar</div>
+            <div class="ex-card__sub">K–5 · Room 1</div>
+          </div>
+          <div class="ex-card ex-card--cyan">
+            <div class="ex-card__role">Family Liaison</div>
+            <div class="ex-card__name">Cathy Lan</div>
+            <div class="ex-card__sub">Cantonese · English</div>
+          </div>
+          <p style="font-size:12px; color:rgba(26,20,16,.55); line-height:1.5; margin-top:4px;">
+            <strong>Always:</strong> 1.5px ink border · 5px 5px 0 offset shadow · border-radius: 0<br>
+            <strong>Shadow colors</strong> rotate through palette using <code style="font-family:monospace">nth-child</code>.<br>
+            <strong>Never:</strong> border-radius, drop-shadow, hover lift.
+          </p>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="component-card">
+        <div class="component-card__head">Buttons</div>
+        <div class="component-card__body" style="display:flex; flex-direction:column; gap:16px;">
+          <div class="btn-row">
+            <button class="ex-btn-give">Give →</button>
+            <button class="ex-btn-tour">Tour the School</button>
+          </div>
+          <button class="ex-btn-cta">Learn More <span>→</span></button>
+          <button class="ex-btn-donate">Donate Now</button>
+          <p style="font-size:12px; color:rgba(26,20,16,.55); line-height:1.5; margin-top:4px;">
+            <strong>Give/Tour:</strong> pill shape (border-radius:999px), ink border.<br>
+            <strong>Section CTAs:</strong> square (border-radius:0), flat offset shadow.<br>
+            <strong>Never:</strong> hover lift, drop-shadow, gradient fills.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section head -->
+      <div class="component-card">
+        <div class="component-card__head">Section Heading</div>
+        <div class="component-card__body">
+          <div class="ex-section-head">
+            <div class="ex-section-head__kicker">Our School</div>
+            <div class="ex-section-head__h2">Programs that <em>celebrate</em> every language.</div>
+            <div class="ex-section-head__sub">Three bilingual pathways woven through every grade, K–5.</div>
+          </div>
+          <p style="font-size:12px; color:rgba(26,20,16,.55); line-height:1.5; margin-top:20px;">
+            Kicker: Outfit 800, 10–11px, 0.22em tracking, token color.<br>
+            H2: Outfit 700, clamp(32–44px), –0.02em tracking.<br>
+            <em>Italic</em> em spans take <code style="font-family:monospace">color:var(--monarch)</code>.
+          </p>
+        </div>
+      </div>
+
+      <!-- News list item -->
+      <div class="component-card">
+        <div class="component-card__head">News / Event List Item</div>
+        <div class="component-card__body">
+          <div class="ex-list-item">
+            <div>
+              <div class="ex-list-item__kind">Family Comm</div>
+              <div style="display:inline-block;margin-top:5px;font-size:9px;font-weight:900;letter-spacing:.12em;padding:2px 5px;border-radius:2px;background:rgba(26,20,16,.07);color:rgba(26,20,16,.5);">EN</div>
+              <div class="ex-list-item__date">Apr 18</div>
+            </div>
+            <div>
+              <div class="ex-list-item__title">Week ahead: book fair, picture re-takes, and the kindergarten visit</div>
+              <div style="font-size:12px;color:rgba(26,20,16,.5);margin-top:4px;font-style:normal;">Sent via ParentSquare</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2bb8d4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+          <p style="font-size:12px; color:rgba(26,20,16,.55); line-height:1.5; margin-top:16px;">
+            3-column grid: meta col · title col · arrow. Left border color matches kind label color. Lang badge uses rgba ink tint.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 5. Navigation ──────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="section__label">05</div>
+    <h2 class="section__title">Navigation <em>Structure</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+      <div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(26,20,16,.45); margin-bottom:16px;">Top-level items</div>
+        <div style="border:1.5px solid var(--ink); font-size:13px;">
+          <div style="padding:12px 18px; border-bottom:1.5px solid var(--ink); display:flex; justify-content:space-between; align-items:center; background:var(--cream2);">
+            <span style="font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Our School &amp; Programs ▼</span>
+            <span style="font-size:10px; color:rgba(26,20,16,.4);">has dropdown</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; justify-content:space-between;">
+            <span style="font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Community Hub</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; justify-content:space-between;">
+            <span style="font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Calendar</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; justify-content:space-between;">
+            <span style="font-weight:700; letter-spacing:.04em; text-transform:uppercase;">News</span>
+          </div>
+          <div style="padding:12px 18px; display:flex; justify-content:space-between;">
+            <span style="font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--monarch);">Give</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(26,20,16,.45); margin-bottom:16px;">"Our School" Dropdown</div>
+        <div style="border:1.5px solid var(--ink); box-shadow:5px 5px 0 var(--ink); font-size:12px;">
+          <div style="padding:11px 18px; border-bottom:1px dashed rgba(26,20,16,.18); display:flex; justify-content:space-between; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">About <span style="opacity:.35;">→</span></div>
+          <div style="padding:11px 18px; border-bottom:1px dashed rgba(26,20,16,.18); display:flex; justify-content:space-between; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Before &amp; After Care <span style="opacity:.35;">→</span></div>
+          <div style="padding:11px 18px; border-bottom:1px dashed rgba(26,20,16,.18); display:flex; justify-content:space-between; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--monarch);">· Faculty &amp; Staff <span style="opacity:.35;">→</span></div>
+          <div style="padding:11px 18px; border-bottom:1px dashed rgba(26,20,16,.18); display:flex; justify-content:space-between; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">PTA <span style="opacity:.35;">→</span></div>
+          <div style="padding:11px 18px; display:flex; justify-content:space-between; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Family Liaisons <span style="opacity:.35;">→</span></div>
+        </div>
+        <p style="font-size:12px; color:rgba(26,20,16,.55); line-height:1.5; margin-top:14px;">Active page item gets <code style="font-family:monospace">color:var(--monarch)</code> and a <code style="font-family:monospace">·</code> prefix. The nav HTML is identical across all pages — only the <code style="font-family:monospace">active</code> class shifts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6. Token Reference ─────────────────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="section__label">06</div>
+    <h2 class="section__title">Token <em>Reference</em></h2>
+
+    <table class="token-table">
+      <thead>
+        <tr><th>Token</th><th>Name</th><th>Hex</th><th>Primary use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>--cream</td><td>Cream</td><td><span class="token-swatch" style="background:#fdf8f2"></span>#fdf8f2</td><td>Default page background, util-bar, masthead, footer</td></tr>
+        <tr><td>--cream2</td><td>Cream 2</td><td><span class="token-swatch" style="background:#f5ede0;border-color:rgba(26,20,16,.2)"></span>#f5ede0</td><td>Alternate section background, table headers, hover states</td></tr>
+        <tr><td>--paper</td><td>Paper</td><td><span class="token-swatch" style="background:#fdf9ec"></span>#fdf9ec</td><td>Card backgrounds, subtle insets</td></tr>
+        <tr><td>--ink</td><td>Ink</td><td><span class="token-swatch" style="background:#1a1410"></span>#1a1410</td><td>All text, borders, dark section backgrounds</td></tr>
+        <tr><td>--monarch</td><td>Monarch Orange</td><td><span class="token-swatch" style="background:#e26a1f"></span>#e26a1f</td><td>Active nav, italic em, Give button, card shadows, kickers</td></tr>
+        <tr><td>--cyan</td><td>Cyan</td><td><span class="token-swatch" style="background:#2bb8d4"></span>#2bb8d4</td><td>Active lang indicator, TWBI pathway color, accent shadows</td></tr>
+        <tr><td>--marigold</td><td>Marigold</td><td><span class="token-swatch" style="background:#f0a82e"></span>#f0a82e</td><td>ParentSquare button, Cantonese pathway, Spanish label</td></tr>
+        <tr><td>--magenta</td><td>Magenta</td><td><span class="token-swatch" style="background:#d83a6d"></span>#d83a6d</td><td>ZH language, accent shadows, rainbow stripe</td></tr>
+        <tr><td>--poppy</td><td>Poppy Red</td><td><span class="token-swatch" style="background:#d8392e"></span>#d8392e</td><td>Label class default, donate buttons, rainbow stripe start</td></tr>
+        <tr><td>--jade</td><td>Jade Green</td><td><span class="token-swatch" style="background:#4d8c5c"></span>#4d8c5c</td><td>ELD pathway, community/nature accent, card shadows</td></tr>
+        <tr><td>--plum</td><td>Plum</td><td><span class="token-swatch" style="background:#7c3f88"></span>#7c3f88</td><td>Accent shadows, rainbow stripe, lantern colors</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── 7. Do / Don't ─────────────────────────────────────────────────────────── -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="section__label">07</div>
+    <h2 class="section__title">Rules of the <em>Road</em></h2>
+
+    <div class="rules-grid">
+      <div class="rule-block rule-block--do">
+        <div class="rule-block__head">Do</div>
+        <ul>
+          <li>Use Outfit for all text — headings, body, labels, buttons</li>
+          <li>Set H1 at font-weight: 900</li>
+          <li>Set section H2s at font-weight: 700</li>
+          <li>Use <code style="font-family:monospace;font-size:11px;">var(--token)</code> for every color reference</li>
+          <li>Square cards: border-radius: 0, 1.5px ink border, 5px offset shadow</li>
+          <li>Rotate card shadow colors with nth-child through the palette</li>
+          <li>Add a rainbow stripe after every page header</li>
+          <li>Use #fef5ec for page header backgrounds</li>
+          <li>Alternate sections: cream → cream2 → ink → cream</li>
+          <li>Pill shape only on Tour and Give nav buttons</li>
+          <li>Mark current page with class="active" on nav-item</li>
+          <li>Load assets/styles.css — never redefine :root tokens inline</li>
+        </ul>
+      </div>
+      <div class="rule-block rule-block--dont">
+        <div class="rule-block__head">Don't</div>
+        <ul>
+          <li>Use Playfair Display, Georgia, or any serif font</li>
+          <li>Set section H2s at font-weight: 400 — it looks unfinished</li>
+          <li>Hardcode hex colors in page files (#aedceb, #236040, etc.)</li>
+          <li>Add a local :root block that overrides the shared token values</li>
+          <li>Round card corners — border-radius: 8px breaks the flat aesthetic</li>
+          <li>Add hover lift effects (transform: translateY) to cards or buttons</li>
+          <li>Use box-shadow with blur (0 8px 32px) — flat offset shadows only</li>
+          <li>Use pastel hardcoded backgrounds on cards (#fce8f0, #e6f4f0, etc.)</li>
+          <li>Skip the rainbow stripe on any page</li>
+          <li>Add additional Google Fonts families not already imported</li>
+          <li>Mix :root override colors that differ from styles.css</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 8. File structure ──────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="section__label">08</div>
+    <h2 class="section__title">File <em>Structure</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+      <div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(26,20,16,.45); margin-bottom:16px;">Every page must include</div>
+        <div style="border:1.5px solid var(--ink); font-family:monospace; font-size:13px; line-height:1.8;">
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); background:var(--cream2);">&#60;link rel="stylesheet" href="assets/css/styles.css" /&#62;</div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12);">&#60;script src="assets/js/grain.js" defer&#62;&#60;/script&#62;</div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12);">Google Fonts: Outfit + ZCOOL XiaoWei + Noto Serif TC</div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12);">&#60;div id="grain-overlay"&#62;&#60;/div&#62; in &#60;body&#62;</div>
+          <div style="padding:12px 18px;">Util bar + Masthead (canonical from communityhub.html)</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(26,20,16,.45); margin-bottom:16px;">Shared assets</div>
+        <div style="border:1.5px solid var(--ink); font-size:13px;">
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; gap:12px; align-items:center;">
+            <span style="font-family:monospace; color:var(--monarch);">assets/styles.css</span>
+            <span style="font-size:11px; color:rgba(26,20,16,.5);">All tokens, nav, footer, util-bar</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; gap:12px; align-items:center;">
+            <span style="font-family:monospace; color:var(--monarch);">assets/grain.js</span>
+            <span style="font-size:11px; color:rgba(26,20,16,.5);">Rice paper texture overlay</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; gap:12px; align-items:center;">
+            <span style="font-family:monospace; color:var(--monarch);">assets/images/monroe-logo.png</span>
+            <span style="font-size:11px; color:rgba(26,20,16,.5);">Horizontal logo, 200px wide in nav</span>
+          </div>
+          <div style="padding:12px 18px; border-bottom:1px dashed rgba(26,20,16,.12); display:flex; gap:12px; align-items:center;">
+            <span style="font-family:monospace; color:var(--monarch);">assets/images/chinese-lattice-*png</span>
+            <span style="font-size:11px; color:rgba(26,20,16,.5);">Texture overlay, opacity 0.04–0.06</span>
+          </div>
+          <div style="padding:12px 18px; display:flex; gap:12px; align-items:center;">
+            <span style="font-family:monospace; color:var(--monarch);">assets/images/faculty-staff/</span>
+            <span style="font-size:11px; color:rgba(26,20,16,.5);">Staff photos, 130×130px circles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div style="background:var(--ink); color:rgba(253,248,242,.4); padding:24px 60px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center;">
+  <span>Monroe Elementary · Design Guide · v1.0</span>
+  <span style="color:rgba(253,248,242,.2);">260 Madrid St · San Francisco · SFUSD</span>
+</div>
+
+</body>
+</html>

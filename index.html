@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
     /* ── Reset + base ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -298,7 +298,7 @@
     .quick-actions::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url('assets/chinese-lattice-2.png');
+      background-image: url('assets/images/chinese-lattice-2.png');
       background-size: 340px auto;
       background-repeat: repeat;
       opacity: 0.04;
@@ -366,7 +366,7 @@
     .programs::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url('assets/chinese-lattice-2.png');
+      background-image: url('assets/images/chinese-lattice-2.png');
       background-size: 420px auto; background-repeat: repeat;
       opacity: 0.10; filter: brightness(0) invert(1);
     }
@@ -664,14 +664,14 @@
           rgba(253,248,242,0.06) 86%,
           rgba(253,248,242,0)   100%
         ),
-        url('assets/schoolyard.jpg') center/cover no-repeat;
+        url('assets/images/schoolyard.jpg') center/cover no-repeat;
     }
     .hero--v2::before { display: none; }
     .hero--v2::after  { display: none; }
     .hero--v2 .bunting-wrap { z-index: 10; }
     .hero__v2-grid { display: grid; grid-template-columns: 1fr 300px 160px; min-height: 580px; }
     .hero__hub-panel { background: var(--cream); position: relative; z-index: 2; display: flex; flex-direction: column; border: 1.5px solid #e8d89a; border-radius: 10px; margin: 100px 0 40px 0; box-shadow: 3px 3px 0 rgba(26,20,16,0.09); overflow: hidden; }
-    .hero__hub-panel::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: url('assets/chinese-lattice-2.png'); background-size: 240px auto; background-repeat: repeat; opacity: 0.04; }
+    .hero__hub-panel::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: url('assets/images/chinese-lattice-2.png'); background-size: 240px auto; background-repeat: repeat; opacity: 0.04; }
 
     .hero__hub-panel-inner { padding: 60px 24px 32px; display: flex; flex-direction: column; flex: 1; gap: 0; position: relative; z-index: 1; }
     /* rainbow strip at top of panel, below bunting */
@@ -759,8 +759,8 @@
       .hub-panel__heading { font-size: 20px; }
     }
   </style>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/fav.icon-32.png" />
 </head>
 <body>
   <div id="grain-overlay"></div>
@@ -795,7 +795,7 @@
     <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
     <header class="masthead">
       <div class="masthead__logo">
-        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+        <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
       </div>
       <nav class="masthead__nav">
         <div class="nav-item">
@@ -829,7 +829,7 @@
     </header>
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
     <div class="mobile-nav__head">
-      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <a href="index.html"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
       <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
     </div>
     <nav class="mobile-nav__links">
@@ -910,8 +910,8 @@
       <!-- Right: Community Hub panel -->
       <div class="hero__hub-panel">
         <!-- decorative flowers pinned to panel -->
-        <img src="assets/chinese-flower-4.png" alt="" aria-hidden="true" style="position:absolute;bottom:100px;right:-18px;width:90px;opacity:0.12;transform:rotate(20deg);pointer-events:none;z-index:2;" loading="lazy">
-        <img src="assets/chinese-flower-6.png" alt="" aria-hidden="true" style="position:absolute;bottom:82px;left:10px;width:52px;opacity:0.1;transform:rotate(-12deg);pointer-events:none;z-index:2;" loading="lazy">
+        <img src="assets/images/chinese-flower-4.png" alt="" aria-hidden="true" style="position:absolute;bottom:100px;right:-18px;width:90px;opacity:0.12;transform:rotate(20deg);pointer-events:none;z-index:2;" loading="lazy">
+        <img src="assets/images/chinese-flower-6.png" alt="" aria-hidden="true" style="position:absolute;bottom:82px;left:10px;width:52px;opacity:0.1;transform:rotate(-12deg);pointer-events:none;z-index:2;" loading="lazy">
         <div class="hero__hub-panel-inner">
           <div class="hub-panel__rainbow">
             <span style="background:var(--jade);"></span>
@@ -981,7 +981,7 @@
     <span style="background:var(--magenta);flex:1"></span>
   </div>
   <section class="annual-fund">
-    <img src="assets/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-20px;width:200px;pointer-events:none;z-index:0;filter:brightness(0) invert(1);opacity:0.12;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-20px;width:200px;pointer-events:none;z-index:0;filter:brightness(0) invert(1);opacity:0.12;" loading="lazy">
     <div class="annual-fund__inner">
       <span class="label" style="color:var(--ink); white-space:nowrap; font-size:22px; letter-spacing:.05em; text-transform:none; font-style:normal;">Annual Fund</span>
       <h2 class="annual-fund__h2">Every dollar buys a book, <em>a brush, an afternoon of art.</em></h2>
@@ -1001,10 +1001,10 @@
   <!-- ── Ways to Connect / About Monroe ──────────────────────────────────── -->
   <section class="quick-actions">
     <!-- Flowers — white on dark background -->
-    <img src="assets/chinese-flower-3.png" alt="" style="position:absolute;right:28px;top:18px;width:100px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(-8deg);" loading="lazy">
-    <img src="assets/chinese-half-circles.png" alt="" style="position:absolute;right:-8px;bottom:-30px;width:200px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;" loading="lazy">
-    <img src="assets/chinese-half-circles.png" alt="" style="position:absolute;left:-8px;top:-30px;width:180px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(180deg);" loading="lazy">
-    <img src="assets/chinese-flower-6.png" alt="" style="position:absolute;left:180px;top:24px;width:72px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(15deg);" loading="lazy">
+    <img src="assets/images/chinese-flower-3.png" alt="" style="position:absolute;right:28px;top:18px;width:100px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(-8deg);" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-8px;bottom:-30px;width:200px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:-8px;top:-30px;width:180px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(180deg);" loading="lazy">
+    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;left:180px;top:24px;width:72px;pointer-events:none;z-index:1;filter:brightness(0) invert(1);opacity:0.07;transform:rotate(15deg);" loading="lazy">
     <div class="quick-actions__mosaic">
       <svg id="mosaic-connect"></svg>
     </div>
@@ -1104,19 +1104,19 @@
   <!-- ── News + Events ─────────────────────────────────────────────────────── -->
   <section class="news-events">
     <!-- Extra flowers — light bg -->
-    <img src="assets/chinese-flower-4.png" alt="" style="position:absolute;right:20px;bottom:30px;width:80px;pointer-events:none;z-index:1;opacity:0.08;transform:rotate(20deg);" loading="lazy">
-    <img src="assets/chinese-half-circles.png" alt="" style="position:absolute;left:-10px;bottom:10px;width:180px;pointer-events:none;z-index:1;opacity:0.06;" loading="lazy">
-    <img src="assets/chinese-flower-6.png" alt="" style="position:absolute;right:200px;top:16px;width:55px;pointer-events:none;z-index:1;opacity:0.07;transform:rotate(-25deg);" loading="lazy">
+    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;right:20px;bottom:30px;width:80px;pointer-events:none;z-index:1;opacity:0.08;transform:rotate(20deg);" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;left:-10px;bottom:10px;width:180px;pointer-events:none;z-index:1;opacity:0.06;" loading="lazy">
+    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;right:200px;top:16px;width:55px;pointer-events:none;z-index:1;opacity:0.07;transform:rotate(-25deg);" loading="lazy">
     <!-- Floating monarch decorations -->
     <div class="news-events__monarch-1">
-      <img src="assets/chinese-flower.png" width="60" height="58" alt="" style="opacity:0.36;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
+      <img src="assets/images/chinese-flower.png" width="60" height="58" alt="" style="opacity:0.36;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
     </div>
     <div class="news-events__monarch-2">
-      <img src="assets/chinese-flower.png" width="42" height="40" alt="" style="opacity:0.33;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(10deg) brightness(1.1)" loading="lazy">
+      <img src="assets/images/chinese-flower.png" width="42" height="40" alt="" style="opacity:0.33;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(10deg) brightness(1.1)" loading="lazy">
     </div>
     <!-- Extra flower bottom-left -->
     <div style="position:absolute;bottom:32px;left:180px;pointer-events:none;transform:rotate(10deg)">
-      <img src="assets/chinese-flower.png" width="36" height="35" alt="" style="opacity:0.28;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
+      <img src="assets/images/chinese-flower.png" width="36" height="35" alt="" style="opacity:0.28;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(338deg) brightness(0.95)" loading="lazy">
     </div>
 
     <div class="news-events__grid">
@@ -1236,13 +1236,13 @@
   <!-- ── Community photo strip ─────────────────────────────────────────────── -->
   <section class="community">
     <!-- Scattered flowers & half-circles: cream bg → colored -->
-    <img src="assets/chinese-flower-3.png" alt="" style="position:absolute;right:20px;top:18px;width:95px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(308deg);transform:rotate(-12deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-flower-2.png" alt="" style="position:absolute;left:20px;bottom:26px;width:80px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(100deg);transform:rotate(18deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-flower-4.png" alt="" style="position:absolute;left:-10px;top:18px;width:140px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(-10deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-flower-5.png" alt="" style="position:absolute;right:180px;top:22px;width:70px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(255deg);transform:rotate(20deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-flower-6.png" alt="" style="position:absolute;left:120px;bottom:20px;width:75px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(5deg);transform:rotate(-16deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-8px;width:160px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(328deg);transform:rotate(180deg);opacity:0.18;" loading="lazy">
-    <img src="assets/chinese-flower-4.png" alt="" style="position:absolute;right:60px;bottom:20px;width:65px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(10deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-3.png" alt="" style="position:absolute;right:20px;top:18px;width:95px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(308deg);transform:rotate(-12deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-2.png" alt="" style="position:absolute;left:20px;bottom:26px;width:80px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(100deg);transform:rotate(18deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;left:-10px;top:18px;width:140px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(-10deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-5.png" alt="" style="position:absolute;right:180px;top:22px;width:70px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(255deg);transform:rotate(20deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-6.png" alt="" style="position:absolute;left:120px;bottom:20px;width:75px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(5deg);transform:rotate(-16deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-half-circles.png" alt="" style="position:absolute;right:-10px;bottom:-8px;width:160px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.7) brightness(0.82) hue-rotate(328deg);transform:rotate(180deg);opacity:0.18;" loading="lazy">
+    <img src="assets/images/chinese-flower-4.png" alt="" style="position:absolute;right:60px;bottom:20px;width:65px;pointer-events:none;z-index:2;filter:sepia(1) saturate(1.9) brightness(0.84) hue-rotate(160deg);transform:rotate(10deg);opacity:0.18;" loading="lazy">
     <div class="community__head">
       <div>
         <div style="display:flex;gap:8px;align-items:baseline;">
@@ -1260,19 +1260,19 @@
       <div class="framed-photo" style="height:384px;">
         <div class="framed-photo__outer"></div>
         <div class="framed-photo__dashed" style="border-color:var(--cyan)"></div>
-        <div class="framed-photo__img"><img src="assets/monroekids.jpeg" alt="Monroe students" loading="lazy"></div>
+        <div class="framed-photo__img"><img src="assets/images/monroekids.jpeg" alt="Monroe students" loading="lazy"></div>
       </div>
       <!-- Col 2 -->
       <div class="community__col">
         <div class="framed-photo" style="height:186px;">
           <div class="framed-photo__outer"></div>
           <div class="framed-photo__dashed" style="border-color:var(--marigold)"></div>
-          <div class="framed-photo__img"><img src="assets/mural-3.jpg" alt="Monroe mosaic mural" loading="lazy"></div>
+          <div class="framed-photo__img"><img src="assets/images/mural-3.jpg" alt="Monroe mosaic mural" loading="lazy"></div>
         </div>
         <div class="framed-photo" style="height:186px;">
           <div class="framed-photo__outer"></div>
           <div class="framed-photo__dashed" style="border-color:var(--magenta)"></div>
-          <div class="framed-photo__img"><img src="assets/monroekids12.jpeg" alt="Monroe students" loading="lazy"></div>
+          <div class="framed-photo__img"><img src="assets/images/monroekids12.jpeg" alt="Monroe students" loading="lazy"></div>
         </div>
       </div>
       <!-- Col 3 -->
@@ -1280,12 +1280,12 @@
         <div class="framed-photo" style="height:186px;">
           <div class="framed-photo__outer"></div>
           <div class="framed-photo__dashed" style="border-color:var(--jade)"></div>
-          <div class="framed-photo__img"><img src="assets/monroekids5.jpeg" alt="Monroe students" loading="lazy"></div>
+          <div class="framed-photo__img"><img src="assets/images/monroekids5.jpeg" alt="Monroe students" loading="lazy"></div>
         </div>
         <div class="framed-photo" style="height:186px;">
           <div class="framed-photo__outer"></div>
           <div class="framed-photo__dashed" style="border-color:var(--poppy)"></div>
-          <div class="framed-photo__img"><img src="assets/monroeevents4.jpg" alt="Monroe event" loading="lazy"></div>
+          <div class="framed-photo__img"><img src="assets/images/monroeevents4.jpg" alt="Monroe event" loading="lazy"></div>
         </div>
       </div>
     </div>
@@ -1295,7 +1295,7 @@
   <footer class="footer">
     <div class="footer__grid">
       <div>
-        <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+        <div class="footer__logo"><img src="assets/images/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
         <div class="footer__address">
           260 Madrid Street<br>San Francisco, CA 94112<br>
           <span style="color:var(--poppy);font-weight:700;">(415) 469-4734</span>
@@ -1330,7 +1330,7 @@
     </div>
     <div class="footer__bottom">
       <div class="footer__copyright">
-        <img src="assets/butterfly1.png" aria-hidden="true" style="width:24px;height:auto;display:inline-block;vertical-align:middle;filter:invert(40%) sepia(50%) saturate(800%) hue-rotate(339deg) brightness(110%);" loading="lazy">
+        <img src="assets/images/butterfly1.png" aria-hidden="true" style="width:24px;height:auto;display:inline-block;vertical-align:middle;filter:invert(40%) sepia(50%) saturate(800%) hue-rotate(339deg) brightness(110%);" loading="lazy">
         © 2026 Monroe Elementary · A San Francisco Public School
       </div>
       <div class="footer__legal">
@@ -1838,6 +1838,6 @@ document.addEventListener('DOMContentLoaded', init);
     }
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

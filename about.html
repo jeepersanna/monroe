@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Our School &amp; Programs</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset + tokens ───────────────────────────────────────────────────── */
+
+    /* Rice paper grain texture */
+
+    .f-head  { font-family: 'Outfit', system-ui, sans-serif; }
+    .f-sans  { font-family: 'Outfit', system-ui, sans-serif; }
+
+    /* ── Utility / language bar ──────────────────────────────────────────── */
+
+    /* ── Masthead ─────────────────────────────────────────────────────────── */
+
+    /* ── Buttons (used elsewhere on the page) ────────────────────────────── */
+    .btn-primary {
+      background: var(--ink); color: var(--cream);
+      border: 1.5px solid var(--ink); border-radius: 999px;
+      padding: 14px 22px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--monarch);
+      transition: transform .12s, box-shadow .12s;
+    }
+    .btn-primary:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--monarch); }
+    .btn-secondary {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--ink); border-radius: 999px;
+      padding: 14px 22px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--cream); }
+
+    /* ── Papel-picado panel (used by bunting JS) ─────────────────────────── */
+    .papel-panel {
+      background-color: var(--cyan);
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90"><rect x="0" y="0" width="100" height="78" fill="black"/><circle cx="25" cy="30" r="7" fill="white"/><circle cx="50" cy="30" r="7" fill="white"/><circle cx="75" cy="30" r="7" fill="white"/><circle cx="37.5" cy="50" r="5" fill="white"/><circle cx="62.5" cy="50" r="5" fill="white"/><rect x="20" y="60" width="60" height="3" fill="white"/><polygon points="0,78 10,90 20,78 30,90 40,78 50,90 60,78 70,90 80,78 90,90 100,78" fill="white"/></svg>');
+              mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90"><rect x="0" y="0" width="100" height="78" fill="black"/><circle cx="25" cy="30" r="7" fill="white"/><circle cx="50" cy="30" r="7" fill="white"/><circle cx="75" cy="30" r="7" fill="white"/><circle cx="37.5" cy="50" r="5" fill="white"/><circle cx="62.5" cy="50" r="5" fill="white"/><rect x="20" y="60" width="60" height="3" fill="white"/><polygon points="0,78 10,90 20,78 30,90 40,78 50,90 60,78 70,90 80,78 90,90 100,78" fill="white"/></svg>');
+      -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+    }
+
+    /* ── At-a-glance facts strip ─────────────────────────────────────────── */
+    .facts {
+      background: var(--cream2);
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 44px 40px;
+      position: relative;
+    }
+    .facts__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
+    .fact {
+      display: flex; flex-direction: column;
+      gap: 6px;
+      padding-right: 24px;
+      border-right: 1px dashed rgba(26,20,16,.22);
+    }
+    .fact:last-child { border-right: none; }
+    .fact__num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 56px; font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .fact__num em {
+      color: var(--monarch);
+      font-style: normal;
+    }
+    .fact__label {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.7);
+      margin-top: 4px;
+    }
+    .fact__sub {
+      font-size: 13px; line-height: 1.45;
+      color: rgba(26,20,16,.7);
+      margin-top: 2px;
+    }
+
+    /* ── Story section ───────────────────────────────────────────────────── */
+    .story {
+      background: var(--cream);
+      padding: 64px 40px;
+      position: relative;
+    }
+    .story__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .story__copy { max-width: 580px; }
+    .story__kicker {
+      display: flex; gap: 10px; align-items: baseline;
+      margin-bottom: 18px;
+    }
+    .story__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 3.4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+      text-wrap: pretty;
+    }
+    .story__h2 em { font-style: normal; color: var(--monarch); }
+    .story__body {
+      font-size: 16px; line-height: 1.65;
+      color: rgba(26,20,16,.82);
+    }
+    .story__body p + p { margin-top: 14px; }
+    .story__body .drop {
+      float: left;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 58px; line-height: 0.85;
+      padding: 8px 12px 0 0;
+      color: var(--monarch);
+      font-weight: 700;
+    }
+    .story__photo-wrap {
+      position: relative;
+    }
+    .framed-photo {
+      position: relative;
+      display: block;
+    }
+    .framed-photo__outer {
+      position: absolute; inset: 0;
+      border: 1.5px solid var(--ink); background: var(--cream);
+    }
+    .framed-photo__dashed {
+      position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px;
+      border: 1.5px dashed var(--cyan);
+    }
+    .framed-photo__img {
+      position: absolute; left: 14px; top: 14px; right: 14px; bottom: 14px;
+      overflow: hidden; background: rgba(43,184,212,.2);
+    }
+    .framed-photo__img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .framed-photo__caption {
+      position: absolute; left: 0; right: 0;
+      bottom: -36px;
+      text-align: center;
+      font-size: 11px; font-style: normal;
+      color: rgba(26,20,16,.65);
+    }
+    .story__photo {
+      height: 520px;
+    }
+    .story__photo-deco {
+      position: absolute; top: -28px; right: -28px;
+      width: 88px; opacity: .42;
+      transform: rotate(18deg);
+      pointer-events: none;
+      filter: sepia(1) saturate(1.8) brightness(0.85) hue-rotate(308deg);
+    }
+
+    /* ── Programs ─────────────────────────────────────────────────────────── */
+    .programs {
+      background: linear-gradient(
+        to bottom,
+        var(--cream) 0%,
+        var(--cream2) 14%,
+        var(--cream2) 86%,
+        var(--cream) 100%
+      );
+      padding: 64px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .programs::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url('assets/chinese-lattice-2.png');
+      background-size: 500px auto; background-repeat: repeat;
+      background-position: center top;
+      opacity: 0.6;
+      /* tints the pattern white */
+      filter: brightness(0) invert(1);
+    }
+    .programs__inner {
+      max-width: 1240px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .programs__head {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 18px;
+      margin-bottom: 56px;
+    }
+    .programs__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(40px, 3.8vw, 56px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      max-width: 760px;
+      text-wrap: balance;
+    }
+    .programs__h2 em { font-style: normal; color: var(--monarch); }
+    .programs__intro {
+      font-size: 16px; line-height: 1.6;
+      color: rgba(26,20,16,.72);
+      max-width: 580px;
+    }
+    .programs__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    .program-card {
+      background: #fff;
+      border: 1.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--monarch);
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .program-card:nth-child(3n+1) { box-shadow: 6px 6px 0 var(--cyan); }
+    .program-card:nth-child(3n+2) { box-shadow: 6px 6px 0 var(--marigold); }
+    .program-card:nth-child(3n+3) { box-shadow: 6px 6px 0 var(--magenta); }
+    .program-card__banner {
+      padding: 22px 26px;
+      border-bottom: 1.5px solid var(--ink);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .program-card__num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 12px; font-weight: 900;
+      color: var(--ink);
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+    .program-card__zh {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif TC', serif;
+      font-size: 22px;
+      color: var(--ink);
+    }
+    .program-card__body {
+      padding: 30px 26px 28px;
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .program-card__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      margin-bottom: 4px;
+    }
+    .program-card__h3 em { font-style: normal; }
+    .program-card__es {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+    .program-card__blurb {
+      font-size: 14.5px; line-height: 1.6;
+      color: rgba(26,20,16,.78);
+      margin-bottom: 22px;
+    }
+    .program-card__meta {
+      display: flex; flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1.5px dashed rgba(26,20,16,.25);
+    }
+    .program-card__meta-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .program-card__meta-label {
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      font-size: 10.5px;
+    }
+    .program-card__meta-value { font-weight: 600; color: var(--ink); }
+    .program-card__more {
+      margin-top: 22px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .08em;
+      align-self: flex-start;
+    }
+    .program-card__more:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ── A day at Monroe (gallery) ───────────────────────────────────────── */
+    .gallery {
+      background: var(--cream);
+      padding: 64px 40px;
+      position: relative;
+    }
+    .gallery__inner { max-width: 1240px; margin: 0 auto; }
+    .gallery__head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 48px; gap: 40px;
+    }
+    .gallery__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 3.4vw, 50px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      max-width: 720px;
+      text-wrap: pretty;
+    }
+    .gallery__h2 em { font-style: normal; }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 28px;
+    }
+    .gallery__cell-1 { grid-row: span 2; }
+
+    /* ── Principal ────────────────────────────────────────────────────────── */
+    .principal {
+      background: var(--cream2);
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 64px 40px;
+      position: relative;
+    }
+    .principal__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .principal__photo {
+      height: 340px;
+      position: relative;
+    }
+    .principal__letter { }
+    .principal__kicker {
+      display: flex; gap: 10px; align-items: baseline;
+      margin-bottom: 18px;
+    }
+    .principal__quote {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(24px, 2.2vw, 32px);
+      line-height: 1.25;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--ink);
+      margin-bottom: 24px;
+      text-wrap: pretty;
+    }
+    .principal__quote::before {
+      content: '“';
+      font-size: 1.2em;
+      color: var(--monarch);
+      margin-right: 4px;
+    }
+    .principal__quote::after {
+      content: '”';
+      font-size: 1.2em;
+      color: var(--monarch);
+      margin-left: 2px;
+    }
+    .principal__sig {
+      display: flex; align-items: baseline; gap: 14px;
+      margin-top: 24px;
+    }
+    .principal__sig-name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+    }
+    .principal__sig-title {
+      font-size: 12px;
+      color: rgba(26,20,16,.65);
+      letter-spacing: .04em;
+    }
+
+    /* ── Care (before & after school) ────────────────────────────────────── */
+    .care {
+      background: var(--cream);
+      padding: 64px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .care__inner {
+      max-width: 1240px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .care__head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .care__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 3.4vw, 52px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      max-width: 12ch;
+      text-wrap: balance;
+      margin-top: 14px;
+    }
+    .care__h2 em { font-style: normal; color: var(--monarch); }
+    .care__intro {
+      font-size: 16px; line-height: 1.6;
+      color: rgba(26,20,16,.72);
+      max-width: 480px;
+    }
+    .care__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .care-card {
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      padding: 32px 32px 30px;
+      position: relative;
+      display: flex; flex-direction: column;
+      box-shadow: 6px 6px 0 var(--monarch);
+    }
+    .care-card:nth-child(2n+1) { box-shadow: 6px 6px 0 var(--jade); }
+    .care-card:nth-child(2n+2) { box-shadow: 6px 6px 0 var(--plum); }
+    .care-card__top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1.5px dashed rgba(26,20,16,.25);
+    }
+    .care-card__eyebrow {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-bottom: 6px;
+    }
+    .care-card__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 30px; font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      text-wrap: pretty;
+    }
+    .care-card__h3 em { font-style: normal; }
+    .care-card__hours {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 32px;
+      line-height: 1;
+      font-weight: 400;
+      color: var(--ink);
+      white-space: nowrap;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .care-card__hours em {
+      font-style: normal;
+    }
+    .care-card__hours-sub {
+      display: block;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-top: 6px;
+    }
+    .care-card__blurb {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(26,20,16,.82);
+      margin-bottom: 22px;
+    }
+    .care-card__list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .care-card__list li {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(26,20,16,.82);
+    }
+    .care-card__list-label {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      padding-top: 1px;
+    }
+    .care-card__cta {
+      margin-top: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      align-self: flex-start;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .care-card__cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .care__footnote {
+      margin-top: 36px;
+      padding: 22px 26px;
+      border: 1.5px solid var(--ink);
+      border-style: dashed;
+      background: var(--cream2);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      font-size: 14px; line-height: 1.55;
+      color: rgba(26,20,16,.82);
+    }
+    .care__footnote-icon {
+      width: 26px; height: 26px;
+      flex-shrink: 0;
+      color: var(--monarch);
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 16px; font-style: normal;
+      font-weight: 700;
+    }
+    .care__footnote strong { font-weight: 700; color: var(--ink); }
+
+    /* ── Visit band ──────────────────────────────────────────────────────── */
+    .visit {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 56px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .visit::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url('assets/chinese-lattice-1.png');
+      background-size: 360px auto; background-repeat: repeat;
+      opacity: 0.06; filter: brightness(0) invert(1);
+    }
+    .visit__deco-1 {
+      position: absolute; left: -20px; top: -30px;
+      width: 240px; opacity: .15;
+      filter: brightness(0) invert(1);
+      pointer-events: none; z-index: 1;
+      transform: rotate(180deg);
+    }
+    .visit__deco-2 {
+      position: absolute; right: -10px; bottom: -30px;
+      width: 220px; opacity: .12;
+      filter: brightness(0) invert(1);
+      pointer-events: none; z-index: 1;
+    }
+    .visit__deco-flower {
+      position: absolute; right: 80px; top: 50px;
+      width: 90px; opacity: .14;
+      filter: brightness(0) invert(1);
+      transform: rotate(15deg);
+      pointer-events: none; z-index: 1;
+    }
+    .visit__inner {
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .visit__kicker {
+      display: flex; gap: 10px; align-items: baseline;
+      margin-bottom: 18px;
+    }
+    .visit__kicker .label { color: var(--marigold); }
+    .visit__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(40px, 3.8vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      text-wrap: pretty;
+      margin-bottom: 22px;
+    }
+    .visit__h2 em { font-style: normal; color: var(--marigold); }
+    .visit__body {
+      font-size: 17px; line-height: 1.55;
+      color: rgba(253,248,242,.78);
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+    .btn-visit {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--monarch); color: var(--cream);
+      border: 1.5px solid var(--monarch);
+      padding: 18px 28px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 14px; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 5px 5px 0 rgba(253,248,242,.18);
+      transition: transform .12s, box-shadow .12s, background .12s;
+    }
+    .btn-visit:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 rgba(253,248,242,.22);
+      background: #c85a12;
+    }
+    .visit__details {
+      display: flex; flex-direction: column;
+      gap: 20px;
+    }
+    .visit__detail {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed rgba(253,248,242,.2);
+    }
+    .visit__detail:last-child { border-bottom: none; padding-bottom: 0; }
+    .visit__detail-icon {
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 3px;
+      color: var(--marigold);
+    }
+    .visit__detail-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(253,248,242,.55);
+      margin-bottom: 4px;
+    }
+    .visit__detail-value {
+      font-size: 15px; line-height: 1.45;
+      color: var(--cream);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    /* ── Responsive niceties (single breakpoint, light touch) ─────────────── */
+    @media (max-width: 980px) {
+      .facts__inner { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(2) { border-right: none; }
+      .story__inner { grid-template-columns: 1fr; gap: 50px; }
+      .story__photo { height: 360px; }
+      .programs__grid { grid-template-columns: 1fr; }
+      .gallery__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px 240px;
+      }
+      .gallery__cell-1 { grid-row: span 1; grid-column: 1 / span 2; }
+      .principal__inner { grid-template-columns: 1fr; gap: 32px; }
+      .principal__photo { height: 280px; max-width: 280px; }
+      .care__head { grid-template-columns: 1fr; gap: 18px; }
+      .care__grid { grid-template-columns: 1fr; }
+      .visit__inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+      /* Eliminate italics globally */
+
+    /* about.html overrides */
+    .footer { background: var(--cream2); border-top: none; position: relative; }
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+  <div id="grain-overlay"></div>
+  <div class="page">
+
+    <!-- ── Utility / language bar ────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item active">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html" class="active">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+    <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+    <div style="width:100%; position:relative;">
+
+      <!-- Photo + text together, photo as background -->
+      <div style="
+        width:100%; height:clamp(320px, 38vw, 500px);
+        position:relative;
+      ">
+        <img src="assets/community-4.jpg" alt="Monroe Elementary community" style="position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;object-position:right center;display:block;" / loading="lazy">
+        <!-- cream fade — dense behind text, falls off quickly -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(253,248,242,0.96) 0%,rgba(253,248,242,0.92) 22%,rgba(253,248,242,0.6) 38%,rgba(253,248,242,0.1) 55%,rgba(253,248,242,0) 68%);pointer-events:none;"></div>
+
+        <!-- Text content -->
+        <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 48px;">
+          <div style="max-width:520px;">
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+              <span style="font-family:'Outfit',sans-serif;font-size:16px;color:var(--cyan,#00869b);font-weight:600;letter-spacing:.3em;">—</span>
+              <span style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink,#1a1410);">Our School</span>
+              <span style="font-family:'Outfit',sans-serif;font-size:16px;color:var(--cyan,#00869b);font-weight:600;letter-spacing:.3em;">—</span>
+            </div>
+            <h1 style="
+              font-family:'Outfit',sans-serif;font-weight:900;
+              font-size:clamp(36px,5vw,62px);
+              line-height:1.0;letter-spacing:-.025em;
+              color:var(--ink,#1a1410);margin:0 0 18px;
+            ">A neighborhood school<br>where <span class="brush-wrap"><em style="font-style:normal;color:var(--monarch,#d8392e);">every child</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-ab" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-ab)"/></svg></span></span><br>belongs.</h1>
+            <p style="font-family:'Outfit',sans-serif;font-size:15px;line-height:1.6;color:rgba(26,20,16,.75);max-width:420px;">
+              In the Excelsior, on a quiet block of Madrid Street. K–5, public, multilingual — and yours.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rainbow stripe divider -->
+      <div style="display:flex; height:6px; width:100%;">
+        <span style="flex:1;background:var(--poppy)"></span>
+        <span style="flex:1;background:var(--monarch)"></span>
+        <span style="flex:1;background:var(--marigold)"></span>
+        <span style="flex:1;background:var(--jade)"></span>
+        <span style="flex:1;background:var(--cyan)"></span>
+        <span style="flex:1;background:var(--plum)"></span>
+        <span style="flex:1;background:var(--magenta)"></span>
+        <span style="flex:1;background:var(--poppy)"></span>
+        <span style="flex:1;background:var(--monarch)"></span>
+        <span style="flex:1;background:var(--marigold)"></span>
+        <span style="flex:1;background:var(--jade)"></span>
+        <span style="flex:1;background:var(--cyan)"></span>
+        <span style="flex:1;background:var(--plum)"></span>
+        <span style="flex:1;background:var(--magenta)"></span>
+      </div>
+
+      <!-- Facts bar -->
+      <div style="
+        display:flex; background:var(--cream2,#f0ebe1);
+        border-bottom:1.5px solid var(--ink,#1a1410);
+        padding:28px 40px; gap:0;
+      ">
+        <div style="flex:1; padding-right:24px; border-right:1px dashed rgba(26,20,16,.22);">
+          <div style="font-family:'Outfit',sans-serif; font-size:38px; font-weight:400; color:var(--ink,#1a1410); line-height:1; letter-spacing:-.02em;">K&ndash;5</div>
+          <div style="font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(26,20,16,.65); margin-top:8px;">Grades</div>
+        </div>
+        <div style="flex:1; padding:0 24px; border-right:1px dashed rgba(26,20,16,.22);">
+          <div style="font-family:'Outfit',sans-serif; font-size:38px; font-weight:400; color:var(--ink,#1a1410); line-height:1; letter-spacing:-.02em;">~310</div>
+          <div style="font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(26,20,16,.65); margin-top:8px;">Students</div>
+        </div>
+        <div style="flex:1; padding:0 24px; border-right:1px dashed rgba(26,20,16,.22);">
+          <div style="font-family:'Outfit',sans-serif; font-size:38px; font-weight:400; color:var(--ink,#1a1410); line-height:1; letter-spacing:-.02em;">3</div>
+          <div style="font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(26,20,16,.65); margin-top:8px;">Language Pathways</div>
+        </div>
+        <div style="flex:1; padding:0 24px; border-right:1px dashed rgba(26,20,16,.22);">
+          <div style="font-family:'Outfit',sans-serif; font-size:38px; font-weight:400; color:var(--ink,#1a1410); line-height:1; letter-spacing:-.02em;">19:1</div>
+          <div style="font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(26,20,16,.65); margin-top:8px;">Student / Teacher</div>
+        </div>
+        <div style="flex:1; padding-left:24px;">
+          <div style="font-family:'Outfit',sans-serif; font-size:38px; font-weight:400; color:var(--ink,#1a1410); line-height:1; letter-spacing:-.02em;">1955</div>
+          <div style="font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(26,20,16,.65); margin-top:8px;">Founded</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Story ─────────────────────────────────────────────────────────── -->
+    <section class="story" data-screen-label="03 Story">
+      <div class="story__inner">
+        <div class="story__copy">
+          <div class="story__kicker">
+            <span class="label">Our School</span>
+          </div>
+          <h2 class="story__h2">
+            A small school with a <em>big front porch</em>.
+          </h2>
+          <div class="story__body">
+            <p>
+              <span class="drop">M</span>onroe sits on a quiet block of Madrid Street, between a corner taqueria and a row of Edwardians the color of sun-bleached chalk. Kids walk here. They bike here. They show up early to play handball before the bell.
+            </p>
+            <p>
+              The classrooms are bilingual or trilingual depending on the day, and the hallways carry the smell of arroz con pollo on Tuesdays and dumplings on Fridays. Our murals were painted by students, our garden was built by parents, and our Friday assemblies are the closest thing to a town square the Excelsior has.
+            </p>
+            <p>
+              We are small &mdash; thirteen classrooms, a single play yard &mdash; and that is on purpose. Teachers know every student by name. Parents know each other. Fifth graders know the kindergarteners. It is, in the most literal sense, a neighborhood school.
+            </p>
+          </div>
+        </div>
+        <div class="story__photo-wrap">
+          <img class="story__photo-deco" src="assets/chinese-flower-6.png" alt="" aria-hidden="true" / loading="lazy">
+          <div class="framed-photo story__photo">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--monarch);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/garden.jpeg" alt="Monroe Elementary school garden." / loading="lazy">
+            </div>
+            <div class="framed-photo__caption">The Monroe garden · built by families</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Programs ─────────────────────────────────────────────────────── -->
+    <section class="programs" data-screen-label="04 Programs">
+      <div class="programs__inner">
+        <div class="programs__head">
+          <span class="label">Three Pathways</span>
+          <h2 class="programs__h2">
+            Choose a language. <em>Find your community.</em>
+          </h2>
+          <p class="programs__intro">
+            Every Monroe student belongs to one of three academically aligned pathways. All three pathways share the same core curriculum, the same playground, and the same Friday assembly.
+          </p>
+        </div>
+
+        <div class="programs__grid">
+
+          <!-- Card 1 — Spanish TWBI -->
+          <article class="program-card">
+            <div class="program-card__banner" style="background: var(--cyan);">
+              <div class="program-card__num">01 · Pathway</div>
+              <div class="program-card__zh">雙語浸入</div>
+            </div>
+            <div class="program-card__body">
+              <h3 class="program-card__h3">Spanish Two-Way Bilingual <em>Immersion</em></h3>
+              <div class="program-card__es" style="color: var(--cyan);">Inmersión bilingüe dos vías</div>
+              <p class="program-card__blurb">
+                Native English speakers and native Spanish speakers learn side-by-side, in both languages, from kindergarten on. By fifth grade, students read, write, and argue about books in two languages &mdash; and have a second set of friends to do it with.
+              </p>
+              <div class="program-card__meta">
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Grades</span>
+                  <span class="program-card__meta-value">K&ndash;5</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Language Mix</span>
+                  <span class="program-card__meta-value">50 / 50, EN / ES</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Class Size</span>
+                  <span class="program-card__meta-value">~22 per room</span>
+                </div>
+              </div>
+              <a class="program-card__more" href="#" style="color: var(--cyan);">Learn more →</a>
+            </div>
+          </article>
+
+          <!-- Card 2 — Cantonese -->
+          <article class="program-card">
+            <div class="program-card__banner" style="background: var(--marigold);">
+              <div class="program-card__num">02 · Pathway</div>
+              <div class="program-card__zh">粵語雙文</div>
+            </div>
+            <div class="program-card__body">
+              <h3 class="program-card__h3">Cantonese Biliteracy <em>Pathway</em></h3>
+              <div class="program-card__es" style="color: #b07a14;">Programa bilingüe en cantonés</div>
+              <p class="program-card__blurb">
+                A heritage-language pathway designed with families who want their children to read, write, and speak Cantonese alongside English. Daily instruction in traditional characters, with culture and history woven through every subject.
+              </p>
+              <div class="program-card__meta">
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Grades</span>
+                  <span class="program-card__meta-value">K&ndash;5</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Language Mix</span>
+                  <span class="program-card__meta-value">~30% Cantonese</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Class Size</span>
+                  <span class="program-card__meta-value">~22 per room</span>
+                </div>
+              </div>
+              <a class="program-card__more" href="#" style="color: #b07a14;">Learn more →</a>
+            </div>
+          </article>
+
+          <!-- Card 3 — ELD -->
+          <article class="program-card">
+            <div class="program-card__banner" style="background: var(--magenta);">
+              <div class="program-card__num">03 · Pathway</div>
+              <div class="program-card__zh">英語發展</div>
+            </div>
+            <div class="program-card__body">
+              <h3 class="program-card__h3">English Language <em>Development</em></h3>
+              <div class="program-card__es" style="color: var(--magenta);">Desarrollo del idioma inglés</div>
+              <p class="program-card__blurb">
+                Targeted support for multilingual learners, woven through every classroom rather than pulled out from it. Our ELD specialists co-teach, helping kids whose first language is something other than English thrive across all subjects.
+              </p>
+              <div class="program-card__meta">
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Grades</span>
+                  <span class="program-card__meta-value">All</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Model</span>
+                  <span class="program-card__meta-value">Co-teaching</span>
+                </div>
+                <div class="program-card__meta-row">
+                  <span class="program-card__meta-label">Languages</span>
+                  <span class="program-card__meta-value">15+ home languages</span>
+                </div>
+              </div>
+              <a class="program-card__more" href="#" style="color: var(--magenta);">Learn more →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── School day info ───────────────────────────────────────────────── -->
+    <section style="background:var(--cream2);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:52px 40px;">
+      <div style="max-width:1240px;margin:0 auto;">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:28px;">
+          <span style="color:var(--cyan);font-weight:600;letter-spacing:.3em;">—</span>
+          <span style="font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);">The School Day</span>
+          <span style="color:var(--cyan);font-weight:600;letter-spacing:.3em;">—</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1.5px solid var(--ink);background:#fff;">
+
+          <div style="padding:28px 32px;border-right:1.5px solid var(--ink);">
+            <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,20,16,.5);margin-bottom:10px;">School Hours</div>
+            <div style="font-family:'Outfit',system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:8px;">8:40<span style="font-size:18px;font-weight:400;"> a.m.</span> – 2:55<span style="font-size:18px;font-weight:400;"> p.m.</span></div>
+            <div style="font-size:13.5px;color:rgba(26,20,16,.65);line-height:1.5;">Monday, Tuesday, Thursday, Friday.<br>Wednesday early release at <strong style="color:var(--ink);">1:40 p.m.</strong></div>
+          </div>
+
+          <div style="padding:28px 32px;border-right:1.5px solid var(--ink);">
+            <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,20,16,.5);margin-bottom:10px;">Free Breakfast</div>
+            <div style="font-family:'Outfit',system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:8px;">Free for <em style="font-style:normal;color:var(--jade);">all</em> students</div>
+            <div style="font-size:13.5px;color:rgba(26,20,16,.65);line-height:1.5;">Hot breakfast served in the cafeteria from <strong style="color:var(--ink);">7:30 – 8:30 a.m.</strong> No registration, no cost — just show up.</div>
+          </div>
+
+          <div style="padding:28px 32px;">
+            <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,20,16,.5);margin-bottom:10px;">Before &amp; After Care</div>
+            <div style="font-family:'Outfit',system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:8px;">7:30 a.m. – 6:00 p.m.</div>
+            <div style="font-size:13.5px;color:rgba(26,20,16,.65);line-height:1.5;">Five extended-day programs serve Monroe families. Two run on-site; most participate in SFUSD's subsidy system — <strong style="color:var(--ink);">many families pay little or nothing.</strong></div>
+            <a href="beforeaftercare.html" style="display:inline-block;margin-top:14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border-bottom:1px dashed var(--cyan);padding-bottom:1px;">See all programs →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Gallery ──────────────────────────────────────────────────────── -->
+    <section class="gallery" data-screen-label="06 Gallery">
+      <div class="gallery__inner">
+        <div class="gallery__head">
+          <div>
+            <div class="story__kicker">
+              <span class="label" style="color: var(--cyan);">A Day at Monroe</span>
+            </div>
+            <h2 class="gallery__h2">
+              Mosaic <em style="color: var(--monarch);">murals</em>, schoolyard <em style="color: var(--cyan);">assemblies</em>, kids reading on the floor.
+            </h2>
+          </div>
+        </div>
+
+        <div class="gallery__grid">
+          <div class="framed-photo gallery__cell-1">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--cyan);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/monroekids2.jpeg" alt="Monroe students." / loading="lazy">
+            </div>
+          </div>
+          <div class="framed-photo">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--marigold);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/mural-3.jpg" alt="A detail of one of Monroe's hand-painted mosaic murals." / loading="lazy">
+            </div>
+          </div>
+          <div class="framed-photo">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--magenta);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/monroekids3.jpeg" alt="Monroe students." / loading="lazy">
+            </div>
+          </div>
+          <div class="framed-photo">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--jade);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/monroeplayground2.jpg" alt="Monroe playground." / loading="lazy">
+            </div>
+          </div>
+          <div class="framed-photo">
+            <div class="framed-photo__outer"></div>
+            <div class="framed-photo__dashed" style="border-color: var(--poppy);"></div>
+            <div class="framed-photo__img">
+              <img src="assets/monroekids6.jpeg" alt="Monroe students." / loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Principal ────────────────────────────────────────────────────── -->
+    <section class="principal" data-screen-label="07 Principal">
+      <div class="principal__inner">
+        <div class="framed-photo principal__photo">
+          <div class="framed-photo__outer"></div>
+          <div class="framed-photo__dashed" style="border-color: var(--monarch);"></div>
+          <div class="framed-photo__img">
+            <img src="assets/monroekids8.jpeg" alt="Monroe students." / loading="lazy">
+          </div>
+        </div>
+        <div class="principal__letter">
+          <div class="principal__kicker">
+            <span class="label" style="color: var(--monarch);">From the Principal</span>
+          </div>
+          <p class="principal__quote">
+            We tell our families that you don&rsquo;t enroll at Monroe so much as you join it. Pick the pathway that fits your kid, and we&rsquo;ll do the rest together &mdash; teachers, parents, neighbors, every Friday at nine in the yard.
+          </p>
+          <div class="principal__sig">
+            <div class="principal__sig-name">Marisol Aguilar</div>
+            <div class="principal__sig-title">Principal, Monroe Elementary · Since 2019</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── Visit band ─────────────────────────────────────────────── -->
+    <section class="visit" data-screen-label="08 Visit">
+      <img class="visit__deco-1" src="assets/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
+      <img class="visit__deco-2" src="assets/chinese-half-circles.png" alt="" aria-hidden="true" / loading="lazy">
+      <img class="visit__deco-flower" src="assets/chinese-flower-4.png" alt="" aria-hidden="true" / loading="lazy">
+
+      <div class="visit__inner">
+        <div>
+          <div class="visit__kicker">
+            <span class="label">Come see for yourself</span>
+          </div>
+          <h2 class="visit__h2">
+            The best way to know Monroe is to <em>walk in</em>.
+          </h2>
+          <p class="visit__body">
+            We offer prospective-family tours every Wednesday at 9:00 a.m., October through February. Come for an hour, see the classrooms in motion, meet a few teachers, and ask anything. No appointment beats just visiting.
+          </p>
+          <a class="btn-visit" href="#">
+            Schedule a Tour
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="visit__details">
+          <div class="visit__detail">
+            <div class="visit__detail-icon">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+            </div>
+            <div>
+              <div class="visit__detail-label">Address</div>
+              <div class="visit__detail-value">260 Madrid Street<br>San Francisco, CA 94112</div>
+            </div>
+          </div>
+          <div class="visit__detail">
+            <div class="visit__detail-icon">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            </div>
+            <div>
+              <div class="visit__detail-label">School Hours</div>
+              <div class="visit__detail-value">8:40 a.m. – 2:55 p.m.<br><span style="color: rgba(253,248,242,.6); font-size: 13px;">Wednesday early dismissal at 1:40 p.m.</span></div>
+            </div>
+          </div>
+          <div class="visit__detail">
+            <div class="visit__detail-icon">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"></path></svg>
+            </div>
+            <div>
+              <div class="visit__detail-label">Front Office</div>
+              <div class="visit__detail-value">(415) 469-4734<br><span style="color: rgba(253,248,242,.6); font-size: 13px;">sch729@sfusd.edu</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+          <div class="footer__address">
+            260 Madrid Street<br>San Francisco, CA 94112<br>
+            <span style="color: var(--poppy); font-weight: 700;">(415) 469-4734</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--cyan);">Our School</div>
+          <ul class="footer__links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+            <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--marigold);">Families</div>
+          <ul class="footer__links">
+            <li><a href="communityhub.html">Community Hub</a></li>
+            <li><a href="PTA.html">PTA</a></li>
+            <li><a href="familyliaisons.html">Family Liaisons</a></li>
+            <li><a href="parentsquare.html">ParentSquare</a></li>          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
+          <ul class="footer__links">
+            <li><a href="tour.html">Schedule a Tour</a></li>
+            <li><a href="#">Directions</a></li>
+            <li><a href="#">Enrollment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+        <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+      </div>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

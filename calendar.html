@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Calendar of Events</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Util + masthead ─────────────────────────────────────── */
+
+    /* ── Page header ──────────────────────────────────────── */
+    .page-header {
+      background: var(--cream);
+      padding: 52px 40px 48px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .page-header__inner { max-width: 1240px; margin: 0 auto; }
+    .crumbs {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-bottom: 20px;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .crumbs .sep { color: rgba(26,20,16,.3); }
+    .crumbs .current { color: var(--ink); }
+
+    .page-header__grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .page-header__h1 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 4.6vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+    }
+    .page-header__h1 em { font-style: normal; color: var(--monarch); }
+    .page-header__lead {
+      font-size: 16px; line-height: 1.65;
+      color: rgba(26,20,16,.75);
+      max-width: 560px;
+    }
+    .page-header__lead p + p { margin-top: 12px; }
+    .page-header__lead strong { color: var(--ink); font-weight: 700; }
+
+    /* Subscribe sidebar */
+    .page-header__subscribe {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1.5px solid rgba(26,20,16,.14);
+      background: var(--cream2);
+    }
+    .page-header__subscribe-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(26,20,16,.5);
+      padding: 12px 18px 10px;
+      border-bottom: 1px solid rgba(26,20,16,.12);
+    }
+    .page-header__sub-row {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 18px;
+      border-bottom: 1px dashed rgba(26,20,16,.1);
+      font-size: 13.5px;
+    }
+    .page-header__sub-row:last-child { border-bottom: none; }
+    .page-header__sub-format {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal; font-size: 15px;
+      color: var(--monarch);
+    }
+    .page-header__sub-desc { color: rgba(26,20,16,.75); line-height: 1.35; }
+    .page-header__sub-desc strong { font-weight: 700; color: var(--ink); display: block; font-size: 13px; }
+    .page-header__sub-link {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--monarch); white-space: nowrap;
+      border-bottom: 1px dashed var(--monarch);
+      padding-bottom: 1px;
+    }
+    .page-header__sub-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ── Intro ────────────────────────────────────────────── */
+    .intro {
+      background: var(--cream);
+      padding: 70px 40px 40px;
+    }
+    .intro__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .intro__kicker {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--poppy);
+      margin-bottom: 16px;
+    }
+    .intro__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(30px, 2.6vw, 40px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .intro__h2 em { font-style: normal; color: var(--monarch); }
+    .intro__body {
+      font-size: 17px; line-height: 1.65;
+      color: rgba(26,20,16,.82);
+    }
+    .intro__body p + p { margin-top: 14px; }
+    .intro__body strong { color: var(--ink); font-weight: 700; }
+
+    /* ── Featured upcoming events ──────────────────────── */
+    .featured-events {
+      background: var(--cream2);
+      border-top: none;
+      border-bottom: 1px solid rgba(26,20,16,.15);
+      padding: 52px 40px 72px;
+    }
+    .featured-events__inner { max-width: 1100px; margin: 0 auto; }
+    .featured-events__head { display: flex; gap: 14px; margin-bottom: 48px; flex-direction: column; align-items: flex-start; }
+    .featured-events__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .featured-events__h2 em { font-style: normal; color: var(--monarch); }
+    .featured-events__intro { font-size: 15.5px; line-height: 1.6; color: rgba(26,20,16,.72); max-width: 720px; text-align: left; }
+    .featured-events__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .event-card {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      position: relative;
+      transition: transform .12s, box-shadow .12s;
+    }
+    .event-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .event-card__date {
+      background: var(--cream2);
+      padding: 18px 12px;
+      text-align: center;
+      border-right: 1.5px solid var(--ink);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+    }
+    .event-card__mo {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--monarch);
+      margin-bottom: 2px;
+    }
+    .event-card__day {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 36px;
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+    .event-card__dow {
+      font-size: 9.5px;
+      color: rgba(26,20,16,.55);
+      margin-top: 4px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .event-card__body {
+      padding: 18px 20px 16px;
+      display: flex; flex-direction: column;
+    }
+    .event-card__tag {
+      align-self: flex-start;
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 3px 7px;
+      background: var(--monarch);
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .event-card__tag.c-cyan { background: var(--cyan); }
+    .event-card__tag.c-magenta { background: var(--magenta); }
+    .event-card__tag.c-jade { background: var(--jade); }
+    .event-card__tag.c-marigold { background: var(--marigold); color: var(--ink); }
+    .event-card__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+    }
+    .event-card__h3 em { font-style: normal; }
+    .event-card__desc {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: rgba(26,20,16,.78);
+      margin-bottom: 18px;
+    }
+    .event-card__meta {
+      display: flex; flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: rgba(26,20,16,.75);
+      padding-top: 14px;
+      border-top: 1.5px dashed rgba(26,20,16,.22);
+    }
+    .event-card__meta-row {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .event-card__meta-icon {
+      color: var(--monarch);
+      font-size: 13px;
+    }
+    .event-card__meta-row strong { color: var(--monarch); font-weight: 700; }
+    .event-card__foot {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+      padding-top: 18px;
+      margin-top: auto;
+    }
+    .event-card__more {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px dashed var(--ink);
+      padding-bottom: 2px;
+    }
+    .event-card__more:hover { color: var(--monarch); border-bottom-color: var(--monarch); }
+    .event-card__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 11px 16px;
+      background: var(--monarch);
+      color: var(--cream);
+      border: 1.5px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .12s, box-shadow .12s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .event-card__cta:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    /* ── Volunteer Hub ─────────────────────────────────── */
+    .volunteer {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .volunteer__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .volunteer__copy { position: sticky; top: 28px; }
+    .volunteer__kicker {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--poppy);
+      margin-bottom: 16px;
+    }
+    .volunteer__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 3.2vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .volunteer__h2 em { font-style: normal; color: var(--monarch); }
+    .volunteer__body {
+      font-size: 16px; line-height: 1.65;
+      color: rgba(26,20,16,.8);
+    }
+    .volunteer__body p + p { margin-top: 12px; }
+    .volunteer__body strong { color: var(--ink); font-weight: 700; }
+    .volunteer-form {
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      padding: 36px 36px 32px;
+    }
+    .volunteer-form__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 26px; font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+    }
+    .volunteer-form__h3 em { font-style: normal; color: var(--monarch); }
+    .form-row {
+      display: flex; flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .form-row--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-row--split > .form-row { margin-bottom: 0; }
+    .form-label {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 12px 14px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 14.5px;
+      color: var(--ink);
+      width: 100%;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      box-shadow: 2px 2px 0 var(--monarch);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .form-checkboxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 4px 0;
+    }
+    .form-checkbox {
+      display: flex; align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(26,20,16,.82);
+      cursor: pointer;
+      user-select: none;
+    }
+    .form-checkbox input {
+      appearance: none;
+      width: 18px; height: 18px;
+      border: 1.5px solid var(--ink);
+      background: var(--cream);
+      margin: 0;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .form-checkbox input:checked {
+      background: var(--monarch);
+    }
+    .form-checkbox input:checked::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: grid; place-items: center;
+      color: var(--cream);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .form-submit {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ink);
+      color: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 14px 22px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--monarch);
+      transition: transform .12s, box-shadow .12s;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .form-submit:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--monarch);
+    }
+    .form-hint {
+      font-size: 12px;
+      color: rgba(26,20,16,.6);
+      margin-top: 12px;
+    }
+
+    /* ── Calendar embed ──────────────────────────────────── */
+    .calendar {
+      background: var(--cream);
+      padding: 52px 40px 80px;
+    }
+    .calendar__inner { max-width: 1100px; margin: 0 auto; }
+    .calendar__head {
+      display: flex; flex-direction: column;
+      gap: 12px; align-items: flex-start;
+      margin-bottom: 40px;
+    }
+    .calendar__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .calendar__h2 em { font-style: normal; color: var(--monarch); }
+    .calendar__intro { font-size: 15.5px; line-height: 1.6; color: rgba(26,20,16,.72); max-width: 720px; }
+    .calendar__frame-wrap {
+      position: relative;
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      overflow: hidden;
+    }
+    .calendar__frame-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 22px;
+      background: var(--cream2);
+      border-bottom: 1.5px solid var(--ink);
+      flex-wrap: wrap;
+    }
+    .calendar__frame-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 12.5px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.7);
+    }
+    .calendar__frame-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--monarch);
+    }
+    .calendar__frame-actions {
+      display: flex; gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .calendar__pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1.5px solid var(--ink);
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .calendar__pill:hover { background: var(--monarch); color: var(--cream); border-color: var(--monarch); }
+    .calendar__pill--primary { background: var(--ink); color: var(--cream); }
+    .calendar__pill--primary:hover { background: var(--monarch); border-color: var(--monarch); }
+    .calendar__frame {
+      width: 100%;
+      height: 720px;
+      border: none;
+      display: block;
+      background: var(--cream);
+    }
+    .calendar__fallback {
+      padding: 60px 40px;
+      text-align: center;
+      font-size: 15px;
+      color: rgba(26,20,16,.7);
+    }
+    .calendar__fallback a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+
+    /* ── Hosted events ──────────────────────────────────── */
+    .hosted {
+      background: var(--cream2);
+      border-top: none;
+      border-bottom: 1px solid rgba(26,20,16,.15);
+      padding: 52px 40px 72px;
+    }
+    .hosted__inner { max-width: 1100px; margin: 0 auto; }
+    .hosted__head {
+      display: flex; flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+    .hosted__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .hosted__h2 em { font-style: normal; color: var(--monarch); }
+    .hosted__intro {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(26,20,16,.72);
+      max-width: 640px;
+      text-align: left;
+    }
+    .hosted__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .hosted-item {
+      padding: 26px 26px 24px;
+      background: #fff;
+      border: 1.5px solid var(--ink);
+      border-left-width: 8px;
+      display: flex; flex-direction: column;
+      gap: 8px;
+    }
+    .hosted-item:nth-child(6n+1) { border-left-color: var(--monarch); }
+    .hosted-item:nth-child(6n+2) { border-left-color: var(--cyan); }
+    .hosted-item:nth-child(6n+3) { border-left-color: var(--magenta); }
+    .hosted-item:nth-child(6n+4) { border-left-color: var(--marigold); }
+    .hosted-item:nth-child(6n+5) { border-left-color: var(--jade); }
+    .hosted-item:nth-child(6n+6) { border-left-color: var(--plum); }
+    .hosted-item__season {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .hosted-item__season-dot {
+      width: 8px; height: 8px;
+      background: var(--monarch);
+    }
+    .hosted-item__season-dot.c-cyan { background: var(--cyan); }
+    .hosted-item__season-dot.c-marigold { background: var(--marigold); }
+    .hosted-item__season-dot.c-magenta { background: var(--magenta); }
+    .hosted-item__season-dot.c-jade { background: var(--jade); }
+    .hosted-item__season-dot.c-plum { background: var(--plum); }
+    .hosted-item__season-dot.c-poppy { background: var(--poppy); }
+    .hosted-item__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 26px; font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+    }
+    .hosted-item__h3 em { font-style: normal; }
+    .hosted-item__sub {
+      font-size: 14px; line-height: 1.55;
+      color: rgba(26,20,16,.7);
+    }
+
+    /* ── Subscribe ────────────────────────────────────────── */
+    .subscribe {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .subscribe::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/chinese-lattice-1.png');
+      background-size: 360px auto;
+      opacity: 0.06;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+    .subscribe__inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .subscribe__kicker {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--marigold);
+      margin-bottom: 14px;
+    }
+    .subscribe__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .subscribe__h2 em { font-style: normal; color: var(--marigold); }
+    .subscribe__body {
+      font-size: 15.5px; line-height: 1.6;
+      color: rgba(253,248,242,.78);
+      max-width: 460px;
+    }
+    .subscribe__body p + p { margin-top: 10px; }
+    .subscribe__list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column;
+      gap: 14px;
+    }
+    .subscribe__row {
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px dashed rgba(253,248,242,.2);
+    }
+    .subscribe__row:first-child { padding-top: 0; }
+    .subscribe__row:last-child { border-bottom: none; padding-bottom: 0; }
+    .subscribe__row-format {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal;
+      font-size: 22px;
+      color: var(--marigold);
+    }
+    .subscribe__row-desc {
+      font-size: 14px;
+      color: rgba(253,248,242,.78);
+      line-height: 1.4;
+    }
+    .subscribe__row-desc strong {
+      color: var(--cream);
+      font-weight: 700;
+      display: block;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .subscribe__row-cta {
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--cream);
+      padding: 8px 14px;
+      border: 1.5px solid rgba(253,248,242,.4);
+      white-space: nowrap;
+    }
+    .subscribe__row-cta:hover {
+      background: var(--marigold);
+      color: var(--ink);
+      border-color: var(--marigold);
+    }
+
+    /* ── Calendar tabs ────────────────────────────────────── */
+    .cal-tabbar {
+      background: var(--cream);
+      border-bottom: 1px solid rgba(26,20,16,.15);
+      padding: 0 40px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .cal-tabbar__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+    .cal-tab {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: 18px 30px;
+      border: none; background: none;
+      color: rgba(26,20,16,.42);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1.5px;
+      transition: color .15s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cal-tab.active {
+      color: var(--ink);
+      border-bottom-color: var(--monarch);
+    }
+    .cal-tab:hover:not(.active) { color: rgba(26,20,16,.75); }
+    .cal-tab__dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--monarch);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .cal-tab.active .cal-tab__dot { opacity: 1; }
+
+    /* ── Footer ──────────────────────────────────────────── */
+
+    @media (max-width: 980px) {
+      .page-header__grid { grid-template-columns: 1fr; gap: 28px; }
+      .featured-events__head { flex-direction: column; align-items: flex-start; }
+      .featured-events__intro { text-align: left; }
+      .featured-events__grid { grid-template-columns: 1fr; }
+      .event-card { grid-template-columns: 100px 1fr; }
+      .event-card__day { font-size: 40px; }
+      .volunteer__inner { grid-template-columns: 1fr; gap: 32px; }
+      .volunteer__copy { position: static; }
+      .form-row--split { grid-template-columns: 1fr; }
+      .form-checkboxes { grid-template-columns: 1fr; }
+      .calendar__frame { height: 540px; }
+      .hosted__grid { grid-template-columns: 1fr; }
+      .subscribe__inner { grid-template-columns: 1fr; gap: 32px; }
+      .subscribe__row { grid-template-columns: 1fr; gap: 8px; }
+      .subscribe__row-cta { justify-self: start; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+      /* Eliminate italics globally */
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+  <div id="grain-overlay"></div>
+  <div class="page">
+
+    <!-- ── Util bar ─────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </article>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item active"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+    <!-- ── Page header ──────────────────────────────────────── -->
+    <section class="page-header">
+      <div class="page-header__inner">
+        <div class="crumbs">
+          <span class="current">Calendar</span>
+        </div>
+        <div class="page-header__grid">
+          <div>
+            <h1 class="page-header__h1">Calendar of <span class="brush-wrap"><em>events</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-cal" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-cal)"/></svg></span></span>.</h1>
+            <div class="page-header__lead">
+              <p>PTA meetings, school events, SFUSD academic dates, and community happenings — all in one place. Subscribe once and updates land on your phone automatically.</p>
+              <p><strong>SFUSD's academic calendar is already baked in.</strong> <a href="https://www.sfusd.edu/calendar" target="_blank" rel="noopener" style="color:var(--monarch);font-weight:700;border-bottom:1px dashed var(--monarch);">See the full SFUSD calendar →</a></p>
+            </div>
+          </div>
+          <div class="page-header__subscribe">
+            <div class="page-header__subscribe-label">Subscribe to this calendar</div>
+            <div class="page-header__sub-row">
+              <span class="page-header__sub-format">.ics</span>
+              <div class="page-header__sub-desc"><strong>iCalendar</strong>Apple, Outlook, any iCal app</div>
+              <a class="page-header__sub-link" href="https://www.google.com/calendar/ical/monroepta.sf%40gmail.com/public/basic.ics">Download ↗</a>
+            </div>
+            <div class="page-header__sub-row">
+              <span class="page-header__sub-format">cal</span>
+              <div class="page-header__sub-desc"><strong>Google Calendar</strong>Add in one click</div>
+              <a class="page-header__sub-link" href="https://calendar.google.com/calendar/u/0/r?cid=monroepta.sf@gmail.com" target="_blank" rel="noopener">Add ↗</a>
+            </div>
+            <div class="page-header__sub-row">
+              <span class="page-header__sub-format">html</span>
+              <div class="page-header__sub-desc"><strong>Web view</strong>Open in a browser tab</div>
+              <a class="page-header__sub-link" href="https://www.google.com/calendar/embed?src=monroepta.sf%40gmail.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener">Open ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rainbow stripe -->
+    <div class="rainbow-stripe" style="display:flex;height:7px;">
+      <span style="background:var(--poppy);flex:1"></span>
+      <span style="background:var(--monarch);flex:1"></span>
+      <span style="background:var(--marigold);flex:1"></span>
+      <span style="background:var(--jade);flex:1"></span>
+      <span style="background:var(--cyan);flex:1"></span>
+      <span style="background:var(--plum);flex:1"></span>
+      <span style="background:var(--magenta);flex:1"></span>
+      <span style="background:var(--poppy);flex:1"></span>
+      <span style="background:var(--monarch);flex:1"></span>
+      <span style="background:var(--marigold);flex:1"></span>
+      <span style="background:var(--jade);flex:1"></span>
+      <span style="background:var(--cyan);flex:1"></span>
+      <span style="background:var(--plum);flex:1"></span>
+      <span style="background:var(--magenta);flex:1"></span>
+    </div>
+
+    <!-- ── Tab bar ────────────────────────────────────────── -->
+    <div class="cal-tabbar">
+      <div class="cal-tabbar__inner">
+        <button class="cal-tab active" data-target="panel-upcoming">
+          <span class="cal-tab__dot"></span>
+          Upcoming Events
+        </button>
+        <button class="cal-tab" data-target="panel-google">
+          <span class="cal-tab__dot"></span>
+          Google Calendar
+        </button>
+        <button class="cal-tab" data-target="panel-year">
+          <span class="cal-tab__dot"></span>
+          A Year at Monroe
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Panel: Google Calendar ──────────────────────────── -->
+    <div id="panel-google" style="display:none">
+
+    <!-- ── Calendar embed ──────────────────────────────────── -->
+    <section class="calendar">
+      <div class="calendar__inner">
+        <div class="calendar__head">
+          <h2 class="calendar__h2">Google <em>Calendar.</em></h2>
+          <p class="calendar__intro">Subscribe once and updates land on your phone automatically.</p>
+        </div>
+        <div class="calendar__frame-wrap">
+          <div class="calendar__frame-head">
+            <div class="calendar__frame-title">
+              <span class="calendar__frame-dot"></span>
+              Monroe Elementary · Google Calendar
+            </div>
+            <div class="calendar__frame-actions">
+              <a class="calendar__pill" href="https://www.google.com/calendar/embed?src=monroepta.sf%40gmail.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener">
+                Open in Google Calendar ↗
+              </a>
+              <a class="calendar__pill calendar__pill--primary" href="https://www.google.com/calendar/ical/monroepta.sf%40gmail.com/public/basic.ics">
+                Subscribe (.ics) ↗
+              </a>
+            </div>
+          </div>
+          <iframe
+            class="calendar__frame"
+            src="https://calendar.google.com/calendar/embed?title=Monroe%20Elementary&amp;height=720&amp;wkst=1&amp;bgcolor=%23fdf8f2&amp;src=monroepta.sf%40gmail.com&amp;color=%23e26a1f&amp;src=en.usa%23holiday%40group.v.calendar.google.com&amp;color=%232bb8d4&amp;ctz=America%2FLos_Angeles&amp;mode=MONTH"
+            frameborder="0"
+            scrolling="no"
+            title="Monroe Elementary Google Calendar">
+            <div class="calendar__fallback">
+              Your browser is blocking the embedded Google Calendar. <a href="https://www.google.com/calendar/embed?src=monroepta.sf%40gmail.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener">Open it in a new tab →</a>
+            </div>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /panel-google -->
+
+    <!-- ── Panel: Upcoming Events ─────────────────────────── -->
+    <div id="panel-upcoming">
+
+    <!-- ── Featured upcoming events ────────────────────── -->
+    <section class="featured-events">
+      <div class="featured-events__inner">
+        <div class="featured-events__head">
+          <h2 class="featured-events__h2">A few <em>upcoming</em> events.</h2>
+          <p class="featured-events__intro">
+            Hand-picked highlights from the next few months. Sign up to volunteer, or just RSVP &mdash; we&rsquo;ll see you there.
+          </p>
+        </div>
+
+        <div class="featured-events__grid">
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">May</div>
+              <div class="event-card__day">28</div>
+              <div class="event-card__dow">Wed</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag c-cyan">PTA Meeting</span>
+              <h3 class="event-card__h3">PTA General <em>Meeting</em></h3>
+              <p class="event-card__desc">
+                The last general meeting of the school year, including officer-elections results and a vote on the 2026&ndash;27 budget. Open to all parents and caregivers; you don&rsquo;t need to be a paid member to attend.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Monroe Library &middot; 6:00 – 7:30 p.m.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Childcare provided in the cafeteria, snacks too.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 2 volunteers</strong> for childcare</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">Agenda &amp; details →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">Jun</div>
+              <div class="event-card__day">03</div>
+              <div class="event-card__dow">Tue</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag c-marigold">Community</span>
+              <h3 class="event-card__h3">Family <em>Pupusa</em> Night</h3>
+              <p class="event-card__desc">
+                Our monthly community dinner. The third-grade families are hosting this round &mdash; expect homemade pupusas, curtido, agua fresca, and a long table everyone is welcome at. Suggested donation $5 per family, free if that doesn&rsquo;t work for you.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Cafetería &middot; 5:00 – 7:00 p.m.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Todos bienvenidos &middot; no RSVP required, just come.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 8 volunteers</strong> for prep, serving, cleanup</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">Menu &amp; details →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">Jun</div>
+              <div class="event-card__day">14</div>
+              <div class="event-card__dow">Sat</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag c-jade">Schoolwide</span>
+              <h3 class="event-card__h3">5th Grade <em>Promotion</em></h3>
+              <p class="event-card__desc">
+                The end-of-year ceremony for our outgoing fifth graders. Each student gets called up, says a few words about their favorite Monroe memory, and walks to the chorus singing &ldquo;Lean on Me.&rdquo; Light reception in the yard after.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Auditorium &middot; 9:30 a.m. &middot; doors at 9:15</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>RSVP for seat count; livestream link to come.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 6 volunteers</strong> for ushers &amp; reception</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">RSVP →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">Jun</div>
+              <div class="event-card__day">21</div>
+              <div class="event-card__dow">Sat</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag c-magenta">Fundraiser</span>
+              <h3 class="event-card__h3">Annual Spring <em>Gala &amp; Auction</em></h3>
+              <p class="event-card__desc">
+                A black-tie-optional evening of dinner, a silent auction, and dancing to support the PTA&rsquo;s Annual Fund. Last year&rsquo;s gala raised $24K. Tickets cover the cost of the venue; every dollar from the auction goes directly to Monroe kids.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>SF Botanical Garden &middot; 6:30 p.m.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>$125 / ticket &middot; sponsorships available</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 12 volunteers</strong> for setup, auction, breakdown</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">Buy tickets →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">Aug</div>
+              <div class="event-card__day">25</div>
+              <div class="event-card__dow">Mon</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag c-marigold">Community</span>
+              <h3 class="event-card__h3">Welcome <em>Picnic</em></h3>
+              <p class="event-card__desc">
+                The first gathering of the new school year &mdash; an informal evening in the schoolyard for new and returning families to meet each other and the teachers. Food trucks, sidewalk chalk, and a PTA welcome table.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Schoolyard &middot; 4:00 – 6:00 p.m.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Especially for incoming kindergarten families.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 10 volunteers</strong> for setup, welcome table, food</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">Details →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-card__date">
+              <div class="event-card__mo">Oct</div>
+              <div class="event-card__day">12</div>
+              <div class="event-card__dow">Mon</div>
+            </div>
+            <div class="event-card__body">
+              <span class="event-card__tag">Fundraiser</span>
+              <h3 class="event-card__h3">Monroe <em>Jog-a-Thon</em></h3>
+              <p class="event-card__desc">
+                The PTA&rsquo;s biggest fall fundraiser &mdash; an all-school morning where every kid runs laps for pledges. Costumes encouraged. Last year we raised $18K and ran a collective 4,200 laps. Goal this year: 5,000.
+              </p>
+              <div class="event-card__meta">
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Schoolyard &middot; 9:00 a.m. – 12:00 p.m.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span>Pledge sheets go home two weeks prior.</span></div>
+                <div class="event-card__meta-row"><span class="event-card__meta-icon">○</span><span><strong>Need 20 volunteers</strong> for water, lap-counting, music</span></div>
+              </div>
+              <div class="event-card__foot">
+                <a class="event-card__more" href="eventtemplate.html">Details →</a>
+                <a class="event-card__cta" href="eventtemplate.html">Volunteer →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /panel-upcoming -->
+
+    <!-- ── Panel: A Year at Monroe ────────────────────────── -->
+    <div id="panel-year" style="display:none">
+
+    <!-- ── Hosted events grid ──────────────────────────────── -->
+    <section class="hosted" data-screen-label="06 What Monroe Hosts">
+      <div class="hosted__inner">
+        <div class="hosted__head">
+          <h2 class="hosted__h2">A year of <em>Monroe</em> events.</h2>
+          <p class="hosted__intro">
+            A sampling of events Monroe hosts throughout the school year &mdash; to support student achievement, recognize student talents, and celebrate our diverse community.
+          </p>
+        </div>
+
+        <div class="hosted__grid">
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-jade"></span>
+              Fall
+            </div>
+            <h3 class="hosted-item__h3">Back to <em>School Night</em></h3>
+            <p class="hosted-item__sub">
+              First chance to meet your child&rsquo;s teacher and walk the classroom.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-monarch"></span>
+              Fall
+            </div>
+            <h3 class="hosted-item__h3">Fall <em>Fun Festival</em></h3>
+            <p class="hosted-item__sub">
+              Schoolyard carnival with games, food trucks, and the PTA pumpkin patch.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-cyan"></span>
+              Year-round
+            </div>
+            <h3 class="hosted-item__h3">Walk to <em>School Days</em></h3>
+            <p class="hosted-item__sub">
+              Monthly walking-school-bus mornings, organized by neighborhood.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-jade"></span>
+              Year-round
+            </div>
+            <h3 class="hosted-item__h3">Community <em>playdates</em> &amp; garden workdays</h3>
+            <p class="hosted-item__sub">
+              Weekend mornings in the yard and garden &mdash; all families welcome.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-magenta"></span>
+              Winter / Spring
+            </div>
+            <h3 class="hosted-item__h3">Winter &amp; spring <em>performances</em></h3>
+            <p class="hosted-item__sub">
+              Music and dance showcases by grade, in the auditorium.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-plum"></span>
+              Year-round
+            </div>
+            <h3 class="hosted-item__h3">Movie <em>nights</em></h3>
+            <p class="hosted-item__sub">
+              Cafeteria popcorn, blankets on the floor, family-friendly picks.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-poppy"></span>
+              Winter
+            </div>
+            <h3 class="hosted-item__h3">Lunar <em>New Year</em> celebration</h3>
+            <p class="hosted-item__sub">
+              Lion dance, dumplings, and red envelopes &mdash; led by our Chinese pathway families.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-marigold"></span>
+              Winter
+            </div>
+            <h3 class="hosted-item__h3">Black <em>Scholars</em> celebration</h3>
+            <p class="hosted-item__sub">
+              An annual recognition of Black student achievement at Monroe.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-monarch"></span>
+              Fall / Spring
+            </div>
+            <h3 class="hosted-item__h3">Heritage <em>celebrations</em></h3>
+            <p class="hosted-item__sub">
+              Hispanic Heritage and Native American Heritage events &mdash; performances, food, art.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-cyan"></span>
+              Spring
+            </div>
+            <h3 class="hosted-item__h3">Read-a-<em>thon</em></h3>
+            <p class="hosted-item__sub">
+              A schoolwide reading challenge &mdash; library books, pledge sheets, classroom totals.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-monarch"></span>
+              Fall
+            </div>
+            <h3 class="hosted-item__h3">Annual <em>Fund</em></h3>
+            <p class="hosted-item__sub">
+              The PTA&rsquo;s once-a-year ask &mdash; funds classroom enrichment, scholarships, and the garden.
+            </p>
+          </div>
+
+          <div class="hosted-item">
+            <div class="hosted-item__season">
+              <span class="hosted-item__season-dot c-jade"></span>
+              May
+            </div>
+            <h3 class="hosted-item__h3">K &amp; <em>5th grade</em> promotion</h3>
+            <p class="hosted-item__sub">
+              The end-of-year ceremonies for our youngest and oldest classes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /panel-year -->
+
+    <!-- ── Subscribe ──────────────────────────────────────── -->
+    <section class="subscribe" data-screen-label="07 Subscribe">
+      <div class="subscribe__inner">
+        <div>
+          <div class="subscribe__kicker">Subscribe</div>
+          <h2 class="subscribe__h2">Get the calendar on your <em>phone</em>.</h2>
+          <div class="subscribe__body">
+            <p>
+              You can pull this calendar into Google Calendar, Apple Calendar, Outlook, or basically anything that speaks iCal. Subscribe once and updates from Monroe land on your phone automatically &mdash; no app to install.
+            </p>
+            <p>
+              SFUSD&rsquo;s academic calendar is already baked in. <a href="https://www.sfusd.edu/calendar" target="_blank" rel="noopener" style="color: var(--marigold); border-bottom: 1px dashed var(--marigold); font-weight: 700;">See the full SFUSD calendar →</a>
+            </p>
+          </div>
+        </div>
+
+        <ul class="subscribe__list">
+          <li class="subscribe__row">
+            <span class="subscribe__row-format">.ics</span>
+            <div class="subscribe__row-desc">
+              <strong>iCalendar feed</strong>
+              For Apple Calendar, Outlook, or any iCal-compatible app.
+            </div>
+            <a class="subscribe__row-cta" href="https://www.google.com/calendar/ical/monroepta.sf%40gmail.com/public/basic.ics">Download ↗</a>
+          </li>
+          <li class="subscribe__row">
+            <span class="subscribe__row-format">cal</span>
+            <div class="subscribe__row-desc">
+              <strong>Google Calendar</strong>
+              Add to your Google account in one click.
+            </div>
+            <a class="subscribe__row-cta" href="https://calendar.google.com/calendar/u/0/r?cid=monroepta.sf@gmail.com" target="_blank" rel="noopener">Add ↗</a>
+          </li>
+          <li class="subscribe__row">
+            <span class="subscribe__row-format">rss</span>
+            <div class="subscribe__row-desc">
+              <strong>RSS / XML feed</strong>
+              For readers and aggregators that prefer feeds.
+            </div>
+            <a class="subscribe__row-cta" href="https://www.google.com/calendar/feeds/monroepta.sf%40gmail.com/public/basic" target="_blank" rel="noopener">Feed ↗</a>
+          </li>
+          <li class="subscribe__row">
+            <span class="subscribe__row-format">html</span>
+            <div class="subscribe__row-desc">
+              <strong>Standalone page</strong>
+              View the calendar on its own in a browser tab.
+            </div>
+            <a class="subscribe__row-cta" href="https://www.google.com/calendar/embed?src=monroepta.sf%40gmail.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener">Open ↗</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+          <div class="footer__address">
+            260 Madrid Street<br>San Francisco, CA 94112<br>
+            <span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--cyan);">Our School &amp; Programs</div>
+          <ul class="footer__links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+            <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
+            <li><a href="PTA.html">PTA</a></li>
+            <li><a href="familyliaisons.html">Family Liaisons</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--marigold);">Families</div>
+          <ul class="footer__links">
+            <li><a href="parentsquare.html">ParentSquare</a></li>
+            <li><a href="#" style="color: var(--monarch);">Calendar</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
+          <ul class="footer__links">
+            <li><a href="tour.html">Schedule a Tour</a></li>
+            <li><a href="#">Directions</a></li>
+            <li><a href="#">Enrollment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+        <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      const tabs   = document.querySelectorAll('.cal-tab');
+      const panels = {
+        'panel-google':   document.getElementById('panel-google'),
+        'panel-upcoming': document.getElementById('panel-upcoming'),
+        'panel-year':     document.getElementById('panel-year'),
+      };
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const target = tab.dataset.target;
+          Object.entries(panels).forEach(([id, el]) => {
+            el.style.display = id === target ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

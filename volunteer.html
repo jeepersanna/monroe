@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Volunteer</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS vars ──────────────────────────────────────────── */
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      background: #fef5ec;
+      color: var(--ink);
+      padding: 72px 40px 100px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/chinese-lattice-1.png');
+      background-size: 360px auto;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero__inner {
+      position: relative; z-index: 2;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .hero__inner > div {
+      max-width: 640px;
+    }
+    .hero__kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--monarch);
+      margin-bottom: 18px;
+    }
+    .hero__kicker-dot {
+      width: 8px; height: 8px; background: var(--monarch);
+    }
+    .hero__h1 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 5.5vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+    .hero__lead {
+      font-size: 18px; line-height: 1.6;
+      color: rgba(26,20,16,.65);
+      max-width: 540px;
+    }
+
+    /* Rainbow stripe under hero */
+    .hero-stripe {
+      display: flex; height: 6px;
+    }
+    .hero-stripe span { flex: 1; }
+
+    /* ── Opportunity cards ─────────────────────────────────── */
+    .opportunities {
+      background: var(--cream);
+      padding: 72px 40px;
+    }
+    .opportunities__inner {
+      max-width: 1240px; margin: 0 auto;
+    }
+    .opportunities__heading {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(26px, 3vw, 36px);
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .opportunities__sub {
+      font-size: 16px;
+      color: rgba(26,20,16,.55);
+      margin-bottom: 44px;
+    }
+    .opp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .opp-card {
+      background: #fff;
+      border-radius: 0;
+      border-left: 5px solid;
+      padding: 28px 28px 28px 24px;
+      box-shadow: 0 2px 12px rgba(26,20,16,.06);
+    }
+    .opp-card--cyan    { border-color: var(--cyan); }
+    .opp-card--monarch { border-color: var(--monarch); }
+    .opp-card--jade    { border-color: var(--jade); }
+    .opp-card--marigold{ border-color: var(--marigold); }
+
+    .opp-card__icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .opp-card__title {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .opp-card--cyan    .opp-card__title { color: var(--cyan); }
+    .opp-card--monarch .opp-card__title { color: var(--monarch); }
+    .opp-card--jade    .opp-card__title { color: var(--jade); }
+    .opp-card--marigold .opp-card__title { color: #b87800; }
+
+    .opp-card__desc {
+      font-size: 15px;
+      line-height: 1.55;
+      color: rgba(26,20,16,.65);
+    }
+    .opp-card__note {
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.35);
+    }
+
+    /* ── Form section ──────────────────────────────────────── */
+    .form-section {
+      background: var(--cream2);
+      padding: 72px 40px 80px;
+    }
+    .form-section__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .form-card {
+      background: var(--cream);
+      border: 1.5px solid rgba(26,20,16,.09);
+      border-radius: 12px;
+      padding: 48px 40px;
+      max-width: 720px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(26,20,16,.07);
+    }
+
+    .form-card__heading {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(24px, 3vw, 32px);
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .form-card__sub {
+      font-size: 15px;
+      color: rgba(26,20,16,.55);
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 20px;
+    }
+    @media (max-width: 540px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .form-card { padding: 32px 20px; }
+      .opportunities { padding: 48px 20px; }
+      .form-section { padding: 48px 20px 64px; }
+      .hero { padding: 52px 20px 72px; }
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+      margin-bottom: 7px;
+    }
+    .form-label .req {
+      color: var(--monarch);
+      margin-left: 2px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1.5px solid rgba(26,20,16,.15);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(26,20,16,.3); }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,134,155,.12);
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1410' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Fieldset for checkboxes */
+    .check-fieldset {
+      border: none; margin: 0; padding: 0;
+    }
+    .check-legend {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+    }
+    .check-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 540px) {
+      .check-grid, .check-grid--3 { grid-template-columns: 1fr; }
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      cursor: pointer;
+    }
+    .check-item input[type="checkbox"] {
+      width: 17px; height: 17px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--jade);
+      cursor: pointer;
+    }
+    .check-item span {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .form-divider {
+      border: none;
+      border-top: 1.5px solid rgba(26,20,16,.08);
+      margin: 32px 0;
+    }
+
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--jade);
+      color: #fff;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: .02em;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: background .18s, transform .12s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover {
+      background: #236040;
+      transform: translateY(-1px);
+    }
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    /* ── After-form note ───────────────────────────────────── */
+    .after-form {
+      background: var(--cream);
+      padding: 60px 40px;
+    }
+    .after-form__inner {
+      max-width: 720px; margin: 0 auto;
+      text-align: center;
+    }
+    .after-form__heart {
+      font-size: 36px; margin-bottom: 18px;
+    }
+    .after-form__text {
+      font-size: 17px; line-height: 1.65;
+      color: rgba(26,20,16,.65);
+      margin-bottom: 20px;
+    }
+    .after-form__contact {
+      font-size: 15px;
+      color: rgba(26,20,16,.5);
+    }
+    .after-form__contact a {
+      color: var(--jade);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .after-form__contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Footer override ───────────────────────────────────── */
+    .footer__stripe { position: absolute; top: 0; left: 0; right: 0; height: 6px; display: flex; }
+    .footer__stripe span { flex: 1; }
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+
+  <!-- ── Util bar ─────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div>
+        <div class="hero__kicker">
+          <span class="hero__kicker-dot"></span>Monroe Elementary · Volunteer
+        </div>
+        <h1 class="hero__h1">Show up for <span class="brush-wrap">Monroe.<span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-vl" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-vl)"/></svg></span></span></h1>
+        <p class="hero__lead">Whether you have an hour or a whole morning, there's a place for you here. Fill out the form below and we'll match you with opportunities that fit your schedule and interests.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rainbow stripe -->
+  <div class="hero-stripe">
+    <span style="background:var(--poppy)"></span>
+    <span style="background:var(--monarch)"></span>
+    <span style="background:var(--marigold)"></span>
+    <span style="background:var(--jade)"></span>
+    <span style="background:var(--cyan)"></span>
+    <span style="background:var(--plum)"></span>
+    <span style="background:var(--magenta)"></span>
+    <span style="background:var(--poppy)"></span>
+    <span style="background:var(--monarch)"></span>
+    <span style="background:var(--marigold)"></span>
+    <span style="background:var(--jade)"></span>
+    <span style="background:var(--cyan)"></span>
+    <span style="background:var(--plum)"></span>
+    <span style="background:var(--magenta)"></span>
+  </div>
+
+  <!-- ── Opportunity cards ─────────────────────────────────── -->
+  <section class="opportunities">
+    <div class="opportunities__inner">
+      <h2 class="opportunities__heading">Ways to get involved</h2>
+      <p class="opportunities__sub">Find what fits your time, energy, and talents.</p>
+      <div class="opp-grid">
+
+        <div class="opp-card opp-card--cyan">
+          <div class="opp-card__icon">🎨</div>
+          <div class="opp-card__title">In the Classroom</div>
+          <p class="opp-card__desc">Help teachers during reading groups, art projects, or classroom activities. Work one-on-one with students or support small group learning.</p>
+          <div class="opp-card__note">Background check required</div>
+        </div>
+
+        <div class="opp-card opp-card--monarch">
+          <div class="opp-card__icon">🎉</div>
+          <div class="opp-card__title">Events &amp; Fundraisers</div>
+          <p class="opp-card__desc">Set up, run booths, or help clean up at Book Fair, Harvest Festival, Field Day, and more. Every event runs on community energy.</p>
+        </div>
+
+        <div class="opp-card opp-card--jade">
+          <div class="opp-card__icon">📚</div>
+          <div class="opp-card__title">Library</div>
+          <p class="opp-card__desc">Shelve books, help during library time, or assist with the school book room. A quiet, meaningful way to support a love of reading.</p>
+        </div>
+
+        <div class="opp-card opp-card--marigold">
+          <div class="opp-card__icon">🏃</div>
+          <div class="opp-card__title">Yard Duty &amp; Field Trips</div>
+          <p class="opp-card__desc">Supervise recess, walk with classes, or chaperone off-campus adventures. Your presence keeps kids safe and makes new experiences possible.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sign-up form ──────────────────────────────────────── -->
+  <section class="form-section">
+    <div class="form-section__inner">
+      <div class="form-card">
+        <h2 class="form-card__heading">Sign Up to Volunteer</h2>
+        <p class="form-card__sub">Takes about two minutes. We'll reach out within a few days to match you with the right fit.</p>
+
+        <form action="#" method="post" novalidate>
+
+          <!-- Personal info -->
+          <div class="form-group form-grid-2">
+            <div>
+              <label class="form-label" for="first-name">First Name<span class="req">*</span></label>
+              <input class="form-input" type="text" id="first-name" name="first_name" required placeholder="Rosa" />
+            </div>
+            <div>
+              <label class="form-label" for="last-name">Last Name<span class="req">*</span></label>
+              <input class="form-input" type="text" id="last-name" name="last_name" required placeholder="Park" />
+            </div>
+            <div>
+              <label class="form-label" for="email">Email Address<span class="req">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="(415) 000-0000" />
+            </div>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Child info -->
+          <div class="form-group">
+            <label class="form-label" for="grade">Child's Grade Level</label>
+            <select class="form-select" id="grade" name="grade">
+              <option value="" disabled selected>Select a grade…</option>
+              <option>Kindergarten</option>
+              <option>1st Grade</option>
+              <option>2nd Grade</option>
+              <option>3rd Grade</option>
+              <option>4th Grade</option>
+              <option>5th Grade</option>
+              <option>Multiple grades</option>
+              <option>No child enrolled</option>
+            </select>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Availability -->
+          <div class="form-group">
+            <fieldset class="check-fieldset">
+              <legend class="check-legend">Availability</legend>
+              <div class="check-grid">
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="weekday_morning" />
+                  <span>Weekday mornings (before 12pm)</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="weekday_afternoon" />
+                  <span>Weekday afternoons (12–3pm)</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="occasional_saturday" />
+                  <span>Occasional Saturdays</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="flexible" />
+                  <span>Flexible / as needed</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Areas of interest -->
+          <div class="form-group">
+            <fieldset class="check-fieldset">
+              <legend class="check-legend">Areas of Interest</legend>
+              <div class="check-grid">
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="classroom" />
+                  <span>In the Classroom</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="library" />
+                  <span>Library</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="events" />
+                  <span>Events &amp; Fundraisers</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="field_trips" />
+                  <span>Field Trips &amp; Yard Duty</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="admin" />
+                  <span>Administrative Support</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="garden" />
+                  <span>Gardening &amp; Outdoor Projects</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="cultural" />
+                  <span>Cultural Programs &amp; Celebrations</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="interest" value="whatever" />
+                  <span>Whatever's needed most!</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Languages -->
+          <div class="form-group">
+            <fieldset class="check-fieldset">
+              <legend class="check-legend">Languages Spoken</legend>
+              <div class="check-grid check-grid--3">
+                <label class="check-item">
+                  <input type="checkbox" name="language" value="english" />
+                  <span>English</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="language" value="spanish" />
+                  <span>Spanish</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="language" value="cantonese" />
+                  <span>Cantonese</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="language" value="mandarin" />
+                  <span>Mandarin</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="language" value="other" />
+                  <span>Other</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Notes -->
+          <div class="form-group">
+            <label class="form-label" for="notes">Anything else?</label>
+            <textarea class="form-textarea" id="notes" name="notes" placeholder="Skills, constraints, ideas — tell us! We read every note."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit — I want to help!</button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── After-form note ───────────────────────────────────── -->
+  <section class="after-form">
+    <div class="after-form__inner">
+      <div class="after-form__heart">🤝</div>
+      <p class="after-form__text">
+        We'll be in touch within a few days to match you with the right opportunity.
+        Background checks are required for all volunteers who work directly with students —
+        we'll walk you through the process every step of the way.
+      </p>
+      <p class="after-form__contact">
+        Questions? Email us at <a href="mailto:volunteering@monroepta.org">volunteering@monroepta.org</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────────────────── -->
+  <footer class="footer footer--stripe">
+    <div class="footer__stripe">
+      <span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span><span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span>
+    </div>
+    <div class="footer__grid">
+      <div><div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div><div class="footer__address">260 Madrid Street<br>San Francisco, CA 94112<br><span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span></div></div>
+      <div><div class="footer__col-label" style="color: var(--cyan);">Our School &amp; Programs</div><ul class="footer__links"><li><a href="about.html">About</a></li><li><a href="beforeaftercare.html">Before &amp; After Care</a></li><li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li><li><a href="PTA.html">PTA</a></li><li><a href="familyliaisons.html">Family Liaisons</a></li></ul></div>
+      <div><div class="footer__col-label" style="color: var(--marigold);">Families</div><ul class="footer__links"><li><a href="communityhub.html">Community Hub</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="parentsquare.html">ParentSquare</a></li></ul></div>
+      <div><div class="footer__col-label" style="color: var(--magenta);">Visit</div><ul class="footer__links"><li><a href="tour.html">Schedule a Tour</a></li><li><a href="#">Directions</a></li><li><a href="#">Enrollment</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><div>© 2026 Monroe Elementary · A San Francisco Public School</div><div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div></div>
+  </footer>
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

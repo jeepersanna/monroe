@@ -1,0 +1,1587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Faculty &amp; Staff</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Util bar + masthead (matches other pages) ─────────────────── */
+
+    /* ── Page header ──────────────────────────────────────────────── */
+    .page-header {
+      background: #fef5ec;
+      padding: 60px 40px 50px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .page-header__inner { max-width: 1240px; margin: 0 auto; display: flex; gap: 20px; flex-direction: column; align-items: flex-start; }
+    .crumbs {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-bottom: 14px;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .crumbs a:hover { color: var(--monarch); }
+    .crumbs .sep { color: rgba(26,20,16,.3); }
+    .crumbs .current { color: var(--ink); }
+    .page-header__h1 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: clamp(44px, 4.6vw, 68px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      max-width: 12ch;
+    }
+    .page-header__h1 em { font-style: normal; color: var(--monarch); }
+    .page-header__sub { font-size: 15px; line-height: 1.55; color: rgba(26,20,16,.75); max-width: 720px; text-align: left; }
+    .page-header__sub strong { color: var(--ink); font-weight: 700; }
+
+    /* ── Section helpers ───────────────────────────────────────────── */
+    section { position: relative; }
+    .section-head { max-width: 1240px; margin: 0 auto 36px; display: flex; gap: 14px; flex-direction: column; align-items: flex-start; }
+    .section-head__title {
+      display: flex; align-items: baseline; gap: 18px;
+    }
+    .section-head__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .section-head__h2 em { font-style: normal; color: var(--monarch); }
+    .section-head__count {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal;
+      font-size: 18px;
+      color: rgba(26,20,16,.45);
+    }
+    .section-head__sub { font-size: 14.5px; line-height: 1.55; color: rgba(26,20,16,.7); max-width: 720px; text-align: left; }
+
+    /* ── Faculty matrix ───────────────────────────────────────────── */
+    .faculty {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .matrix-wrap {
+      max-width: 1240px; margin: 0 auto;
+    }
+    .matrix-scroll {
+      overflow: visible;
+      margin: 0;
+      padding: 0 0 6px;
+    }
+    .matrix-scroll::-webkit-scrollbar { height: 8px; }
+    .matrix-scroll::-webkit-scrollbar-thumb { background: rgba(26,20,16,.2); }
+    .matrix-scroll-hint {
+      display: none;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.5);
+      margin-bottom: 12px;
+      align-items: center; gap: 6px;
+    }
+    .matrix-scroll-hint svg { color: var(--monarch); }
+    @media (max-width: 1080px) {
+      .matrix-scroll-hint { display: inline-flex; }
+    }
+    .matrix-legend {
+      display: flex; gap: 22px; flex-wrap: wrap;
+      margin-bottom: 24px;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+    }
+    .matrix-legend__item {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(26,20,16,.7);
+    }
+    .matrix-legend__swatch {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--ink);
+    }
+    .matrix {
+      background: #fff;
+      border: 1.5px solid var(--ink);
+      display: grid;
+      grid-template-columns: 90px repeat(4, minmax(0, 1fr));
+    }
+    .matrix__cell {
+      padding: 32px 18px;
+      border-right: 1px solid rgba(26,20,16,.15);
+      border-bottom: 1px solid rgba(26,20,16,.15);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+      min-height: 0;
+      text-align: left;
+    }
+    .matrix__cell-photo {
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid var(--ink);
+      background: var(--cream2);
+    }
+    .matrix__cell-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+    .matrix__cell-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .matrix__cell:nth-child(5n) { border-right: none; }
+    .matrix__cell.is-header {
+      background: var(--cream2);
+      border-bottom: 1.5px solid var(--ink);
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.75);
+      min-height: 64px;
+      gap: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .matrix__cell.is-header-pathway::before {
+      content: '';
+      display: block;
+      width: 18px; height: 4px;
+      margin-bottom: 6px;
+    }
+    .matrix__cell.is-header[data-color="cyan"]::before     { background: var(--cyan); }
+    .matrix__cell.is-header[data-color="marigold"]::before { background: var(--marigold); }
+    .matrix__cell.is-header[data-color="magenta"]::before  { background: var(--magenta); }
+    .matrix__cell.is-grade {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 24px; font-weight: 400;
+      letter-spacing: -0.01em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2px;
+      border-right: 1.5px solid var(--ink);
+      border-bottom: 1px solid rgba(253,248,242,.2);
+    }
+    .matrix__cell.is-grade .matrix__grade-num {
+      font-style: normal;
+      color: var(--marigold);
+      font-size: 32px; line-height: 1;
+    }
+    .matrix__cell.is-grade .matrix__grade-label {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(253,248,242,.55);
+      margin-top: 2px;
+    }
+    .matrix__teacher {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 16px; font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .matrix__teacher-first {
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .matrix__teacher-last {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .matrix__room {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-top: 10px;
+    }
+    .matrix__empty {
+      color: rgba(26,20,16,.25);
+      font-size: 13px;
+      font-style: normal;
+    }
+
+    /* last row hide bottom border */
+    .matrix__cell:nth-last-child(-n+5) { border-bottom: none; }
+
+    /* ── Leadership grid ──────────────────────────────────────────── */
+    .leadership {
+      background: var(--cream2);
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 90px 40px;
+    }
+    .lead-grid {
+      max-width: 1240px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    .lead-card {
+      padding: 32px 30px;
+      background: #fff;
+      border: 1.5px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--monarch);
+      display: flex; flex-direction: column;
+      gap: 18px;
+      position: relative;
+    }
+    .lead-card:nth-child(6n+1) { box-shadow: 5px 5px 0 var(--monarch); }
+    .lead-card:nth-child(6n+2) { box-shadow: 5px 5px 0 var(--cyan); }
+    .lead-card:nth-child(6n+3) { box-shadow: 5px 5px 0 var(--magenta); }
+    .lead-card:nth-child(6n+4) { box-shadow: 5px 5px 0 var(--marigold); }
+    .lead-card:nth-child(6n+5) { box-shadow: 5px 5px 0 var(--jade); }
+    .lead-card:nth-child(6n+6) { box-shadow: 5px 5px 0 var(--plum); }
+    .lead-card__top {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .lead-avatar {
+      flex-shrink: 0;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      display: grid; place-items: center;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 40px;
+      color: var(--cream);
+      background: var(--monarch);
+      overflow: hidden;
+    }
+    img.lead-avatar,
+    .lead-avatar--photo {
+      object-fit: cover;
+      object-position: center 25%;
+      padding: 0;
+      background: var(--cream2);
+      display: block;
+    }
+    .lead-avatar.c-cyan { background: var(--cyan); }
+    .lead-avatar.c-marigold { background: var(--marigold); color: var(--ink); }
+    .lead-avatar.c-magenta { background: var(--magenta); }
+    .lead-avatar.c-jade { background: var(--jade); }
+    .lead-avatar.c-plum { background: var(--plum); }
+    .lead-avatar.c-poppy { background: var(--poppy); }
+    .lead-card__role {
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+      margin-bottom: 6px;
+    }
+    .lead-card__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 28px; font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+    }
+    .lead-card__meta {
+      display: flex; gap: 22px;
+      font-size: 13.5px;
+      color: rgba(26,20,16,.65);
+      padding-top: 14px;
+      border-top: 1.5px dashed rgba(26,20,16,.2);
+    }
+    .lead-card__meta-row { display: flex; flex-direction: column; }
+    .lead-card__meta-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.45);
+      margin-bottom: 3px;
+    }
+    .lead-card__meta-val { color: var(--ink); font-weight: 600; }
+
+    /* ── Specialists ─────────────────────────────────── */
+    .specialists {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .specialists__inner { max-width: 1240px; margin: 0 auto; }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .spec-card {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--monarch);
+      padding: 24px 24px 22px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .spec-card:nth-child(6n+1) { box-shadow: 5px 5px 0 var(--monarch); }
+    .spec-card:nth-child(6n+2) { box-shadow: 5px 5px 0 var(--cyan); }
+    .spec-card:nth-child(6n+3) { box-shadow: 5px 5px 0 var(--magenta); }
+    .spec-card:nth-child(6n+4) { box-shadow: 5px 5px 0 var(--marigold); }
+    .spec-card:nth-child(6n+5) { box-shadow: 5px 5px 0 var(--jade); }
+    .spec-card:nth-child(6n+6) { box-shadow: 5px 5px 0 var(--plum); }
+    .spec-card__photo {
+      flex-shrink: 0;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1.5px solid var(--ink);
+      background: var(--cream2);
+    }
+    .spec-card__body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .spec-card__role {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+    }
+    .spec-card__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 24px; font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 8px;
+    }
+    .spec-card__schedule {
+      display: inline-flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+    .spec-card__schedule-pill {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 3px 8px;
+      background: var(--cream2);
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+    .spec-card__schedule-pill.is-lang {
+      background: var(--monarch);
+      color: var(--cream);
+      border-color: var(--monarch);
+    }
+
+    /* ── Noon monitors row (inside Support block) ─────────────────────── */
+    .monitors-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .monitor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .monitor__photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1.5px solid var(--ink);
+    }
+    .monitor__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    /* ── Liaisons preview ─────────────────────────────────────────── */
+    .liaisons {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .liaisons__inner {
+      max-width: 1240px; margin: 0 auto;
+    }
+    .liaisons__head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 36px;
+      align-items: end;
+    }
+    .liaisons__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .liaisons__h2 em { font-style: normal; color: var(--monarch); }
+    .liaisons__intro {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(26,20,16,.75);
+      max-width: 440px;
+    }
+    .liaisons__intro a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+    .liaisons__intro a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+    .liaisons__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1.5px solid var(--ink);
+    }
+    .liaison-card {
+      background: var(--cream);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 28px 32px;
+      display: flex; flex-direction: row;
+      align-items: center;
+      gap: 28px;
+    }
+    .liaison-card:last-child { border-bottom: none; }
+    .liaison-card:nth-child(1) { border-left: 6px solid var(--cyan); }
+    .liaison-card:nth-child(2) { border-left: 6px solid var(--magenta); }
+    .liaison-card:nth-child(3) { border-left: 6px solid var(--marigold); }
+    .liaison-card__photo {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      display: grid; place-items: center;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 36px;
+      color: var(--ink);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    img.liaison-card__photo,
+    .liaison-card__photo--img {
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+      width: 100px; height: 100px;
+    }
+    .liaison-card:nth-child(1) .liaison-card__photo { background: var(--monarch); color: var(--cream); }
+    .liaison-card:nth-child(2) .liaison-card__photo { background: var(--marigold); }
+    .liaison-card:nth-child(3) .liaison-card__photo { background: var(--cyan); color: var(--cream); }
+    .liaison-card__body {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .liaison-card__identity {
+      flex: 1; min-width: 160px;
+    }
+    .liaison-card__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+    .liaison-card__role {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .04em;
+      color: rgba(26,20,16,.55);
+    }
+    .liaison-card__contact {
+      display: flex; flex-direction: column; gap: 8px;
+      align-items: flex-start;
+    }
+    .liaison-card__langs {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .lang-pill {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 4px 9px;
+      border: 1.5px solid var(--ink);
+      background: var(--cream);
+    }
+    .liaison-card__email {
+      font-size: 13px;
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+    .liaison-card__email:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ── Inclusion team ───────────────────────────────────────────── */
+    .inclusion {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 90px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .inclusion::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/chinese-lattice-1.png');
+      background-size: 360px auto;
+      opacity: 0.05;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+    .inclusion__inner {
+      position: relative; z-index: 1;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .inclusion__head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 40px;
+      align-items: end;
+    }
+    .inclusion__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      color: var(--cream);
+    }
+    .inclusion__h2 em { font-style: normal; color: var(--marigold); }
+    .inclusion__intro {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(253,248,242,.7);
+      max-width: 440px;
+    }
+    .inclusion__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(253,248,242,.18);
+      border: 1.5px solid rgba(253,248,242,.18);
+    }
+    .inc-card {
+      background: var(--ink);
+      padding: 24px 28px;
+      display: flex; flex-direction: row;
+      align-items: center;
+      gap: 22px;
+      min-height: 0;
+    }
+    .inc-card__photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1.5px solid rgba(253,248,242,.35);
+      flex-shrink: 0;
+    }
+    .inc-card__info {
+      display: flex; flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .inc-card__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 19px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .inc-card__role {
+      font-size: 13px;
+      color: rgba(253,248,242,.62);
+      line-height: 1.4;
+    }
+    .inc-card__tags {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-top: 6px;
+    }
+    .inc-tag {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 4px 9px;
+      border: 1px solid rgba(253,248,242,.3);
+      color: rgba(253,248,242,.7);
+    }
+    .inc-tag.is-color { color: var(--marigold); border-color: var(--marigold); }
+
+    /* ── Support / specialists / monitors footnote ────────────────── */
+    .support {
+      background: var(--cream);
+      padding: 90px 40px 100px;
+    }
+    .support__inner { max-width: 1240px; margin: 0 auto; }
+    .support__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-top: 36px;
+    }
+    .support-block {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 26px 28px;
+    }
+    .support-block__title {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .support-block__sub {
+      font-size: 13.5px;
+      color: rgba(26,20,16,.6);
+      margin-bottom: 22px;
+      letter-spacing: .04em;
+    }
+    .support-block__list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column;
+      gap: 16px;
+    }
+    .support-block__list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(26,20,16,.18);
+    }
+    .support-block__person {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+    .support-block__photo {
+      flex-shrink: 0;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1.5px solid var(--ink);
+    }
+    .support-block__list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .support-block__name {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+    .support-block__role {
+      font-size: 13.5px;
+      color: rgba(26,20,16,.6);
+      margin-top: 4px;
+    }
+    .support-block__lang {
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      white-space: nowrap;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────── */
+
+    @media (max-width: 980px) {
+      .page-header__inner { grid-template-columns: 1fr; gap: 24px; }
+      .page-header__sub { text-align: left; }
+      .section-head { flex-direction: column; align-items: flex-start; }
+      .section-head__sub { text-align: left; }
+      .lead-grid { grid-template-columns: 1fr; }
+      .spec-grid { grid-template-columns: 1fr; }
+      .monitors-row { grid-template-columns: repeat(2, 1fr); }
+      .liaisons__head { grid-template-columns: 1fr; gap: 20px; }
+      .liaison-card__body { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .inclusion__head { grid-template-columns: 1fr; gap: 20px; }
+      .inclusion__grid { grid-template-columns: 1fr; }
+      .support__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    /* ── Responsive ─────────────────────────────────────────────── */
+
+    /* Tablet: 768–1080px */
+    @media (max-width: 1080px) {
+      /* Matrix: collapse to grade + 2 cols, then scroll within a wider viewport */
+      .matrix {
+        grid-template-columns: 80px repeat(4, minmax(160px, 1fr));
+      }
+      .matrix__cell { padding: 20px 12px; gap: 12px; }
+      .matrix__cell-photo { width: 80px; height: 80px; }
+      .matrix__teacher-first { font-size: 13px; }
+      .matrix__teacher-last { font-size: 16px; }
+
+      /* Leadership */
+      .lead-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Specialists */
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Monitors */
+      .monitors-row { grid-template-columns: repeat(3, 1fr); }
+
+      /* Liaisons & Inclusion */
+      .liaisons__head { grid-template-columns: 1fr; gap: 20px; }
+      .liaison-card__body { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .inclusion__head { grid-template-columns: 1fr; gap: 20px; }
+      .inclusion__grid { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile: under 640px */
+    @media (max-width: 640px) {
+      /* Page header */
+      .page-header { padding: 48px 20px 36px; }
+      .page-header__inner { gap: 16px; }
+
+      /* Section padding */
+      .classroom-matrix,
+      .leadership,
+      .specialists,
+      .monitors,
+      .liaisons,
+      .inclusion,
+      .support { padding: 48px 16px; }
+
+      /* Matrix: grade spans full width, teachers in 2-col grid beneath */
+      .matrix-scroll { overflow: visible; }
+      .matrix {
+        grid-template-columns: 1fr;
+        border: none;
+        gap: 0;
+      }
+      .matrix__cell.is-header { display: none; }
+      .matrix__cell.is-grade {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-left: 1.5px solid var(--ink);
+        border-top: 1.5px solid var(--ink);
+        padding: 16px 20px;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        min-height: 0;
+      }
+      .matrix__cell.is-grade .matrix__grade-num { font-size: 24px; }
+      .matrix__cell.is-grade .matrix__grade-label { font-size: 10px; }
+      .matrix__cell {
+        border-left: 1.5px solid var(--ink);
+        padding: 16px 14px;
+        gap: 12px;
+      }
+      .matrix__cell:nth-child(5n) { border-right: 1.5px solid var(--ink); }
+      .matrix__cell:nth-last-child(-n+5) { border-bottom: 1.5px solid var(--ink); }
+      .matrix__cell-photo { width: 72px; height: 72px; }
+      .matrix__teacher { flex-direction: row; align-items: baseline; flex-wrap: wrap; gap: 3px; }
+      .matrix__teacher-first { font-size: 15px; }
+      .matrix__teacher-last { font-size: 17px; }
+      .matrix__room { font-size: 10px; margin-top: 4px; }
+
+      /* Leadership: single col */
+      .lead-grid { grid-template-columns: 1fr; gap: 16px; }
+      .lead-card { padding: 20px 16px; gap: 14px; }
+      .lead-card__top { flex-direction: row; align-items: center; gap: 16px; }
+      .lead-avatar { width: 72px; height: 72px; font-size: 26px; flex-shrink: 0; }
+      .lead-card__name { font-size: 20px; }
+      .lead-card__role { font-size: 10px; }
+
+      /* Specialists: single col */
+      .spec-grid { grid-template-columns: 1fr; }
+
+      /* Monitors: 2 col */
+      .monitors-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+      /* Liaisons */
+      .liaisons__head { grid-template-columns: 1fr; }
+      .liaison-card { padding: 20px 16px; gap: 16px; }
+      .liaison-card__photo { width: 80px; height: 80px; }
+      img.liaison-card__photo { width: 80px; height: 80px; }
+      .liaison-card__body { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+      /* Inclusion */
+      .inclusion__head { grid-template-columns: 1fr; }
+      .inclusion__grid { grid-template-columns: 1fr; }
+      .inc-card { padding: 18px 16px; gap: 16px; }
+      .inc-card__photo { width: 72px; height: 72px; }
+
+      /* Support */
+      .support__grid { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer__grid { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Nav: hide full nav, show hamburger if present */
+      .masthead__nav { display: none; }
+      .matrix-scroll-hint { display: inline-flex !important; }
+    }
+
+      /* Eliminate italics globally */
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+  <div id="grain-overlay"></div>
+  <div class="page">
+
+    <!-- ── Util bar ─────────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item active">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html" class="active">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+    <!-- ── Page header ──────────────────────────────────────────── -->
+    <section class="page-header" data-screen-label="01 Header">
+      <div class="page-header__inner">
+        <div>
+          <div class="crumbs">
+            <a href="about.html">Our School &amp; Programs</a>
+            <span class="sep">/</span>
+            <span class="current">Faculty &amp; Staff</span>
+          </div>
+          <h1 class="page-header__h1">
+            The people who <span class="brush-wrap"><em>make</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-fs" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-fs)"/></svg></span></span> Monroe.
+          </h1>
+        </div>
+        <p class="page-header__sub">
+          <strong>Twenty-three classroom teachers</strong>, a leadership team of nine, three family liaisons, an inclusion team, and the support staff who keep the day running.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rainbow stripe -->
+    <div style="display:flex; height:6px; width:100%;">
+      <span style="flex:1;background:var(--poppy)"></span>
+      <span style="flex:1;background:var(--monarch)"></span>
+      <span style="flex:1;background:var(--marigold)"></span>
+      <span style="flex:1;background:var(--jade)"></span>
+      <span style="flex:1;background:var(--cyan)"></span>
+      <span style="flex:1;background:var(--plum)"></span>
+      <span style="flex:1;background:var(--magenta)"></span>
+      <span style="flex:1;background:var(--poppy)"></span>
+      <span style="flex:1;background:var(--monarch)"></span>
+      <span style="flex:1;background:var(--marigold)"></span>
+      <span style="flex:1;background:var(--jade)"></span>
+      <span style="flex:1;background:var(--cyan)"></span>
+      <span style="flex:1;background:var(--plum)"></span>
+      <span style="flex:1;background:var(--magenta)"></span>
+    </div>
+
+    <!-- ── Faculty matrix ───────────────────────────────────────── -->
+    <section class="faculty" data-screen-label="02 Faculty Matrix">
+      <div class="matrix-wrap">
+        <div class="section-head">
+          <div class="section-head__title">
+            <h2 class="section-head__h2">Classroom teachers, by <em>grade</em> and <em style="color: var(--cyan);">pathway</em>.</h2>
+            <div class="section-head__count">K&ndash;5 · 23 rooms</div>
+          </div>
+          <p class="section-head__sub">
+            Every grade has two Spanish Immersion rooms, one Chinese Biliteracy room, and one ELD / General Education room — except fifth grade, which has one of each.
+          </p>
+        </div>
+
+        <div class="matrix-legend">
+          <div class="matrix-legend__item">
+            <span class="matrix-legend__swatch" style="background: var(--cyan);"></span>
+            Spanish Immersion
+          </div>
+          <div class="matrix-legend__item">
+            <span class="matrix-legend__swatch" style="background: var(--marigold);"></span>
+            Chinese Biliteracy
+          </div>
+          <div class="matrix-legend__item">
+            <span class="matrix-legend__swatch" style="background: var(--magenta);"></span>
+            ELD / General Education
+          </div>
+        </div>
+
+        <div class="matrix-scroll-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          Scroll horizontally to see all pathways
+        </div>
+
+        <div class="matrix-scroll">
+        <div class="matrix">
+          <!-- Header row -->
+          <div class="matrix__cell is-header" style="background: var(--ink); color: var(--cream);">Grade</div>
+          <div class="matrix__cell is-header is-header-pathway" data-color="magenta">ELD / General Ed</div>
+          <div class="matrix__cell is-header is-header-pathway" data-color="marigold">Chinese Biliteracy</div>
+          <div class="matrix__cell is-header is-header-pathway" data-color="cyan">Spanish Immersion</div>
+          <div class="matrix__cell is-header is-header-pathway" data-color="cyan">Spanish Immersion</div>
+
+          <!-- K -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">K</span><span class="matrix__grade-label">Kinder</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/morel.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Diana Paquin</span><span class="matrix__teacher-last">Morel</span></div><div class="matrix__room">Room 105</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/tong.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Linda</span><span class="matrix__teacher-last">Tong</span></div><div class="matrix__room">Room 106</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/briceno.png" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Michelle</span><span class="matrix__teacher-last">Briceño</span></div><div class="matrix__room">Room 104</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/lu.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Jennifer</span><span class="matrix__teacher-last">Lu</span></div><div class="matrix__room">Room 103</div></div></div>
+
+          <!-- 1 -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">1</span><span class="matrix__grade-label">First</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/bailey.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Kimberly</span><span class="matrix__teacher-last">Bailey</span></div><div class="matrix__room">Room 107</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/chen-m.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Mindy</span><span class="matrix__teacher-last">Chen</span></div><div class="matrix__room">Room 122</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/moreno.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Cristina</span><span class="matrix__teacher-last">Moreno</span></div><div class="matrix__room">Room 101</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/chavez.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Esmeralda</span><span class="matrix__teacher-last">Chavez</span></div><div class="matrix__room">Room 102</div></div></div>
+
+          <!-- 2 -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">2</span><span class="matrix__grade-label">Second</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/stahl.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Samantha</span><span class="matrix__teacher-last">Stahl</span></div><div class="matrix__room">Room 123</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/ho.png" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">June</span><span class="matrix__teacher-last">Ho</span></div><div class="matrix__room">Room 126</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/wernecke.png" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Claire</span><span class="matrix__teacher-last">Wernecke</span></div><div class="matrix__room">Room 111</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/limon.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Daniel</span><span class="matrix__teacher-last">Limón</span></div><div class="matrix__room">Room 125</div></div></div>
+
+          <!-- 3 -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">3</span><span class="matrix__grade-label">Third</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/rosenberg.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Mark</span><span class="matrix__teacher-last">Rosenberg</span></div><div class="matrix__room">Room 127</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/sun.png" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Connie</span><span class="matrix__teacher-last">Sun</span></div><div class="matrix__room">Room 230</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/torres.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">April</span><span class="matrix__teacher-last">Torres</span></div><div class="matrix__room">Room 229</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/dominguez.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Yuri</span><span class="matrix__teacher-last">Dominguez</span></div><div class="matrix__room">Room 124</div></div></div>
+
+          <!-- 4 -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">4</span><span class="matrix__grade-label">Fourth</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/benosky.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">McKenna</span><span class="matrix__teacher-last">Bernosky</span></div><div class="matrix__room">Room 203</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/lau.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Whitney</span><span class="matrix__teacher-last">Lau</span></div><div class="matrix__room">Room 202</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/casillas-y.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Yvonne</span><span class="matrix__teacher-last">Casillas</span></div><div class="matrix__room">Room 201</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/suarez.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Maribel</span><span class="matrix__teacher-last">Suarez</span></div><div class="matrix__room">Room 204</div></div></div>
+
+          <!-- 5 -->
+          <div class="matrix__cell is-grade"><span class="matrix__grade-num">5</span><span class="matrix__grade-label">Fifth</span></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/yee.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Ryan</span><span class="matrix__teacher-last">Yee</span></div><div class="matrix__room">Room 226</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/wong.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Sophia</span><span class="matrix__teacher-last">Wong</span></div><div class="matrix__room">Room 228</div></div></div>
+          <div class="matrix__cell"><div class="matrix__cell-photo"><img src="assets/faculty-staff/garcia.jpg" alt="" loading="lazy"></div><div class="matrix__cell-body"><div class="matrix__teacher"><span class="matrix__teacher-first">Francisco Matías</span><span class="matrix__teacher-last">García</span></div><div class="matrix__room">Room 227</div></div></div>
+          <div class="matrix__cell"><div class="matrix__empty">— (single Spanish Imm. cohort)</div></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Leadership ───────────────────────────────────────────── -->
+    <section class="leadership" data-screen-label="03 Leadership">
+      <div class="section-head">
+        <div class="section-head__title">
+          <h2 class="section-head__h2">School <em>leadership</em> &amp; main office.</h2>
+          <div class="section-head__count">9 people</div>
+        </div>
+        <p class="section-head__sub">
+          The team you&rsquo;ll meet in the main office when you walk in &mdash; or call when something needs attention.
+        </p>
+      </div>
+
+      <div class="lead-grid">
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/vasquez.jpg" alt="Telmo Vasquez" loading="lazy">
+            <div>
+              <div class="lead-card__role">Principal</div>
+              <div class="lead-card__name">Telmo Vasquez</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/appe.jpg" alt="Susan Appe" loading="lazy">
+            <div>
+              <div class="lead-card__role">Assistant Principal</div>
+              <div class="lead-card__name">Susan Appe</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/choi.jpg" alt="Sienna Choi" loading="lazy">
+            <div>
+              <div class="lead-card__role">Secretary</div>
+              <div class="lead-card__name">Sienna Choi</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/peters.jpg" alt="Sabrina Peters" loading="lazy">
+            <div>
+              <div class="lead-card__role">Social Worker</div>
+              <div class="lead-card__name">Sabrina Peters</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/rivera.jpg" alt="Jabymael Casillas Rivera" loading="lazy">
+            <div>
+              <div class="lead-card__role">Instructional Coach</div>
+              <div class="lead-card__name">Jabymael Casillas Rivera</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Varies</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/padilla.webp" alt="Laura Padilla" loading="lazy">
+            <div>
+              <div class="lead-card__role">Community School Coordinator</div>
+              <div class="lead-card__name">Laura Padilla</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/castro.jpeg" alt="Camilo Castro" loading="lazy">
+            <div>
+              <div class="lead-card__role">Speech Therapist</div>
+              <div class="lead-card__name">Camilo Castro</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M, W, F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Office Hallway</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/mrpete.jpg" alt="Mr. Pete" loading="lazy">
+            <div>
+              <div class="lead-card__role">Custodians</div>
+              <div class="lead-card__name">Annabelle Yu &amp; Mr. Pete</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">M – F</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Varies</span></div>
+          </div>
+        </div>
+
+        <div class="lead-card">
+          <div class="lead-card__top">
+            <img class="lead-avatar lead-avatar--photo" src="assets/faculty-staff/vinoya.jpg" alt="Valerie Vinoya" loading="lazy">
+            <div>
+              <div class="lead-card__role">School Nurse</div>
+              <div class="lead-card__name">Valerie Vinoya</div>
+            </div>
+          </div>
+          <div class="lead-card__meta">
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Days</span><span class="lead-card__meta-val">Varies</span></div>
+            <div class="lead-card__meta-row"><span class="lead-card__meta-label">Location</span><span class="lead-card__meta-val">Main Office</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Family liaisons ──────────────────────────────────────── -->
+    <!-- ── Specialists ─────────────────────────────── -->
+    <section class="specialists" data-screen-label="04 Specialists">
+      <div class="specialists__inner">
+        <div class="section-head">
+          <div class="section-head__title">
+            <h2 class="section-head__h2">Specialists &amp; <em>prep teachers</em>.</h2>
+            <div class="section-head__count">6 people</div>
+          </div>
+          <p class="section-head__sub">
+            The classes every Monroe kid looks forward to &mdash; PE, art, music, dance, garden, and the library. Some run all week, others a few days.
+          </p>
+        </div>
+
+        <div class="spec-grid">
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/greenhill.jpg" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Librarian</div>
+              <div class="spec-card__name">Mx. Greenhill</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">M &ndash; F</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/bragas.jpg" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Physical Education</div>
+              <div class="spec-card__name">Ms. Bragas</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">M &ndash; F</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/prioreschi.jpg" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Garden Teacher</div>
+              <div class="spec-card__name">Ms. Prioreschi</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">M &ndash; F</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/mullin.jpg" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Instrumental Music</div>
+              <div class="spec-card__name">Ms. Mullin</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">Mon &amp; Tue</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/hugo.png" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Art Teacher</div>
+              <div class="spec-card__name">Mr. Hugo</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">Tue &amp; Thu</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img class="spec-card__photo" src="assets/faculty-staff/kimball.jpg" alt="" loading="lazy">
+            <div class="spec-card__body">
+              <div class="spec-card__role">Dance Teacher</div>
+              <div class="spec-card__name">Elizabeth Kimball</div>
+              <div class="spec-card__schedule">
+                <span class="spec-card__schedule-pill">M &ndash; F</span>
+                <span class="spec-card__schedule-pill is-lang">ES &middot; EN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="liaisons" data-screen-label="05 Family Liaisons">
+      <div class="liaisons__inner">
+        <div class="liaisons__head">
+          <h2 class="liaisons__h2">Family <em>liaisons</em>.</h2>
+          <p class="liaisons__intro">
+            For paperwork, translation, conflict, or just figuring out who to call &mdash; our liaisons are the first stop. They work in Spanish, Cantonese, and English. <a href="#">See the full Family Liaisons page &rarr;</a>
+          </p>
+        </div>
+        <div class="liaisons__grid">
+          <div class="liaison-card">
+            <img class="liaison-card__photo liaison-card__photo--img" src="assets/faculty-staff/sanchez.jpg" alt="Wendy Sanchez" loading="lazy">
+            <div class="liaison-card__body">
+              <div class="liaison-card__identity">
+                <div class="liaison-card__name">Wendy Sanchez</div>
+                <div class="liaison-card__role">Family Liaison</div>
+              </div>
+              <div class="liaison-card__contact">
+                <div class="liaison-card__langs">
+                  <span class="lang-pill" style="color: var(--cyan);">Spanish</span>
+                  <span class="lang-pill" style="color: var(--monarch);">English</span>
+                </div>
+                <a class="liaison-card__email" href="mailto:sanchezw@sfusd.edu">sanchezw@sfusd.edu</a>
+              </div>
+            </div>
+          </div>
+          <div class="liaison-card">
+            <img class="liaison-card__photo liaison-card__photo--img" src="assets/faculty-staff/calderon.jpg" alt="Angela Calderón" loading="lazy">
+            <div class="liaison-card__body">
+              <div class="liaison-card__identity">
+                <div class="liaison-card__name">Angela Calderón</div>
+                <div class="liaison-card__role">Family Liaison</div>
+              </div>
+              <div class="liaison-card__contact">
+                <div class="liaison-card__langs">
+                  <span class="lang-pill" style="color: var(--cyan);">Spanish</span>
+                  <span class="lang-pill" style="color: var(--monarch);">English</span>
+                </div>
+                <a class="liaison-card__email" href="mailto:calderona@sfusd.edu">calderona@sfusd.edu</a>
+              </div>
+            </div>
+          </div>
+          <div class="liaison-card">
+            <img class="liaison-card__photo liaison-card__photo--img" src="assets/faculty-staff/lan.jpg" alt="Cathy Lan" loading="lazy">
+            <div class="liaison-card__body">
+              <div class="liaison-card__identity">
+                <div class="liaison-card__name">Cathy Lan</div>
+                <div class="liaison-card__role">Family Liaison</div>
+              </div>
+              <div class="liaison-card__contact">
+                <div class="liaison-card__langs">
+                  <span class="lang-pill" style="color: var(--magenta);">Cantonese</span>
+                  <span class="lang-pill" style="color: var(--monarch);">English</span>
+                </div>
+                <a class="liaison-card__email" href="mailto:lanx@sfusd.edu">lanx@sfusd.edu</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Inclusion & RSP ──────────────────────────────────────── -->
+    <section class="inclusion" data-screen-label="06 Inclusion & RSP">
+      <div class="inclusion__inner">
+        <div class="inclusion__head">
+          <h2 class="inclusion__h2">The <em>inclusion</em> &amp; special-ed team.</h2>
+          <p class="inclusion__intro">
+            Eight staff members embedded across grade levels. They co-teach, push into classrooms, and run small-group support &mdash; in three languages where it counts.
+          </p>
+        </div>
+        <div class="inclusion__grid">
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/enthoven.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Elizabeth Enthoven</div>
+            <div class="inc-card__role">RSP / Special Ed Teacher</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag is-color">M – F</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/reyes.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Sharon Reyes</div>
+            <div class="inc-card__role">RSP / Inclusion Specialist</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag is-color">M – F</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/vasquez-w.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">WendyLizeth Vasquez</div>
+            <div class="inc-card__role">Paraprofessional</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag">Spanish</span>
+              <span class="inc-tag">English</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/santiago.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Leslie Santiago</div>
+            <div class="inc-card__role">Paraprofessional</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag">Spanish</span>
+              <span class="inc-tag">English</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/wood.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Alex Wood</div>
+            <div class="inc-card__role">Paraprofessional</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag">English</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/liu.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Carmen Liu</div>
+            <div class="inc-card__role">Paraprofessional</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag">Cantonese</span>
+              <span class="inc-tag">English</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/hayter.webp" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Salma Hayter</div>
+            <div class="inc-card__role">School Psychologist</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag is-color">Consult</span>
+            </div></div>
+          </div>
+          <div class="inc-card">
+            <img class="inc-card__photo" src="assets/faculty-staff/chen-j.jpg" alt="" loading="lazy"><div class="inc-card__info"><div class="inc-card__name">Jessie Chen</div>
+            <div class="inc-card__role">Paraprofessional</div>
+            <div class="inc-card__tags">
+              <span class="inc-tag">Cantonese</span>
+              <span class="inc-tag">English</span>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Support staff + monitors ─────────────────────────────── -->
+    <section class="support" data-screen-label="07 Support Staff">
+      <div class="support__inner">
+        <div class="section-head">
+          <div class="section-head__title">
+            <h2 class="section-head__h2">Support staff &amp; <em>noon monitors</em>.</h2>
+            <div class="section-head__count">Plus the volunteers</div>
+          </div>
+          <p class="section-head__sub">
+            The reading tutors, the YMCA site coordinator, and the noon monitors who run the schoolyard during lunch.
+          </p>
+        </div>
+
+        <div class="support__grid">
+          <div class="support-block">
+            <div class="support-block__title">Support Staff</div>
+            <div class="support-block__sub">Tutoring, on-site partner liaisons, and additional paras.</div>
+            <ul class="support-block__list">
+              <li>
+                <div class="support-block__person"><img class="support-block__photo" src="assets/faculty-staff/wong-m.jpg" alt="" loading="lazy"><div>
+                  <div class="support-block__name">Micah Wong</div>
+                  <div class="support-block__role">Paraprofessional</div>
+                </div>
+                </div>
+                <span class="support-block__lang">English</span>
+              </li>
+              <li>
+                <div class="support-block__person"><img class="support-block__photo" src="assets/faculty-staff/ruiz.jpg" alt="" loading="lazy"><div>
+                  <div class="support-block__name">Sebastian Ruiz</div>
+                  <div class="support-block__role">Chapter One — English Reading Support</div>
+                </div>
+                </div>
+                <span class="support-block__lang">English</span>
+              </li>
+              <li>
+                <div class="support-block__person"><img class="support-block__photo" src="assets/faculty-staff/cruz-diaz.jpg" alt="" loading="lazy"><div>
+                  <div class="support-block__name">Nathaly Cruz-Diaz</div>
+                  <div class="support-block__role">YMCA Site Coordinator</div>
+                </div>
+                </div>
+                <span class="support-block__lang">ES · EN</span>
+              </li>
+              <li>
+                <div class="support-block__person"><img class="support-block__photo" src="assets/faculty-staff/hipolito.jpg" alt="" loading="lazy"><div>
+                  <div class="support-block__name">Beth Hipolito</div>
+                  <div class="support-block__role">Academic Link Day</div>
+                </div>
+                </div>
+                <span class="support-block__lang">English</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="support-block">
+            <div class="support-block__title">Noon Monitors</div>
+            <div class="support-block__sub">The team that runs lunch, recess, and the schoolyard.</div>
+            <div class="monitors-row">
+              <div class="monitor">
+                <img class="monitor__photo" src="assets/faculty-staff/connie.jpg" alt="" loading="lazy">
+                <div class="monitor__name">Ms. Connie</div>
+              </div>
+              <div class="monitor">
+                <img class="monitor__photo" src="assets/faculty-staff/vicky1.jpg" alt="" loading="lazy">
+                <div class="monitor__name">Ms. Vicky</div>
+              </div>
+              <div class="monitor">
+                <img class="monitor__photo" src="assets/faculty-staff/vicky2.jpg" alt="" loading="lazy">
+                <div class="monitor__name">Ms. Vicky</div>
+              </div>
+              <div class="monitor">
+                <img class="monitor__photo" src="assets/faculty-staff/natalie.jpg" alt="" loading="lazy">
+                <div class="monitor__name">Ms. Natalie</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ───────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+          <div class="footer__address">
+            260 Madrid Street<br>San Francisco, CA 94112<br>
+            <span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--cyan);">Our School &amp; Programs</div>
+          <ul class="footer__links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+            <li><a href="#" style="color: var(--monarch);">Faculty &amp; Staff</a></li>
+            <li><a href="#">PTA</a></li>
+            <li><a href="#">Family Liaisons</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--marigold);">Families</div>
+          <ul class="footer__links">
+            <li><a href="parentsquare.html">ParentSquare</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>            <li><a href="#">Calendar</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
+          <ul class="footer__links">
+            <li><a href="tour.html">Schedule a Tour</a></li>
+            <li><a href="#">Directions</a></li>
+            <li><a href="#">Enrollment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+        <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+      </div>
+    </footer>
+
+  </div>
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

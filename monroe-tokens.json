@@ -1,0 +1,59 @@
+{
+  "color": {
+    "cream":   { "value": "#fdf8f2", "type": "color", "description": "Page background" },
+    "ink":     { "value": "#1a1410", "type": "color", "description": "Primary text, borders" },
+    "monarch": { "value": "#e26a1f", "type": "color", "description": "Primary accent — orange" },
+    "cyan":    { "value": "#2bb8d4", "type": "color", "description": "Secondary accent — blue-green" },
+    "marigold":{ "value": "#f0a82e", "type": "color", "description": "Warm yellow accent" },
+    "magenta": { "value": "#d83a6d", "type": "color", "description": "Pink-red accent" },
+    "jade":    { "value": "#4d8c5c", "type": "color", "description": "Green accent" },
+    "poppy":   { "value": "#d8392e", "type": "color", "description": "Red accent" },
+    "plum":    { "value": "#7c3f88", "type": "color", "description": "Purple accent" }
+  },
+  "typography": {
+    "heading": {
+      "family": { "value": "Playfair Display", "type": "fontFamily" },
+      "weight": { "value": "700", "type": "fontWeight" },
+      "style":  { "value": "italic", "type": "fontStyle" }
+    },
+    "body": {
+      "family": { "value": "Outfit", "type": "fontFamily" },
+      "weight": { "value": "400", "type": "fontWeight" }
+    },
+    "chinese-serif": {
+      "family": { "value": "Noto Serif TC", "type": "fontFamily" },
+      "weight": { "value": "500", "type": "fontWeight" }
+    },
+    "chinese-display": {
+      "family": { "value": "ZCOOL XiaoWei", "type": "fontFamily" },
+      "weight": { "value": "400", "type": "fontWeight" }
+    }
+  },
+  "spacing": {
+    "card-radius":     { "value": "10px",  "type": "borderRadius" },
+    "card-border":     { "value": "1.5px", "type": "borderWidth" },
+    "card-shadow-x":   { "value": "3px",   "type": "dimension" },
+    "card-shadow-y":   { "value": "3px",   "type": "dimension" },
+    "card-shadow-blur": { "value": "0px",  "type": "dimension" },
+    "card-left-bar":   { "value": "5px",   "type": "dimension" },
+    "hero-min-height": { "value": "620px", "type": "dimension" },
+    "hub-panel-width": { "value": "420px", "type": "dimension" },
+    "content-max-width": { "value": "1200px", "type": "dimension" }
+  },
+  "gradient": {
+    "hub-left-bar": {
+      "value": "linear-gradient(to bottom, #e26a1f, #d83a6d)",
+      "type": "gradient",
+      "description": "Monarch → Magenta — hub card left accent bar"
+    },
+    "hero-fade": {
+      "value": "linear-gradient(to right, rgba(253,248,242,0.96) 0%, rgba(253,248,242,0.88) 30%, rgba(253,248,242,0.55) 55%, rgba(253,248,242,0.12) 78%, rgba(253,248,242,0) 100%)",
+      "type": "gradient",
+      "description": "Cream fade over schoolyard.jpg — left side legible, right side transparent"
+    }
+  },
+  "bunting": {
+    "back-strand":  { "value": ["#7c3f88","#2bb8d4","#d8392e","#f0a82e"], "type": "colorList" },
+    "front-strand": { "value": ["#2bb8d4","#f0a82e","#d83a6d","#4d8c5c","#d8392e"], "type": "colorList" }
+  }
+}

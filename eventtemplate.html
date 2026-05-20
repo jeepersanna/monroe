@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Pupusa Night — Monroe Elementary</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Util + masthead ─────────────────────────────────────── */
+
+    /* ── Event hero ────────────────────────────────────────── */
+    .event-hero {
+      background: var(--cream);
+      padding: 56px 40px 80px;
+      border-bottom: 1.5px solid var(--ink);
+      position: relative;
+    }
+    .event-hero__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .crumbs {
+      font-size: 12.5px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.58);
+      margin-bottom: 22px;
+      display: flex; gap: 8px; align-items: center;
+      flex-wrap: wrap;
+    }
+    .crumbs a:hover { color: var(--monarch); }
+    .crumbs .sep { color: rgba(26,20,16,.3); }
+    .crumbs .current { color: var(--ink); }
+    .event-hero__tag {
+      display: inline-block;
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: 6px 12px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 1.5px solid var(--ink);
+      margin-bottom: 22px;
+    }
+    .event-hero__h1 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: clamp(48px, 5.2vw, 80px);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-wrap: balance;
+      margin-bottom: 22px;
+    }
+    .event-hero__h1 em { font-style: normal; color: var(--monarch); }
+    .event-hero__lead {
+      font-size: 18px; line-height: 1.5;
+      color: rgba(26,20,16,.78);
+      max-width: 580px;
+      text-wrap: pretty;
+    }
+    .event-hero__lead strong { color: var(--ink); font-weight: 700; }
+
+    /* When/Where card on the right */
+    .event-keycard {
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      padding: 30px 30px 26px;
+      display: flex; flex-direction: column;
+    }
+    .event-keycard__date {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1.5px dashed rgba(26,20,16,.25);
+    }
+    .event-keycard__day {
+      width: 90px;
+      text-align: center;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 14px 8px;
+    }
+    .event-keycard__day-mo {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .event-keycard__day-num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 44px; font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .event-keycard__day-dow {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(253,248,242,.6);
+      margin-top: 6px;
+      font-weight: 700;
+    }
+    .event-keycard__when {
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+    .event-keycard__when-time {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 24px;
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+    }
+    .event-keycard__when-time em { font-style: normal; color: var(--monarch); }
+    .event-keycard__when-loc {
+      font-size: 13.5px;
+      color: rgba(26,20,16,.7);
+    }
+    .event-keycard__list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .event-keycard__list li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+      font-size: 14px;
+      align-items: baseline;
+    }
+    .event-keycard__list-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+    }
+    .event-keycard__list-val { color: var(--ink); }
+    .event-keycard__cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 16px 22px;
+      font-size: 13px; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--monarch);
+      transition: transform .12s, box-shadow .12s;
+      width: 100%;
+    }
+    .event-keycard__cta:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--monarch);
+    }
+    .event-keycard__secondary {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .event-keycard__secondary a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+    .event-keycard__secondary a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ── Event photo ─────────────────────────────────────── */
+    .event-photo {
+      position: relative;
+      background: var(--ink);
+      overflow: hidden;
+      height: 420px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .event-photo__img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: .82;
+    }
+    .event-photo__caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 40px 24px;
+      background: linear-gradient(to top, rgba(26,20,16,.72) 0%, transparent 100%);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 20px;
+    }
+    .event-photo__caption-text {
+      font-size: 13px;
+      color: rgba(253,248,242,.72);
+      line-height: 1.5;
+    }
+    .event-photo__caption-credit {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(253,248,242,.45);
+      white-space: nowrap;
+    }
+    .event-photo__placeholder {
+      width: 100%; height: 100%;
+      background: var(--cream2);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .event-photo__placeholder-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      border: 1.5px dashed rgba(26,20,16,.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .event-photo__placeholder-label {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.4);
+    }
+
+    /* ── Flyer aside card ─────────────────────────────────── */
+    .aside-flyer {
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      overflow: hidden;
+      position: relative;
+    }
+    .aside-flyer::before {
+      content: '';
+      position: absolute;
+      top: -1.5px; left: -1.5px;
+      width: 48px; height: 6px;
+      background: var(--accent);
+    }
+    .aside-flyer__kicker {
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      padding: 20px 20px 12px;
+    }
+    .aside-flyer__img-wrap {
+      margin: 0 20px 0;
+      border: 1.5px solid rgba(26,20,16,.18);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .aside-flyer__img {
+      width: 100%;
+      display: block;
+    }
+    .aside-flyer__placeholder {
+      aspect-ratio: 8.5 / 11;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px;
+    }
+    .aside-flyer__placeholder-icon {
+      font-size: 28px; opacity: .2;
+    }
+    .aside-flyer__placeholder-label {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(26,20,16,.3);
+    }
+    .aside-flyer__foot {
+      padding: 14px 20px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+    }
+    .aside-flyer__dl {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--monarch);
+      border-bottom: 1px dashed var(--monarch);
+      padding-bottom: 1px;
+    }
+    .aside-flyer__dl:hover { color: var(--ink); border-bottom-color: var(--ink); }
+    .aside-flyer__format {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.4);
+    }
+
+    /* ── Two-column body ─────────────────────────────────── */
+    .body {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .body__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .prose {
+      font-size: 17px; line-height: 1.65;
+      color: rgba(26,20,16,.82);
+      max-width: 620px;
+    }
+    .prose p { margin-bottom: 18px; }
+    .prose .drop {
+      float: left;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 58px; line-height: 0.85;
+      padding: 8px 12px 0 0;
+      color: var(--monarch);
+      font-weight: 700;
+    }
+    .prose h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 32px; line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin: 36px 0 16px;
+      text-wrap: balance;
+    }
+    .prose h2 em { font-style: normal; color: var(--monarch); }
+    .prose ul {
+      padding: 4px 0 8px;
+      margin: 0 0 22px;
+      list-style: none;
+      border-top: 1px dashed rgba(26,20,16,.22);
+      border-bottom: 1px dashed rgba(26,20,16,.22);
+    }
+    .prose ul li {
+      padding: 14px 0 14px 26px;
+      position: relative;
+      border-bottom: 1px dashed rgba(26,20,16,.14);
+    }
+    .prose ul li:last-child { border-bottom: none; }
+    .prose ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 22px;
+      width: 10px; height: 10px;
+      background: var(--accent);
+    }
+    .prose ul li strong {
+      font-weight: 700;
+    }
+    .prose a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+    .prose a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+    .prose strong { color: var(--ink); font-weight: 700; }
+
+    /* Pull quote */
+    .pullquote {
+      margin: 36px 0;
+      padding: 28px 0 28px 28px;
+      border-left: 4px solid var(--accent);
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 26px; font-style: normal;
+      line-height: 1.3;
+      color: var(--ink);
+      text-wrap: pretty;
+    }
+    .pullquote-attr {
+      display: block;
+      margin-top: 12px;
+      font-style: normal;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+    }
+
+    /* Sticky aside */
+    .aside {
+      position: sticky;
+      top: 28px;
+      display: flex; flex-direction: column;
+      gap: 24px;
+    }
+    .aside-card {
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      padding: 26px 26px 24px;
+      position: relative;
+    }
+    .aside-card::before {
+      content: '';
+      position: absolute;
+      top: -1.5px; left: -1.5px;
+      width: 48px; height: 6px;
+      background: var(--accent);
+    }
+    .aside-card__kicker {
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent-ink);
+      margin-bottom: 10px;
+    }
+    .aside-card__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px; font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+    }
+    .aside-card__h3 em { font-style: normal; }
+    .aside-card__body {
+      font-size: 14.5px; line-height: 1.6;
+      color: rgba(26,20,16,.78);
+    }
+    .aside-card__body p + p { margin-top: 10px; }
+    .aside-card__body strong { color: var(--ink); font-weight: 700; }
+    .aside-card__body a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+
+    /* ── Volunteer roles ───────────────────────────────────── */
+    .roles {
+      background: var(--cream2);
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 90px 40px;
+    }
+    .roles__inner { max-width: 1240px; margin: 0 auto; }
+    .roles__head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .roles__title-block { max-width: 720px; }
+    .roles__kicker {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--poppy);
+      margin-bottom: 12px;
+    }
+    .roles__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: clamp(34px, 3.2vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .roles__h2 em { font-style: normal; color: var(--monarch); }
+    .roles__counter {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 4px;
+    }
+    .roles__counter-num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 56px; font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .roles__counter-num em { font-style: normal; color: var(--monarch); }
+    .roles__counter-label {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+    }
+    .roles__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .role-card {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 26px 26px 24px;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .role-card__head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .role-card__title {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px; font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .role-card__title em { font-style: normal; }
+    .role-card__count {
+      display: flex; flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 6px 10px;
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      min-width: 56px;
+    }
+    .role-card__count-num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .role-card__count-label {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.55);
+      margin-top: 2px;
+    }
+    .role-card__when {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--monarch);
+      margin-bottom: 12px;
+    }
+    .role-card__desc {
+      font-size: 14px; line-height: 1.55;
+      color: rgba(26,20,16,.78);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .role-card__progress {
+      height: 6px;
+      background: var(--cream2);
+      border: 1.5px solid var(--ink);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .role-card__progress-fill {
+      height: 100%;
+      background: var(--monarch);
+    }
+    .role-card__progress-fill.is-full { background: var(--jade); }
+    .role-card__progress-fill.is-empty { background: var(--cream); }
+    .role-card__progress-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 11.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(26,20,16,.6);
+      margin-bottom: 16px;
+    }
+    .role-card__progress-row .is-full-text { color: var(--jade); }
+    .role-card__cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      background: var(--monarch);
+      color: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 12px 18px;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .12s, box-shadow .12s;
+      margin-top: auto;
+    }
+    .role-card__cta:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .role-card__cta.is-disabled {
+      background: var(--cream2);
+      color: rgba(26,20,16,.5);
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────── */
+    .faq {
+      background: var(--cream);
+      padding: 90px 40px;
+    }
+    .faq__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .faq__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: clamp(34px, 3.2vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .faq__h2 em { font-style: normal; color: var(--monarch); }
+    .faq__intro {
+      margin-top: 16px;
+      font-size: 15.5px; line-height: 1.6;
+      color: rgba(26,20,16,.7);
+    }
+    .faq-item {
+      border-top: 1.5px solid var(--ink);
+      padding: 22px 0 24px;
+    }
+    .faq-item:last-child { border-bottom: 1.5px solid var(--ink); }
+    .faq-item__q {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 22px;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .faq-item__q-num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal;
+      color: var(--monarch);
+      font-size: 18px;
+    }
+    .faq-item__a {
+      grid-column: 2;
+      font-size: 15px; line-height: 1.6;
+      color: rgba(26,20,16,.8);
+      padding-left: 42px;
+    }
+    .faq-item__a a {
+      color: var(--monarch);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--monarch);
+    }
+
+    /* ── Related events ─────────────────────────────────── */
+    .related {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 90px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .related::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/chinese-lattice-1.png');
+      background-size: 360px auto;
+      opacity: 0.05;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+    .related__inner {
+      position: relative; z-index: 1;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .related__head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .related__h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .related__h2 em { font-style: normal; color: var(--marigold); }
+    .related__more {
+      font-size: 12.5px; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--marigold);
+      border-bottom: 1px dashed var(--marigold);
+      padding-bottom: 2px;
+    }
+    .related__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .related-card {
+      background: rgba(253,248,242,.05);
+      border: 1.5px solid rgba(253,248,242,.2);
+      padding: 24px 24px 22px;
+      display: flex; flex-direction: column;
+      gap: 14px;
+    }
+    .related-card__date {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--marigold);
+    }
+    .related-card__h3 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 24px; font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--cream);
+    }
+    .related-card__h3 em { font-style: normal; }
+    .related-card__sub {
+      font-size: 13.5px;
+      color: rgba(253,248,242,.65);
+      line-height: 1.5;
+    }
+    .related-card__more {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(253,248,242,.2);
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .related-card__more:hover { color: var(--marigold); }
+
+    /* ── Footer ──────────────────────────────────────────── */
+
+    @media (max-width: 1024px) {
+      .event-hero__inner { grid-template-columns: 1fr; gap: 36px; }
+      .body__inner { grid-template-columns: 1fr; gap: 40px; }
+      .aside { position: static; }
+      .roles__head { flex-direction: column; align-items: flex-start; }
+      .roles__counter { align-items: flex-start; }
+      .roles__grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .faq__inner { grid-template-columns: 1fr; gap: 28px; }
+      .related__head { flex-direction: column; align-items: flex-start; }
+      .related__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .roles__grid { grid-template-columns: 1fr; }
+      .related__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+      /* Eliminate italics globally */
+
+    /* eventtemplate.html per-event accent */
+    :root { --accent: var(--marigold); --accent-cream: var(--cream); }
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+  <div id="grain-overlay"></div>
+  <div class="page">
+
+    <!-- ── Util bar ─────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <span class="lang-active">English</span>
+        <span class="lang-es">Español</span>
+        <span class="lang-zh">繁體中文</span>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+    </header>
+
+    <!-- ── Event hero ──────────────────────────────────────── -->
+    <section class="event-hero" data-screen-label="01 Hero">
+      <div class="event-hero__inner">
+        <div>
+          <div class="crumbs">
+            <a href="calendar.html">Calendar</a>
+            <span class="sep">/</span>
+            <span class="current">Family Pupusa Night</span>
+          </div>
+          <span class="event-hero__tag">Community Dinner</span>
+          <h1 class="event-hero__h1">Family <em>Pupusa</em> Night.</h1>
+          <p class="event-hero__lead">
+            Our monthly community dinner. <strong>The third-grade families are hosting</strong> &mdash; expect homemade pupusas, curtido, agua fresca, and a long table everyone is welcome at.
+          </p>
+        </div>
+
+        <aside class="event-keycard">
+          <div class="event-keycard__date">
+            <div class="event-keycard__day">
+              <div class="event-keycard__day-mo">Jun</div>
+              <div class="event-keycard__day-num">03</div>
+              <div class="event-keycard__day-dow">Tue</div>
+            </div>
+            <div class="event-keycard__when">
+              <div class="event-keycard__when-time"><em>5:00</em> &ndash; 7:00 p.m.</div>
+              <div class="event-keycard__when-loc">Monroe Cafetería · 260 Madrid St</div>
+            </div>
+          </div>
+          <ul class="event-keycard__list">
+            <li>
+              <span class="event-keycard__list-label">Hosted by</span>
+              <span class="event-keycard__list-val">3rd grade families</span>
+            </li>
+            <li>
+              <span class="event-keycard__list-label">Suggested</span>
+              <span class="event-keycard__list-val">$5 / family · free if needed</span>
+            </li>
+            <li>
+              <span class="event-keycard__list-label">RSVP</span>
+              <span class="event-keycard__list-val">Not required · just come</span>
+            </li>
+            <li>
+              <span class="event-keycard__list-label">Languages</span>
+              <span class="event-keycard__list-val">ES · EN · 中文</span>
+            </li>
+          </ul>
+          <a class="event-keycard__cta" href="#volunteer-roles">
+            Sign up to help
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <div class="event-keycard__secondary">
+            or <a href="#">add to calendar</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Event photo ───────────────────────────────────── -->
+    <div class="event-photo" data-screen-label="02 Photo">
+      <img class="event-photo__img" src="assets/community-1.jpg" alt="Monroe families gathered for Pupusa Night" loading="lazy">
+      <div class="event-photo__caption">
+        <span class="event-photo__caption-text">Third-grade families at last month's Pupusa Night, Monroe cafetería.</span>
+        <span class="event-photo__caption-credit">Photo · Monroe PTA</span>
+      </div>
+    </div>
+
+    <!-- ── Body ────────────────────────────────────────────── -->
+    <section class="body" data-screen-label="03 Body">
+      <div class="body__inner">
+        <article class="prose">
+          <h2>What to <em>expect</em></h2>
+          <p>
+            Doors open at 5:00, food starts at 5:15. Plan to stay an hour or two — there&rsquo;s no program, just dinner. The cafeteria is set up at long banquet tables; if you bring a stroller there&rsquo;s a parking spot inside the door.
+          </p>
+          <ul>
+            <li><strong>Pupusas</strong> &mdash; revueltas (pork + cheese + beans), queso, frijol con queso, and a vegan option. Tortillas are gluten-free corn.</li>
+            <li><strong>Curtido</strong> &mdash; the cabbage slaw that goes on top. Homemade, slightly spicy, vinegary.</li>
+            <li><strong>Agua fresca</strong> &mdash; jamaica or horchata, plus water.</li>
+            <li><strong>Dessert</strong> &mdash; rotates monthly; June is mango with chamoy.</li>
+          </ul>
+
+          <h2>The <em>tradition</em></h2>
+          <p>
+            Each grade level hosts twice a school year. The hosting grade brings the masa, the fillings, and the sound system; the PTA covers everything else. This rotation keeps the work distributed and means each family ends up at the long table as a guest more often than they end up behind it as a cook.
+          </p>
+          <p>
+            If you&rsquo;d like to host a future month with your child&rsquo;s grade, sign up below or email <a href="mailto:volunteer@monroepta.org">volunteer@monroepta.org</a>.
+          </p>
+        </article>
+
+        <aside class="aside">
+
+          <!-- Flyer -->
+          <div class="aside-flyer">
+            <div class="aside-flyer__kicker">Event Flyer</div>
+            <div class="aside-flyer__img-wrap">
+              <!-- Replace src with actual flyer image or PDF thumbnail -->
+              <div class="aside-flyer__placeholder">
+                <div class="aside-flyer__placeholder-icon">📄</div>
+                <div class="aside-flyer__placeholder-label">Flyer · PDF</div>
+              </div>
+            </div>
+            <div class="aside-flyer__foot">
+              <a class="aside-flyer__dl" href="#" download>Download PDF ↓</a>
+              <span class="aside-flyer__format">PDF · 1 page</span>
+            </div>
+          </div>
+
+          <div class="aside-card">
+            <div class="aside-card__kicker">Who&rsquo;s hosting</div>
+            <h3 class="aside-card__h3">3rd grade <em>parents</em></h3>
+            <div class="aside-card__body">
+              <p>
+                June&rsquo;s dinner is hosted by the families from Mark Rosenberg&rsquo;s, Connie Sun&rsquo;s, April Torres&rsquo;s, and Yuri Dominguez&rsquo;s rooms. Coordinated by <strong>Elena Chen</strong>.
+              </p>
+              <p style="margin-top: 12px;">
+                <a href="mailto:hello@monroepta.org">Reach the host team →</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="aside-card" style="--accent: var(--cyan);">
+            <div class="aside-card__kicker" style="color: var(--cyan);">Bring</div>
+            <h3 class="aside-card__h3">A reusable <em>plate</em> &amp; cup</h3>
+            <div class="aside-card__body">
+              <p>
+                We&rsquo;re a zero-waste event. The cafetería has a small washing station; bring something from home if you can. We have a stack of borrowed plates if not.
+              </p>
+            </div>
+          </div>
+
+          <div class="aside-card" style="--accent: var(--jade);">
+            <div class="aside-card__kicker" style="color: var(--jade);">Accessibility</div>
+            <h3 class="aside-card__h3">Notes for <em>families</em></h3>
+            <div class="aside-card__body">
+              <p>
+                Vegan + gluten-free options available. The cafetería is wheelchair-accessible from the Madrid St entrance. ASL interpretation can be arranged with 48 hours&rsquo; notice — email <a href="mailto:hello@monroepta.org">hello@monroepta.org</a>.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Volunteer roles ───────────────────────────────────── -->
+    <section class="roles" id="volunteer-roles" data-screen-label="03 Volunteer Roles">
+      <div class="roles__inner">
+        <div class="roles__head">
+          <div class="roles__title-block">
+            <div class="roles__kicker">Volunteer Sign-ups</div>
+            <h2 class="roles__h2">Eight shifts, <em>most of them quick</em>.</h2>
+          </div>
+          <div class="roles__counter">
+            <div class="roles__counter-num"><em>3</em> / 8</div>
+            <div class="roles__counter-label">Filled so far</div>
+          </div>
+        </div>
+
+        <div class="roles__grid">
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Prep &amp; <em>setup</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">2</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">3:30 &ndash; 5:00 p.m.</div>
+            <p class="role-card__desc">
+              Help unload supplies from the host&rsquo;s car, set up the banquet tables, lay out cutlery, hang the welcome sign. Heavy-ish lifting.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill" style="width: 50%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span>1 / 2 signed up</span>
+              <span>1 spot left</span>
+            </div>
+            <a class="role-card__cta" href="#" style="white-space: nowrap;">
+              Take this shift
+              <span>→</span>
+            </a>
+          </article>
+
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Greeter at the <em>door</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">1</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">5:00 &ndash; 5:45 p.m.</div>
+            <p class="role-card__desc">
+              Welcome families, hand out name tags, point folks toward the food. Bilingual (ES or 中文) preferred but not required.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill is-full" style="width: 100%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span class="is-full-text">Filled — thanks!</span>
+              <span class="is-full-text">✓</span>
+            </div>
+            <a class="role-card__cta is-disabled" href="#" style="white-space: nowrap;">
+              Filled
+            </a>
+          </article>
+
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Food <em>serving</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">3</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">5:00 &ndash; 6:30 p.m.</div>
+            <p class="role-card__desc">
+              Plate pupusas, hand out curtido, refill aguas frescas. You eat in shifts so you don&rsquo;t miss dinner with your own kid.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill" style="width: 33%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span>1 / 3 signed up</span>
+              <span>2 spots left</span>
+            </div>
+            <a class="role-card__cta" href="#" style="white-space: nowrap;">
+              Take this shift
+              <span>→</span>
+            </a>
+          </article>
+
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Kid <em>corner</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">1</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">5:30 &ndash; 6:45 p.m.</div>
+            <p class="role-card__desc">
+              Run the coloring &amp; sticker station for the youngest kids while their parents eat. Patient and chill required.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill is-empty" style="width: 0%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span>0 / 1 signed up</span>
+              <span>Open</span>
+            </div>
+            <a class="role-card__cta" href="#" style="white-space: nowrap;">
+              Take this shift
+              <span>→</span>
+            </a>
+          </article>
+
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Dish <em>washing</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">1</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">6:00 &ndash; 7:15 p.m.</div>
+            <p class="role-card__desc">
+              Run the borrowed-plate wash station as guests finish. Closed-toed shoes, ideally a person who&rsquo;s seen a commercial sink before.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill is-full" style="width: 100%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span class="is-full-text">Filled — thanks!</span>
+              <span class="is-full-text">✓</span>
+            </div>
+            <a class="role-card__cta is-disabled" href="#" style="white-space: nowrap;">
+              Filled
+            </a>
+          </article>
+
+          <article class="role-card">
+            <div class="role-card__head">
+              <h3 class="role-card__title">Breakdown &amp; <em>cleanup</em></h3>
+              <div class="role-card__count">
+                <div class="role-card__count-num">2</div>
+                <div class="role-card__count-label">Needed</div>
+              </div>
+            </div>
+            <div class="role-card__when">7:00 &ndash; 8:00 p.m.</div>
+            <p class="role-card__desc">
+              Fold tables, bag the recycling, sweep the cafetería. Many hands make this go fast — out by 8.
+            </p>
+            <div class="role-card__progress">
+              <div class="role-card__progress-fill is-empty" style="width: 0%;"></div>
+            </div>
+            <div class="role-card__progress-row">
+              <span>0 / 2 signed up</span>
+              <span>2 spots left</span>
+            </div>
+            <a class="role-card__cta" href="#" style="white-space: nowrap;">
+              Take this shift
+              <span>→</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ─────────────────────────────────────────────── -->
+    <section class="faq" data-screen-label="04 FAQ">
+      <div class="faq__inner">
+        <div>
+          <h2 class="faq__h2">A few <em>questions</em>, answered.</h2>
+          <p class="faq__intro">
+            If we missed yours, email <a href="mailto:hello@monroepta.org" style="color: var(--monarch); font-weight: 700; border-bottom: 1px dashed var(--monarch);">hello@monroepta.org</a> and we&rsquo;ll add it here.
+          </p>
+        </div>
+
+        <div>
+          <div class="faq-item">
+            <div class="faq-item__q">
+              <span class="faq-item__q-num">01.</span>
+              <span>Do I need to RSVP, or buy a ticket?</span>
+            </div>
+            <div class="faq-item__a">
+              No RSVP. The suggested donation is $5 per family, but we never turn anyone away. Cash or Venmo at the door (or skip it — it&rsquo;s genuinely fine).
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__q">
+              <span class="faq-item__q-num">02.</span>
+              <span>Is the food free for my child?</span>
+            </div>
+            <div class="faq-item__a">
+              Yes. Every Monroe kid eats free at Pupusa Night, regardless of whether their family contributes.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__q">
+              <span class="faq-item__q-num">03.</span>
+              <span>I can&rsquo;t volunteer this month — when&rsquo;s the next chance?</span>
+            </div>
+            <div class="faq-item__a">
+              We hold Pupusa Night the first Tuesday of every month. The host grade rotates, so volunteer needs vary &mdash; <a href="calendar.html">see the full calendar</a>.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__q">
+              <span class="faq-item__q-num">04.</span>
+              <span>What if I have a food allergy?</span>
+            </div>
+            <div class="faq-item__a">
+              Tortillas are corn (naturally gluten-free); we always have a vegan filling. For tree-nut, dairy, or other allergies, email <a href="mailto:hello@monroepta.org">hello@monroepta.org</a> 48 hours ahead and we&rsquo;ll set aside something safe.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__q">
+              <span class="faq-item__q-num">05.</span>
+              <span>Can grandparents / aunts / family friends come?</span>
+            </div>
+            <div class="faq-item__a">
+              Absolutely. Anyone the family considers family is welcome at the long table. We just ask that all kids are accompanied by a parent or caregiver.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Related events ───────────────────────────────────── -->
+    <section class="related" data-screen-label="05 Related">
+      <div class="related__inner">
+        <div class="related__head">
+          <h2 class="related__h2">Other Monroe <em>events</em>.</h2>
+          <a class="related__more" href="calendar.html">See full calendar →</a>
+        </div>
+
+        <div class="related__grid">
+          <a class="related-card" href="#">
+            <div class="related-card__date">May 28 · Wed</div>
+            <h3 class="related-card__h3">PTA General <em>Meeting</em></h3>
+            <div class="related-card__sub">
+              The last general meeting of the school year. Library, 6:00 – 7:30 p.m.
+            </div>
+            <div class="related-card__more">View →</div>
+          </a>
+          <a class="related-card" href="#">
+            <div class="related-card__date">Jun 14 · Sat</div>
+            <h3 class="related-card__h3">5th Grade <em>Promotion</em></h3>
+            <div class="related-card__sub">
+              The end-of-year ceremony for our outgoing fifth graders. Auditorium, 9:30 a.m.
+            </div>
+            <div class="related-card__more">View →</div>
+          </a>
+          <a class="related-card" href="#">
+            <div class="related-card__date">Aug 25 · Mon</div>
+            <h3 class="related-card__h3">Welcome <em>Picnic</em></h3>
+            <div class="related-card__sub">
+              First gathering of the new school year. Schoolyard, 4:00 – 6:00 p.m.
+            </div>
+            <div class="related-card__more">View →</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+          <div class="footer__address">
+            260 Madrid Street<br>San Francisco, CA 94112<br>
+            <span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--cyan);">Our School &amp; Programs</div>
+          <ul class="footer__links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+            <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
+            <li><a href="PTA.html">PTA</a></li>
+            <li><a href="familyliaisons.html">Family Liaisons</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--marigold);">Families</div>
+          <ul class="footer__links">
+            <li><a href="parentsquare.html">ParentSquare</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>          </ul>
+        </div>
+        <div>
+          <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
+          <ul class="footer__links">
+            <li><a href="tour.html">Schedule a Tour</a></li>
+            <li><a href="#">Directions</a></li>
+            <li><a href="#">Enrollment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+        <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+      </div>
+    </footer>
+
+  </div>
+  </body>
+</html>

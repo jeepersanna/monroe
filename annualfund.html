@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — 2025–26 Annual Fund</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/grain.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Hero ──────────────────────────────────────────────────────────────── */
+    .hero {
+      background: #fef5ec;
+      padding: 72px 40px 100px;
+      position: relative;
+    }
+    .hero__inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .hero__breadcrumb {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.45);
+      margin-bottom: 28px;
+    }
+    .hero__breadcrumb a {
+      color: rgba(26,20,16,.45);
+      text-decoration: none;
+    }
+    .hero__breadcrumb a:hover { color: var(--monarch); }
+    .hero__breadcrumb span { margin: 0 7px; }
+    .hero__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--monarch);
+      background: rgba(216,57,46,.09);
+      border: 1px solid rgba(216,57,46,.2);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+    .hero__kicker::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--monarch);
+    }
+    .hero__h1 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 5vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      max-width: 800px;
+      margin-bottom: 28px;
+      text-wrap: pretty;
+    }
+    .hero__h1 em {
+      font-style: normal;
+      color: var(--monarch);
+    }
+    .hero__lead {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: rgba(26,20,16,.78);
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+    .hero__lead strong { font-weight: 700; color: var(--ink); }
+    .hero__cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-give-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--monarch);
+      color: #fff;
+      border: 2px solid var(--monarch);
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .12s, box-shadow .12s;
+    }
+    .btn-give-hero:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .hero__deadline {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      color: rgba(26,20,16,.5);
+    }
+    .hero__deadline strong { color: var(--ink); font-weight: 600; }
+
+    /* hero bottom stripe */
+    .hero__stripe {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      display: flex;
+    }
+    .hero__stripe span { flex: 1; }
+
+    /* ── Progress section ──────────────────────────────────────────────────── */
+    .progress-section {
+      background: var(--cream);
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 64px 40px;
+    }
+    .progress-section__inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .fund-goal__label {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.5);
+      margin-bottom: 10px;
+    }
+    .fund-goal__project {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 700;
+      font-style: normal;
+      color: var(--ink);
+      margin-bottom: 36px;
+    }
+    .progress-amounts {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .progress-amounts__raised {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--monarch);
+      line-height: 1;
+    }
+    .progress-amounts__raised span {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(26,20,16,.55);
+      letter-spacing: 0;
+      margin-left: 4px;
+    }
+    .progress-amounts__goal {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(26,20,16,.55);
+      letter-spacing: .04em;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 18px;
+      border-radius: 9px;
+      background: var(--cream2);
+      overflow: hidden;
+      border: 1.5px solid rgba(26,20,16,.12);
+    }
+    .progress-bar__fill {
+      height: 100%;
+      width: 0;
+      border-radius: 9px;
+      background: var(--monarch);
+      animation: fillBar 1.2s cubic-bezier(.22,.68,0,1.2) .4s forwards;
+    }
+    @keyframes fillBar {
+      to { width: 68%; }
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .progress-meta__pct {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--monarch);
+    }
+    .progress-meta__updated {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 12px;
+      color: rgba(26,20,16,.4);
+      font-style: normal;
+    }
+    .progress-nudge {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(216,57,46,.07);
+      border: 1px dashed rgba(216,57,46,.3);
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 14px;
+      color: rgba(26,20,16,.78);
+      line-height: 1.5;
+    }
+    .progress-nudge strong { color: var(--ink); font-weight: 700; }
+
+    /* ── Donation ways ─────────────────────────────────────────────────────── */
+    .donate-ways {
+      background: var(--cream2);
+      padding: 80px 40px;
+    }
+    .donate-ways__inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .section-kicker {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.45);
+      margin-bottom: 12px;
+    }
+    .section-h2 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 2.8vw, 40px);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 48px;
+      line-height: 1.1;
+    }
+    .donate-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .donate-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 36px 32px;
+      border: 1.5px solid rgba(26,20,16,.09);
+      position: relative;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .donate-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(26,20,16,.08);
+    }
+    .donate-card--monarch { box-shadow: inset 4px 0 0 var(--monarch); }
+    .donate-card--cyan    { box-shadow: inset 4px 0 0 var(--cyan); }
+    .donate-card--jade    { box-shadow: inset 4px 0 0 var(--jade); }
+    .donate-card:hover.donate-card--monarch { box-shadow: inset 4px 0 0 var(--monarch), 0 12px 32px rgba(26,20,16,.08); }
+    .donate-card:hover.donate-card--cyan    { box-shadow: inset 4px 0 0 var(--cyan),    0 12px 32px rgba(26,20,16,.08); }
+    .donate-card:hover.donate-card--jade    { box-shadow: inset 4px 0 0 var(--jade),    0 12px 32px rgba(26,20,16,.08); }
+    .donate-card__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .donate-card--monarch .donate-card__num { background: rgba(216,57,46,.12); color: var(--monarch); }
+    .donate-card--cyan    .donate-card__num { background: rgba(0,134,155,.12);  color: var(--cyan); }
+    .donate-card--jade    .donate-card__num { background: rgba(46,125,79,.12);  color: var(--jade); }
+    .donate-card__h {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .donate-card__body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(26,20,16,.72);
+    }
+    .donate-card__body p + p { margin-top: 10px; }
+    .text-code {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      background: rgba(0,134,155,.1);
+      color: var(--cyan);
+      border: 1px solid rgba(0,134,155,.25);
+      border-radius: 6px;
+      padding: 3px 10px;
+      letter-spacing: .04em;
+      margin: 2px 0;
+    }
+    .text-instruction {
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(26,20,16,.55);
+    }
+    .btn-give-online {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--jade);
+      color: #fff;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: 18px;
+      box-shadow: 3px 3px 0 rgba(26,20,16,.25);
+      transition: transform .12s, box-shadow .12s;
+    }
+    .btn-give-online:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(26,20,16,.3);
+    }
+    .donate-card__qr-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(26,20,16,.4);
+      font-style: normal;
+    }
+
+    /* ── Employer match callout ────────────────────────────────────────────── */
+    .match-section {
+      background: var(--cream);
+      padding: 60px 40px;
+    }
+    .match-section__inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .match-box {
+      background: var(--cream2);
+      border: 2px dashed rgba(26,20,16,.2);
+      border-radius: 16px;
+      padding: 40px 44px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+    .match-box__icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(245,166,35,.15);
+      border: 1.5px solid rgba(245,166,35,.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .match-box__content {}
+    .match-box__h {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .match-box__body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(26,20,16,.72);
+    }
+    .match-box__body a {
+      color: var(--cyan);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .match-box__body strong { color: var(--ink); font-weight: 700; }
+
+    /* ── Impact section ────────────────────────────────────────────────────── */
+    .impact-section {
+      background: var(--ink);
+      padding: 80px 40px;
+    }
+    .impact-section__inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .impact-section .section-kicker { color: rgba(250,247,242,.4); }
+    .impact-section .section-h2 {
+      color: var(--cream);
+      margin-bottom: 48px;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .impact-item {
+      background: rgba(250,247,242,.04);
+      border: 1px solid rgba(250,247,242,.08);
+      border-radius: 12px;
+      padding: 32px 28px;
+    }
+    .impact-item__num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-item__label {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(250,247,242,.62);
+      line-height: 1.5;
+    }
+
+    /* ── Closing note ──────────────────────────────────────────────────────── */
+    .closing-section {
+      background: #fef5ec;
+      padding: 80px 40px;
+      border-top: 1.5px solid var(--ink);
+    }
+    .closing-section__inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .closing-heart {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .closing-h {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 700;
+      font-style: normal;
+      color: var(--ink);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+    .closing-body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(26,20,16,.72);
+      margin-bottom: 32px;
+    }
+    .closing-sig {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 17px;
+      font-style: normal;
+      color: var(--ink);
+      border-top: 1px solid rgba(26,20,16,.15);
+      padding-top: 24px;
+      line-height: 1.5;
+    }
+    .closing-sig span {
+      display: block;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,.45);
+      margin-top: 6px;
+    }
+    .closing-cta {
+      margin-top: 40px;
+    }
+
+    /* ── Footer stripe override ─────────────────────────────────────────────── */
+    .footer__stripe { position: absolute; top: 0; left: 0; right: 0; height: 6px; display: flex; }
+    .footer__stripe span { flex: 1; }
+
+    /* ── Responsive ─────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .donate-cards {
+        grid-template-columns: 1fr;
+      }
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .match-box {
+        flex-direction: column;
+        padding: 28px;
+      }
+      .hero { padding: 48px 24px 80px; }
+      .progress-section, .donate-ways, .match-section, .impact-section, .closing-section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+    @media (max-width: 600px) {
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .hero__h1 { letter-spacing: -0.02em; }
+    }
+
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+
+  <!-- ── Utility bar ────────────────────────────────────────────────────────── -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item active"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__inner">
+
+      <div class="hero__breadcrumb">
+        <a href="donate.html">Give</a>
+        <span>→</span>
+        Annual Fund
+      </div>
+
+      <div class="hero__kicker">Monroe Elementary PTA · Annual Giving</div>
+
+      <h1 class="hero__h1">
+        2025–26<br>
+        <span class="brush-wrap"><em>Annual Fund</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-af" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-af)"/></svg></span></span>
+      </h1>
+
+      <p class="hero__lead">
+        Last year we raised $7,500 toward a future turf field. This year our goal is
+        <strong>$15,000</strong> — and we're <strong>$10,192</strong> of the way there.
+        A gift of <strong>$50 per family</strong> gets us there together.
+      </p>
+
+      <div class="hero__cta-row">
+        <a href="https://go.rallyup.com/monroe2025" class="btn-give-hero" target="_blank" rel="noopener">
+          Give Now →
+        </a>
+        <span class="hero__deadline">Deadline: <strong>January 9, 2026</strong></span>
+      </div>
+
+    </div>
+    <div class="hero__stripe">
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+    </div>
+  </section>
+
+  <!-- ── Progress section ──────────────────────────────────────────────────── -->
+  <section class="progress-section">
+    <div class="progress-section__inner">
+
+      <div class="fund-goal__label">2025–26 Campaign Goal</div>
+      <div class="fund-goal__project">"Turf Field for Our Playground"</div>
+
+      <div class="progress-amounts">
+        <div class="progress-amounts__raised">
+          $10,192
+          <span>raised so far</span>
+        </div>
+        <div class="progress-amounts__goal">Goal: $15,000</div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-bar__fill"></div>
+      </div>
+
+      <div class="progress-meta">
+        <div class="progress-meta__pct">68% to goal</div>
+        <div class="progress-meta__updated">Updated December 19, 2025</div>
+      </div>
+
+      <div class="progress-nudge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--monarch)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        Every dollar raised goes directly to students and school programs.
+        As a <strong>Title I school</strong>, community support makes a real difference for Monroe families.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Three ways to give ─────────────────────────────────────────────────── -->
+  <section class="donate-ways">
+    <div class="donate-ways__inner">
+
+      <div class="section-kicker">Three easy ways to give</div>
+      <h2 class="section-h2">How to contribute</h2>
+
+      <div class="donate-cards">
+
+        <!-- Card 1: Check or Cash -->
+        <div class="donate-card donate-card--monarch">
+          <div class="donate-card__num">1</div>
+          <h3 class="donate-card__h">Check or Cash</h3>
+          <div class="donate-card__body">
+            <p>Place cash or a check (payable to <strong>Monroe Elementary PTA</strong>) in the red envelope and return it in your child's orange folder.</p>
+            <p>Return by <strong>January 9th</strong> — no envelope? Just seal it in any envelope with your child's name and teacher on the front.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Text to Give -->
+        <div class="donate-card donate-card--cyan">
+          <div class="donate-card__num">2</div>
+          <h3 class="donate-card__h">Text to Give</h3>
+          <div class="donate-card__body">
+            <p>Text the code below to <span class="text-code">33100</span> — it takes about 30 seconds.</p>
+            <p class="text-instruction">
+              Text: <span class="text-code">monroe25</span>
+            </p>
+            <p style="margin-top:14px;">You'll receive a link to complete your donation securely from your phone.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Give Online -->
+        <div class="donate-card donate-card--jade">
+          <div class="donate-card__num">3</div>
+          <h3 class="donate-card__h">Give Online</h3>
+          <div class="donate-card__body">
+            <p>The fastest way — takes just a minute with a credit or debit card.</p>
+            <a href="https://go.rallyup.com/monroe2025" class="btn-give-online" target="_blank" rel="noopener">
+              Donate at RallyUp →
+            </a>
+            <p class="donate-card__qr-note">Or scan the QR code posted at school and on the bulletin board outside the office.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Employer match ─────────────────────────────────────────────────────── -->
+  <section class="match-section">
+    <div class="match-section__inner">
+      <div class="match-box">
+        <div class="match-box__icon">💼</div>
+        <div class="match-box__content">
+          <div class="match-box__h">Double Your Impact with an Employer Match</div>
+          <div class="match-box__body">
+            <p>Many employers — including Google, Salesforce, Apple, and hundreds more — will <strong>match your donation dollar for dollar</strong> to a qualifying school or nonprofit. That means your $50 gift could become $100 for Monroe students.</p>
+            <p style="margin-top:10px;">Check with your HR department or employee portal to see if your company participates. Monroe Elementary PTA is a registered 501(c)(3) — our EIN is available on request by emailing the PTA.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Impact section ─────────────────────────────────────────────────────── -->
+  <section class="impact-section">
+    <div class="impact-section__inner">
+      <div class="section-kicker">Where your gift goes</div>
+      <h2 class="section-h2" style="color:var(--cream);">Your dollars, at work at Monroe</h2>
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-item__num" style="color:var(--marigold);">$7,500</div>
+          <div class="impact-item__label">raised by Monroe families last year — our best year yet</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-item__num" style="color:var(--cyan);">100%</div>
+          <div class="impact-item__label">of every dollar stays at Monroe — directly supporting students and programs</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-item__num" style="color:var(--magenta);">$50</div>
+          <div class="impact-item__label">suggested per family — any amount makes a difference</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-item__num" style="color:var(--jade);">450+</div>
+          <div class="impact-item__label">students who benefit from enrichment, supplies, and field experiences</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Closing note ───────────────────────────────────────────────────────── -->
+  <section class="closing-section">
+    <div class="closing-section__inner">
+      <div class="closing-heart">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="var(--monarch)" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </div>
+      <h2 class="closing-h">
+        Thank you for being part<br>of the Monroe community.
+      </h2>
+      <p class="closing-body">
+        Monroe Elementary is a place where every child is seen, supported, and celebrated.
+        The Annual Fund is how our community comes together to make this school extraordinary —
+        not just for our own children, but for every family on Madrid Street.
+      </p>
+      <p class="closing-body">
+        No gift is too small. Whether it's $5 or $500, your contribution tells our kids: <em>we believe in this school.</em>
+      </p>
+
+      <div class="closing-cta">
+        <a href="https://go.rallyup.com/monroe2025" class="btn-give-hero" target="_blank" rel="noopener">
+          Give to the Annual Fund →
+        </a>
+      </div>
+
+      <div class="closing-sig" style="margin-top:44px;">
+        With gratitude,<br>
+        Emily and Elisa
+        <span>Fundraising Co-Chairs, Monroe Elementary PTA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+  <footer class="footer footer--stripe">
+    <div class="footer__stripe">
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+        <div class="footer__address">260 Madrid Street<br>San Francisco, CA 94112<br><span style="color: var(--poppy); font-weight: 700;">(415) 469-4736</span></div>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color: var(--cyan);">Our School &amp; Programs</div>
+        <ul class="footer__links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+          <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
+          <li><a href="PTA.html">PTA</a></li>
+          <li><a href="familyliaisons.html">Family Liaisons</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color: var(--marigold);">Families</div>
+        <ul class="footer__links">
+          <li><a href="communityhub.html">Community Hub</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="parentsquare.html">ParentSquare</a></li>        </ul>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color: var(--magenta);">Visit</div>
+        <ul class="footer__links">
+          <li><a href="tour.html">Schedule a Tour</a></li>
+          <li><a href="#">Directions</a></li>
+          <li><a href="#">Enrollment</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+      <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

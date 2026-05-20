@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParentSquare Guide · Monroe Elementary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+
+    /* ── Hero ── */
+    .hero {
+      background: #fef5ec; position: relative; overflow: hidden;
+      padding: 80px 40px 96px;
+    }
+    .hero__inner { max-width: 700px; margin: 0 auto; }
+    .kicker {
+      display: inline-flex; align-items: center;
+      background: var(--cyan, #00869b); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 1.05; color: var(--ink, #1a1410);
+      margin-bottom: 24px; letter-spacing: -.02em;
+    }
+    .hero__lead {
+      font-size: 18px; line-height: 1.65; color: rgba(26,20,16,.75);
+      max-width: 620px; margin-bottom: 28px; font-weight: 400;
+    }
+    .hero__lang-chips { display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
+    .lang-chip {
+      display: inline-flex; align-items: center;
+      font-size: 13px; font-weight: 700;
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .lang-chip--es { background: var(--marigold, #f5a623); color: var(--ink, #1a1410); }
+    .lang-chip--zh { background: var(--cyan, #00869b); color: #fff; }
+    .btn-monarch {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--monarch, #d8392e); color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700;
+      padding: 14px 28px; border-radius: 6px;
+      border: none; cursor: pointer; transition: opacity .15s;
+      text-decoration: none;
+    }
+    .btn-monarch:hover { opacity: .88; }
+    .hero__rainbow {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; height: 6px;
+    }
+    .hero__rainbow span { flex: 1; }
+
+    /* ── Section: What is ParentSquare ── */
+    .section-what {
+      background: var(--cream2, #f0ebe1);
+      padding: 64px 40px;
+    }
+    .section-what__inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: start;
+    }
+    .section-what__left { max-width: 520px; }
+    .section-what__left h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 20px;
+      color: var(--ink, #1a1410);
+    }
+    .section-what__left p {
+      font-size: 16px; line-height: 1.7; color: rgba(26,20,16,.8);
+      margin-bottom: 16px;
+    }
+    .section-what__left p em {
+      font-style: normal; color: var(--ink, #1a1410); font-weight: 600;
+    }
+    .feature-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .feature-tile {
+      background: #fff; border-radius: 10px;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .feature-tile__accent { height: 5px; width: 100%; }
+    .feature-tile__body { padding: 20px 20px 22px; }
+    .feature-tile__icon { font-size: 26px; margin-bottom: 10px; line-height: 1; }
+    .feature-tile__title {
+      font-weight: 800; font-size: 15px; margin-bottom: 8px;
+      color: var(--ink, #1a1410);
+    }
+    .feature-tile__desc {
+      font-size: 14px; line-height: 1.6; color: rgba(26,20,16,.7);
+    }
+
+    /* ── Section: Tutorial ── */
+    .section-tutorial {
+      background: var(--cream, #faf7f2);
+      padding: 80px 40px;
+    }
+    .section-tutorial__inner { max-width: 800px; margin: 0 auto; }
+    .section-tutorial__heading {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 36px; margin-bottom: 10px; color: var(--ink, #1a1410);
+    }
+    .section-tutorial__sub {
+      font-size: 16px; color: rgba(26,20,16,.65); margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex; gap: 0; margin-bottom: 40px;
+      border-radius: 0; overflow: hidden;
+      border: 1.5px solid rgba(26,20,16,.15);
+      width: fit-content;
+    }
+    .tab-btn {
+      padding: 12px 24px; font-family: 'Outfit', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      border: none; transition: all .15s; background: var(--cream2, #f0ebe1);
+      color: rgba(26,20,16,.55);
+    }
+    .tab-btn.active { background: var(--ink, #1a1410); color: #fff; }
+    .tab-btn:first-child { border-right: 1.5px solid rgba(26,20,16,.15); }
+    .tab-panel[hidden] { display: none; }
+
+    /* Step cards */
+    .step-list { display: flex; flex-direction: column; gap: 20px; }
+    .step-card {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: #fff; border-radius: 10px;
+      padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+    .step-num {
+      flex-shrink: 0; width: 44px; height: 44px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #fff;
+      font-family: 'Outfit', sans-serif;
+    }
+    .step-body { flex: 1; }
+    .step-body h3 {
+      font-weight: 800; font-size: 17px; margin-bottom: 8px;
+      color: var(--ink, #1a1410);
+    }
+    .step-body p {
+      font-size: 15px; line-height: 1.65; color: rgba(26,20,16,.75);
+    }
+    .step-body p strong { color: var(--ink, #1a1410); font-weight: 700; }
+    .step-pills { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .step-pill {
+      display: inline-flex; align-items: center;
+      font-size: 13px; font-weight: 700;
+      padding: 6px 14px; border-radius: 100px;
+      border: none; cursor: pointer; text-decoration: none;
+    }
+    .step-pill--dark { background: var(--ink, #1a1410); color: #fff; }
+    .step-pill--monarch { background: var(--monarch, #d8392e); color: #fff; }
+
+    .callout-warning {
+      background: var(--marigold, #f5a623); color: var(--ink, #1a1410);
+      border-radius: 6px; padding: 12px 16px;
+      font-size: 14px; font-weight: 600; margin-top: 14px; line-height: 1.5;
+    }
+    .callout-tip {
+      background: var(--cream2, #f0ebe1); color: rgba(26,20,16,.8);
+      border-radius: 6px; padding: 12px 16px;
+      font-size: 14px; margin-top: 14px; line-height: 1.5;
+    }
+
+    /* ── Section: Navigate / Use ── */
+    .section-navigate {
+      background: rgba(77,140,92,.09);
+      padding: 80px 40px;
+    }
+    .section-navigate__inner { max-width: 800px; margin: 0 auto; }
+    .section-navigate__heading {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 36px; margin-bottom: 10px; color: var(--ink, #1a1410);
+    }
+    .section-navigate__sub {
+      font-size: 16px; color: rgba(26,20,16,.65); margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .navigate-kicker {
+      display: inline-flex; align-items: center;
+      background: var(--jade, #2e7d4f); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+    }
+    .use-card {
+      background: #fff; border-radius: 10px;
+      padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      border-left: 4px solid var(--jade, #2e7d4f);
+      margin-bottom: 16px;
+    }
+    .use-card__topic {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .use-card__icon {
+      flex-shrink: 0; width: 40px; height: 40px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .use-card__title {
+      font-weight: 800; font-size: 17px; color: var(--ink, #1a1410);
+    }
+    .use-card__body {
+      font-size: 15px; line-height: 1.65; color: rgba(26,20,16,.75);
+    }
+    .use-card__body p { margin-bottom: 10px; }
+    .use-card__body p:last-child { margin-bottom: 0; }
+    .use-card__body strong { color: var(--ink, #1a1410); font-weight: 700; }
+    .use-card__body ol, .use-card__body ul { padding-left: 20px; margin-top: 6px; }
+    .use-card__body li { margin-bottom: 5px; }
+    .use-card--cyan { border-left-color: var(--cyan, #00869b); }
+    .use-card--marigold { border-left-color: var(--marigold, #f5a623); }
+    .use-card--monarch { border-left-color: var(--monarch, #d8392e); }
+    .use-card--plum { border-left-color: var(--plum, #6b4e9b); }
+    .use-card--magenta { border-left-color: var(--magenta, #c2185b); }
+
+    /* ── Section: Troubleshooting ── */
+    .section-troubleshoot {
+      background: var(--cream2, #f0ebe1);
+      padding: 72px 40px;
+    }
+    .section-troubleshoot__inner { max-width: 800px; margin: 0 auto; }
+    .section-troubleshoot__inner h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(26px, 3vw, 34px); margin-bottom: 36px;
+      color: var(--ink, #1a1410);
+    }
+
+    details {
+      border: 1.5px solid rgba(26,20,16,.14);
+      border-radius: 6px; margin-bottom: 12px;
+      background: #fff; overflow: hidden;
+    }
+    summary {
+      padding: 18px 20px;
+      font-size: 16px; font-weight: 700;
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--ink, #1a1410); user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .summary-indicator { font-size: 20px; font-weight: 300; color: rgba(26,20,16,.4); line-height: 1; flex-shrink: 0; }
+    details[open] summary { color: var(--monarch, #d8392e); }
+    details[open] .summary-indicator::after { content: '\2212'; }
+    .summary-indicator::after { content: '+'; }
+    .details-body {
+      padding: 0 20px 20px;
+      font-size: 15px; line-height: 1.65; color: rgba(26,20,16,.8);
+    }
+    .details-body p { margin-bottom: 10px; }
+    .details-body ol, .details-body ul { padding-left: 20px; margin-top: 8px; }
+    .details-body li { margin-bottom: 6px; }
+    .details-body a { color: var(--cyan, #00869b); font-weight: 600; }
+    .details-body a:hover { text-decoration: underline; }
+
+    /* ── Section: ParentVue ── */
+    .section-parentvue {
+      background: var(--cream, #faf7f2);
+      padding: 72px 40px;
+    }
+    .section-parentvue__inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr; gap: 60px;
+      align-items: start;
+    }
+    .section-parentvue__left h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(26px, 3vw, 34px); margin-bottom: 10px;
+      color: var(--ink, #1a1410);
+    }
+    .section-parentvue__left .sub {
+      font-size: 16px; color: rgba(26,20,16,.65); margin-bottom: 24px; line-height: 1.6;
+    }
+    .checklist { list-style: none; padding: 0; margin-bottom: 28px; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 15px; line-height: 1.55; padding: 8px 0;
+      color: rgba(26,20,16,.8);
+      border-bottom: 1px solid rgba(26,20,16,.07);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-mark {
+      flex-shrink: 0; color: var(--jade, #2e7d4f);
+      font-weight: 900; font-size: 16px; margin-top: 1px;
+    }
+    .how-to {
+      font-weight: 700; font-size: 15px; margin-bottom: 8px;
+      color: var(--ink, #1a1410);
+    }
+    .how-to-body {
+      font-size: 15px; color: rgba(26,20,16,.7); margin-bottom: 20px; line-height: 1.6;
+    }
+    .btn-cyan {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--cyan, #00869b); color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+      padding: 12px 24px; border-radius: 6px;
+      border: none; cursor: pointer; transition: opacity .15s; text-decoration: none;
+    }
+    .btn-cyan:hover { opacity: .88; }
+
+    .parentvue-card {
+      background: var(--cream2, #f0ebe1);
+      border: 1.5px solid rgba(26,20,16,.12);
+      border-radius: 10px; padding: 28px;
+    }
+    .parentvue-card h3 {
+      font-weight: 800; font-size: 17px; margin-bottom: 12px;
+      color: var(--ink, #1a1410);
+    }
+    .parentvue-card p {
+      font-size: 15px; line-height: 1.65; color: rgba(26,20,16,.75); margin-bottom: 16px;
+    }
+    .parentvue-card a { color: var(--cyan, #00869b); font-weight: 700; font-size: 14px; }
+    .parentvue-card a:hover { text-decoration: underline; }
+
+    /* ── Section: Still need help ── */
+    .section-help {
+      background: var(--ink, #1a1410);
+      padding: 64px 40px;
+    }
+    .section-help__inner { max-width: 960px; margin: 0 auto; }
+    .section-help h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 32px; color: #fff; margin-bottom: 16px;
+    }
+    .section-help p {
+      font-size: 17px; color: rgba(255,255,255,.7);
+      max-width: 560px; line-height: 1.65; margin-bottom: 32px;
+    }
+    .help-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; color: var(--ink, #1a1410);
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+      padding: 13px 24px; border-radius: 6px;
+      text-decoration: none; transition: opacity .15s;
+    }
+    .btn-white:hover { opacity: .88; }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+      padding: 12px 24px; border-radius: 6px;
+      border: 2px solid rgba(255,255,255,.6);
+      text-decoration: none; transition: border-color .15s;
+    }
+    .btn-outline-white:hover { border-color: #fff; }
+
+    /* ── Footer ── */
+    .footer__stripe { position: absolute; top: 0; left: 0; right: 0; height: 6px; display: flex; }
+    .footer__stripe span { flex: 1; }
+    .footer {
+      background: var(--ink, #1a1410);
+      padding: 60px 40px 32px;
+      color: rgba(255,255,255,.7);
+    }
+    .footer__grid {
+      max-width: 1240px; margin: 0 auto 48px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .footer__logo img { height: 48px; width: auto; margin-bottom: 18px; filter: brightness(10); }
+    .footer__address { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.55); }
+    .footer__col-label {
+      font-size: 11px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .footer__links { list-style: none; }
+    .footer__links li { margin-bottom: 8px; }
+    .footer__links a { font-size: 14px; color: rgba(255,255,255,.55); }
+    .footer__links a:hover { color: #fff; }
+    .footer__bottom {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px;
+      font-size: 12px; color: rgba(255,255,255,.35);
+    }
+    .footer__legal { display: flex; gap: 20px; }
+    .footer__legal span { cursor: pointer; }
+    .footer__legal span:hover { color: rgba(255,255,255,.65); }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .section-what__inner { grid-template-columns: 1fr; gap: 40px; }
+      .section-what__left { max-width: 100%; }
+      .section-parentvue__inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+      .feature-grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .section-tutorial { padding: 60px 20px; }
+      .section-navigate { padding: 60px 20px; }
+      .hero { padding: 60px 20px 80px; }
+      .tab-btn { padding: 11px 16px; font-size: 14px; }
+      .step-card { flex-direction: column; gap: 12px; }
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+</head>
+<body>
+  <canvas id="grain-overlay"></canvas>
+
+  <!-- Util bar -->
+    <div class="util-bar">
+      <div class="util-bar__left">
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>
+          </svg>
+          260 Madrid St · SFUSD
+        </span>
+        <span style="color:rgba(26,20,16,.33)">·</span>
+        <span class="pin-item">
+          <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d8392e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+          </svg>
+          8:40a – 2:55p
+        </span>
+      </div>
+      <div class="util-bar__right">
+        <button class="lang-active lang-btn" data-lang="en" onclick="monroeLang('en')">English</button>
+        <button class="lang-es lang-btn" data-lang="es" onclick="monroeLang('es')">Español</button>
+        <button class="lang-zh lang-btn" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+        <span class="lang-divider"></span>
+        <a class="parentsquare-btn" href="parentsquare.html">ParentSquare ↗</a>
+      </div>
+    </div>
+
+    <!-- ── Masthead ─────────────────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__logo">
+        <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" / loading="lazy"></a>
+      </div>
+      <nav class="masthead__nav">
+        <div class="nav-item">
+          <a href="about.html">
+            Our School &amp; Programs
+            <span class="nav-item__caret">▼</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html">About <span class="nav-dropdown__arrow">→</span></a>
+            <a href="beforeaftercare.html">Before &amp; After Care <span class="nav-dropdown__arrow">→</span></a>
+            <a href="facultyandstaff.html">Faculty &amp; Staff <span class="nav-dropdown__arrow">→</span></a>
+            <a href="PTA.html">PTA <span class="nav-dropdown__arrow">→</span></a>
+            <a href="familyliaisons.html">Family Liaisons <span class="nav-dropdown__arrow">→</span></a>
+            <a href="contact.html">Contact <span class="nav-dropdown__arrow">→</span></a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="communityhub.html">Community Hub</a></div>
+        <div class="nav-item"><a href="calendar.html">Calendar</a></div>
+        <div class="nav-item"><a href="news.html">News</a></div>
+        <div class="nav-item"><a href="donate.html">Give</a></div>
+      </nav>
+      <div class="masthead__actions">
+        <button class="btn-tour" onclick="location.href='tour.html'">Tour the School</button>
+        <a href="donate.html" class="btn-give">Give →</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+        <span class="nav-hamburger__bar"></span>
+      </button>
+    </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__head">
+      <a href="index.html"><img src="assets/monroe-logo.png" alt="Monroe Elementary" width="140" loading="lazy"></a>
+      <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav__links">
+      <a href="about.html">Our School &amp; Programs</a>
+      <a href="about.html" class="mnav-sub">About</a>
+      <a href="beforeaftercare.html" class="mnav-sub">Before &amp; After Care</a>
+      <a href="facultyandstaff.html" class="mnav-sub">Faculty &amp; Staff</a>
+      <a href="PTA.html" class="mnav-sub">PTA</a>
+      <a href="familyliaisons.html" class="mnav-sub">Family Liaisons</a>
+      <a href="communityhub.html">Community Hub</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html">Give</a>
+    </nav>
+    <div class="mobile-nav__actions">
+      <a href="tour.html" class="mobile-nav__btn-tour">Tour the School</a>
+      <a href="donate.html" class="mobile-nav__btn-give">Give →</a>
+    </div>
+    <div class="mobile-nav__lang">
+      <button class="lang-btn lang-active" data-lang="en" onclick="monroeLang('en')">English</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-es" data-lang="es" onclick="monroeLang('es')">Español</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn lang-zh" data-lang="zh-TW" onclick="monroeLang('zh-TW')">繁體中文</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="kicker">Monroe Elementary · Family Communication</div>
+      <h1>Your guide to <span class="brush-wrap">ParentSquare<span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-ps" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-ps)"/></svg></span></span></h1>
+      <p class="hero__lead">ParentSquare is how Monroe's school and PTA reaches families. Not sure how to join? We have a step-by-step tutorial. Already in but finding it confusing to navigate? We cover that too.</p>
+      <div class="hero__lang-chips">
+        <span class="lang-chip lang-chip--es">En Español</span>
+        <span class="lang-chip lang-chip--zh">繁體中文</span>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="#tutorial" class="btn-monarch" id="hero-cta">How to join ↓</a>
+        <a href="#navigate" class="btn-monarch" id="hero-cta-use" style="background:var(--jade);">How to use it ↓</a>
+      </div>
+    </div>
+    <div class="hero__rainbow">
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+      <span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span>
+    </div>
+  </section>
+
+  <!-- WHAT IS PARENTSQUARE -->
+  <section class="section-what">
+    <div class="section-what__inner">
+      <div class="section-what__left">
+        <h2>What is ParentSquare?</h2>
+        <p>ParentSquare is Monroe's official communication platform — used by the school office, teachers, and the PTA. When something important is happening, you'll hear about it here first. Messages arrive by text, email, or app notification in the language you choose.</p>
+        <p><em>ParentVue</em> is a separate SFUSD system for viewing grades, attendance, and forms. We cover that at the bottom of this page.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-tile">
+          <div class="feature-tile__accent" style="background:var(--monarch)"></div>
+          <div class="feature-tile__body">
+            <div class="feature-tile__icon">📢</div>
+            <div class="feature-tile__title">School Announcements</div>
+            <div class="feature-tile__desc">Messages from the principal, office, and teachers delivered to your phone.</div>
+          </div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile__accent" style="background:var(--cyan)"></div>
+          <div class="feature-tile__body">
+            <div class="feature-tile__icon">🗓️</div>
+            <div class="feature-tile__title">Event Reminders</div>
+            <div class="feature-tile__desc">Never miss a field trip deadline, Picture Day, or Fall Fest again.</div>
+          </div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile__accent" style="background:var(--jade)"></div>
+          <div class="feature-tile__body">
+            <div class="feature-tile__icon">🌍</div>
+            <div class="feature-tile__title">Your Language</div>
+            <div class="feature-tile__desc">Messages auto-translate to Spanish, Cantonese, Mandarin, and more.</div>
+          </div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile__accent" style="background:var(--marigold)"></div>
+          <div class="feature-tile__body">
+            <div class="feature-tile__icon">💬</div>
+            <div class="feature-tile__title">Two-Way Messaging</div>
+            <div class="feature-tile__desc">Reply to teachers and staff, or message other parents directly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUTORIAL -->
+  <section class="section-tutorial" id="tutorial">
+    <div class="section-tutorial__inner">
+      <h2 class="section-tutorial__heading">How to join — step by step</h2>
+      <p class="section-tutorial__sub">Follow these steps on your phone or computer. It takes about 3 minutes.</p>
+
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" id="tab-phone" role="tab" aria-selected="true" aria-controls="panel-phone" onclick="switchTab('phone')">📱 On your phone</button>
+        <button class="tab-btn" id="tab-computer" role="tab" aria-selected="false" aria-controls="panel-computer" onclick="switchTab('computer')">💻 On a computer</button>
+      </div>
+
+      <!-- PHONE TAB -->
+      <div class="tab-panel" id="panel-phone" role="tabpanel">
+        <div class="step-list">
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--monarch)">1</div>
+            <div class="step-body">
+              <h3>Download the app</h3>
+              <p>Search for <strong>ParentSquare</strong> in the App Store (iPhone) or Google Play Store (Android). It's free. Tap Install.</p>
+              <div class="step-pills">
+                <a class="step-pill step-pill--dark" href="https://apps.apple.com/us/app/parentsquare/id908126197" target="_blank" rel="noopener">App Store ↗</a>
+                <a class="step-pill step-pill--dark" href="https://play.google.com/store/apps/details?id=com.parentsquare.psapp" target="_blank" rel="noopener">Google Play ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--cyan)">2</div>
+            <div class="step-body">
+              <h3>Open the app and tap "Sign Up"</h3>
+              <p>When you open the app, tap <strong>Sign Up</strong> at the bottom of the screen. Don't tap Log In — you don't have an account yet.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--jade)">3</div>
+            <div class="step-body">
+              <h3>Enter your email or phone number</h3>
+              <p>Use the <strong>same email address or phone number you gave to Monroe's school office</strong> when you enrolled. This is important — if the school doesn't have this info, the system won't recognize you. (See troubleshooting below if this happens.)</p>
+              <div class="callout-warning">⚠️ Use the email/phone on file with the school — not a new one.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--marigold)">4</div>
+            <div class="step-body">
+              <h3>Check for a confirmation message</h3>
+              <p>ParentSquare will send a <strong>6-digit code</strong> to your email or phone. Open your messages, find the code, and type it into the app.</p>
+              <div class="callout-tip">💡 Tip: Check your spam or junk folder if you don't see the email within 2 minutes.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--plum)">5</div>
+            <div class="step-body">
+              <h3>Create a password</h3>
+              <p>Choose a password and confirm it. Make it something you'll remember — you'll use it to log back in.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--magenta)">6</div>
+            <div class="step-body">
+              <h3>Set your language and notifications</h3>
+              <p>Choose your preferred language for messages. Then decide how you want to receive notifications: by <strong>text</strong>, <strong>email</strong>, or <strong>app push notification</strong>. You can choose all three.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--jade)">7</div>
+            <div class="step-body">
+              <h3>You're in! ✓</h3>
+              <p>You should now see Monroe Elementary in your feed. You're connected and will receive all school and PTA messages from here on.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPUTER TAB -->
+      <div class="tab-panel" id="panel-computer" role="tabpanel" hidden>
+        <div class="step-list">
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--monarch)">1</div>
+            <div class="step-body">
+              <h3>Go to the ParentSquare website</h3>
+              <p>Open a browser and go to: <strong>parentsquare.com/join_school/new</strong> — or click the button below.</p>
+              <div class="step-pills">
+                <a class="step-pill step-pill--monarch" href="https://www.parentsquare.com/join_school/new" target="_blank" rel="noopener">Go to ParentSquare.com ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--cyan)">2</div>
+            <div class="step-body">
+              <h3>Click "Sign Up"</h3>
+              <p>On the homepage, click the blue <strong>Sign Up</strong> button in the top right corner.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--jade)">3</div>
+            <div class="step-body">
+              <h3>Search for Monroe Elementary</h3>
+              <p>In the school search field, type <strong>Monroe Elementary</strong> and select <strong>Monroe Elementary School – San Francisco, CA</strong>.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--marigold)">4</div>
+            <div class="step-body">
+              <h3>Enter your email</h3>
+              <p>Enter the email address that's on file with the school. This must match what Monroe has in their records.</p>
+              <div class="callout-warning">⚠️ Use the email on file with the school office.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--plum)">5</div>
+            <div class="step-body">
+              <h3>Check your email for a confirmation code</h3>
+              <p>You'll receive an email from ParentSquare with a verification code. Enter it on the website.</p>
+              <div class="callout-tip">💡 Check spam/junk if it doesn't arrive within 2 minutes.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--magenta)">6</div>
+            <div class="step-body">
+              <h3>Create your account</h3>
+              <p>Fill in your name, create a password, and choose your notification preferences and language.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num" style="background:var(--jade)">7</div>
+            <div class="step-body">
+              <h3>Done! ✓</h3>
+              <p>You'll be taken to your Monroe feed. You're now connected to all school and PTA communication.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW TO USE PARENTSQUARE -->
+  <section class="section-navigate" id="navigate">
+    <div class="section-navigate__inner">
+      <div class="navigate-kicker">Once you're in</div>
+      <h2 class="section-navigate__heading">How to use ParentSquare</h2>
+      <p class="section-navigate__sub">Already have an account? Here's how to find messages, reach your child's teacher, RSVP to events, and manage your settings.</p>
+
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" id="tab-use-phone" role="tab" aria-selected="true" aria-controls="panel-use-phone" onclick="switchUseTab('phone')">📱 On your phone</button>
+        <button class="tab-btn" id="tab-use-computer" role="tab" aria-selected="false" aria-controls="panel-use-computer" onclick="switchUseTab('computer')">💻 On a computer</button>
+      </div>
+
+      <!-- PHONE USE TAB -->
+      <div class="tab-panel" id="panel-use-phone" role="tabpanel">
+
+        <div class="use-card">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(77,140,92,.09);">📬</div>
+            <div class="use-card__title">Finding messages and announcements</div>
+          </div>
+          <div class="use-card__body">
+            <p>When you open the app, you land on your <strong>Home feed</strong>. This shows all recent posts from Monroe — school announcements, PTA updates, event info, and classroom news, all in one place, newest first.</p>
+            <p>Tap any post to open it and read the full message. Attachments (flyers, forms, sign-ups) appear as buttons at the bottom of the post.</p>
+            <p>The <strong>bell icon</strong> (top right corner) shows your unread notifications. A red dot means something new is waiting.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--cyan">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(43,184,212,.09);">💬</div>
+            <div class="use-card__title">Messaging your child's teacher</div>
+          </div>
+          <div class="use-card__body">
+            <p>Tap the <strong>speech bubble icon</strong> at the bottom of the screen (it may say "Messages" or "Direct Messages").</p>
+            <ol>
+              <li>Tap the <strong>pencil / compose icon</strong> (top right)</li>
+              <li>Type your teacher's name in the search box</li>
+              <li>Select them from the list and write your message</li>
+              <li>Tap <strong>Send</strong> — they'll receive it in their ParentSquare account</li>
+            </ol>
+            <div class="callout-tip" style="background:rgba(0,134,155,.1);margin-top:14px;">💡 Teachers typically respond within 1–2 school days. For urgent matters, call the school office directly.</div>
+          </div>
+        </div>
+
+        <div class="use-card use-card--marigold">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(240,168,46,.10);">📅</div>
+            <div class="use-card__title">RSVPing to events</div>
+          </div>
+          <div class="use-card__body">
+            <p>When the school or PTA posts an event that needs a response, you'll see a <strong>RSVP button</strong> (or "Yes / No / Maybe") inside the post.</p>
+            <p>Tap your response — it's recorded automatically. Some events also let you sign up to volunteer or bring items (like food for a party). Those show a separate <strong>Sign Up</strong> button.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--monarch">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(216,57,46,.08);">📎</div>
+            <div class="use-card__title">Opening forms and attachments</div>
+          </div>
+          <div class="use-card__body">
+            <p>Many school posts include forms, permission slips, or sign-up sheets. They appear as orange or blue buttons inside the post (e.g. "Fill Out Form" or "View Document").</p>
+            <p>Tap the button — the form opens inside the app or in your browser. Fill it out there and tap Submit. You don't need to print anything.</p>
+            <div class="callout-warning" style="margin-top:14px;">⚠️ Some forms have deadlines. Check the post for the due date before closing it.</div>
+          </div>
+        </div>
+
+        <div class="use-card use-card--plum">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(124,63,136,.08);">🌍</div>
+            <div class="use-card__title">Changing your language</div>
+          </div>
+          <div class="use-card__body">
+            <p>ParentSquare can auto-translate all messages into your language. To set it:</p>
+            <ol>
+              <li>Tap your <strong>profile photo</strong> (top right corner)</li>
+              <li>Tap <strong>Settings</strong></li>
+              <li>Tap <strong>Language</strong></li>
+              <li>Choose your preferred language from the list</li>
+            </ol>
+            <p>Messages will now appear in your language. You can switch back to English any time.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--magenta">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(216,58,109,.08);">🔔</div>
+            <div class="use-card__title">Managing notifications</div>
+          </div>
+          <div class="use-card__body">
+            <p>Getting too many pings? Or not getting any? Here's how to adjust:</p>
+            <ol>
+              <li>Tap your <strong>profile photo</strong> → <strong>Settings</strong> → <strong>Notification Settings</strong></li>
+              <li>Choose whether to receive by <strong>text, email, app notification</strong>, or a combination</li>
+              <li>You can also set <strong>Quiet Hours</strong> (e.g. no pings after 8pm)</li>
+              <li>To mute a specific group or class, tap <strong>Schools &amp; Groups</strong> and toggle off the ones you don't want</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="use-card">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(77,140,92,.09);">🔍</div>
+            <div class="use-card__title">Finding an older message</div>
+          </div>
+          <div class="use-card__body">
+            <p>Tap the <strong>magnifying glass / search icon</strong> at the top or bottom of the app. Type any keyword (like "field trip" or "Picture Day") and ParentSquare will show all matching past posts.</p>
+            <p>You can also scroll back through your Home feed — posts are stored indefinitely, so nothing disappears.</p>
+          </div>
+        </div>
+
+      </div><!-- /panel-use-phone -->
+
+      <!-- COMPUTER USE TAB -->
+      <div class="tab-panel" id="panel-use-computer" role="tabpanel" hidden>
+
+        <div class="use-card">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(77,140,92,.09);">📬</div>
+            <div class="use-card__title">Finding messages and announcements</div>
+          </div>
+          <div class="use-card__body">
+            <p>Log in at <a href="https://www.parentsquare.com" target="_blank" rel="noopener" style="color:var(--cyan);font-weight:600;">parentsquare.com</a>. Your <strong>Home feed</strong> is on the left side of the screen — all Monroe posts, newest first.</p>
+            <p>Click any post to expand it. Attachments, forms, and sign-up buttons appear inside the post.</p>
+            <p>The <strong>notification bell</strong> in the top menu bar shows unread items.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--cyan">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(43,184,212,.09);">💬</div>
+            <div class="use-card__title">Messaging your child's teacher</div>
+          </div>
+          <div class="use-card__body">
+            <p>In the left sidebar, click <strong>Messages</strong> (or the speech bubble icon).</p>
+            <ol>
+              <li>Click the <strong>pencil icon</strong> to start a new message</li>
+              <li>Type the teacher's name in the "To:" field</li>
+              <li>Select them from the dropdown and type your message</li>
+              <li>Click <strong>Send</strong></li>
+            </ol>
+            <div class="callout-tip" style="background:rgba(0,134,155,.1);margin-top:14px;">💡 You can also reply to a school announcement by scrolling to the bottom of the post and using the comment/reply box.</div>
+          </div>
+        </div>
+
+        <div class="use-card use-card--marigold">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(240,168,46,.10);">📅</div>
+            <div class="use-card__title">RSVPing to events</div>
+          </div>
+          <div class="use-card__body">
+            <p>Open the event post in your feed. You'll see <strong>Yes / No / Maybe</strong> buttons (or an RSVP form). Click your answer — it saves automatically.</p>
+            <p>For volunteer or item sign-ups, click the <strong>Sign Up</strong> button inside the post and follow the prompts. You'll receive a confirmation and a reminder closer to the date.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--monarch">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(216,57,46,.08);">📎</div>
+            <div class="use-card__title">Opening forms and attachments</div>
+          </div>
+          <div class="use-card__body">
+            <p>Click the post containing the form. Look for a colored button labeled "Fill Out Form," "View Attachment," or "Open Document" — it's usually near the bottom of the post content.</p>
+            <p>Forms open in a new tab. Fill them out and submit there — no printing required.</p>
+            <div class="callout-warning" style="margin-top:14px;">⚠️ Check the deadline in the post before closing. Submitted forms go directly to the school or teacher.</div>
+          </div>
+        </div>
+
+        <div class="use-card use-card--plum">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(124,63,136,.08);">🌍</div>
+            <div class="use-card__title">Changing your language</div>
+          </div>
+          <div class="use-card__body">
+            <p>Click your <strong>profile photo or initials</strong> (top right corner) → <strong>Account Settings</strong> → <strong>Language</strong>.</p>
+            <p>Select your language from the dropdown and save. All future posts will auto-translate. You can switch languages at any time.</p>
+          </div>
+        </div>
+
+        <div class="use-card use-card--magenta">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(216,58,109,.08);">🔔</div>
+            <div class="use-card__title">Managing notifications</div>
+          </div>
+          <div class="use-card__body">
+            <p>Click your <strong>profile photo</strong> → <strong>Account Settings</strong> → <strong>Notifications</strong>.</p>
+            <ul>
+              <li>Toggle on/off <strong>Email, Text, and Push</strong> notifications separately</li>
+              <li>Set <strong>Quiet Hours</strong> so you aren't pinged in the evenings</li>
+              <li>To stop notifications from a specific group, go to <strong>Schools &amp; Groups</strong> and click the toggle next to that group</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="use-card">
+          <div class="use-card__topic">
+            <div class="use-card__icon" style="background:rgba(77,140,92,.09);">🔍</div>
+            <div class="use-card__title">Finding an older message</div>
+          </div>
+          <div class="use-card__body">
+            <p>Use the <strong>search bar</strong> at the top of the page. Type a keyword (e.g., "field trip," "Fall Fest," "lunch") and ParentSquare will show all matching posts.</p>
+            <p>You can also browse the <strong>Calendar</strong> section (left sidebar) to see upcoming and past events.</p>
+          </div>
+        </div>
+
+      </div><!-- /panel-use-computer -->
+
+    </div>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="section-troubleshoot">
+    <div class="section-troubleshoot__inner">
+      <h2>Having trouble? Here's what to try.</h2>
+
+      <details>
+        <summary>
+          "ParentSquare says it can't find my email or phone."
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <p>This means the contact info you entered doesn't match what Monroe has on file. Here's what to do:</p>
+          <ol>
+            <li>Check if you used a different email when you enrolled (work email, spouse's email, etc.)</li>
+            <li>Try your phone number instead of email, or vice versa</li>
+            <li>Contact the Monroe office at <strong>(415) 469-4736</strong> or <a href="mailto:sch729@sfusd.edu">sch729@sfusd.edu</a> to confirm what's on file — they can update it for you</li>
+            <li>Ask one of our <a href="familyliaisons.html">Family Liaisons</a> for help — they do this regularly</li>
+          </ol>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          "I never received the confirmation code."
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <ul>
+            <li>Check your spam or junk mail folder</li>
+            <li>Make sure you're checking the right inbox (some families have multiple email accounts)</li>
+            <li>Wait 5 minutes and try again — sometimes there's a delay</li>
+            <li>Try requesting the code again from the app or website</li>
+            <li>If using phone/text: make sure the number is correct and can receive texts</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          "I already have a ParentSquare account from another school."
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <p>Great! You just need to add Monroe. Log in to your existing account, go to <strong>Settings → Schools</strong>, and search for Monroe Elementary. Your existing account works across multiple schools.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          "The app won't download / my phone is old."
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <p>ParentSquare also works in a web browser — go to <a href="https://www.parentsquare.com" target="_blank" rel="noopener">parentsquare.com</a> on any device. You don't need the app.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          "I set it up but I'm not getting any messages."
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <ul>
+            <li>Check your notification settings in the app (tap your profile photo → Notification Settings)</li>
+            <li>Make sure notifications are enabled for ParentSquare in your phone's Settings app</li>
+            <li>Check that you're enrolled in Monroe Elementary specifically</li>
+            <li>Contact us and we'll help troubleshoot</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          "I need help in Spanish / 我需要中文帮助"
+          <span class="summary-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="details-body">
+          <p>Our <a href="familyliaisons.html">Family Liaisons</a> can help you set up ParentSquare in person, in your language. Contact them through the school office at <strong>(415) 469-4736</strong> — ask for a family liaison.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- PARENTVUE -->
+  <section class="section-parentvue">
+    <div class="section-parentvue__inner">
+      <div class="section-parentvue__left">
+        <h2>ParentVue — a different system</h2>
+        <p class="sub">ParentVue is separate from ParentSquare. It's run by SFUSD (the district) and gives you access to your child's records.</p>
+        <ul class="checklist">
+          <li><span class="check-mark">✓</span> Update emergency contact information</li>
+          <li><span class="check-mark">✓</span> View attendance records</li>
+          <li><span class="check-mark">✓</span> Access report cards</li>
+          <li><span class="check-mark">✓</span> Find your child's student ID and Google password</li>
+          <li><span class="check-mark">✓</span> Complete online forms and applications</li>
+          <li><span class="check-mark">✓</span> Receive district-level communications</li>
+        </ul>
+        <p class="how-to">How to get access:</p>
+        <p class="how-to-body">You need a unique access code from the school. Contact Monroe's office or a Family Liaison to get yours.</p>
+        <a class="btn-cyan" href="https://portal.sfusd.edu/PXP2_Login_Parent.aspx?regenerateSessionId=True" target="_blank" rel="noopener">Log in to ParentVue ↗</a>
+      </div>
+      <div>
+        <div class="parentvue-card">
+          <h3>Need your access code?</h3>
+          <p>Contact the Monroe office or one of our Family Liaisons. They'll generate your code and walk you through setup.</p>
+          <a href="familyliaisons.html">Meet our Family Liaisons →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STILL NEED HELP -->
+  <section class="section-help">
+    <div class="section-help__inner">
+      <h2>Still stuck? We'll help you in person.</h2>
+      <p>Our Family Liaisons help Monroe families with exactly this kind of thing — in English, Spanish, and Cantonese. Don't struggle alone.</p>
+      <div class="help-btns">
+        <a class="btn-white" href="familyliaisons.html">Contact a Family Liaison →</a>
+        <a class="btn-outline-white" href="tel:+14154694736">Call the School Office</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--stripe">
+    <div class="footer__stripe">
+      <span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span><span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo"><img src="assets/monroe-logo.png" alt="Monroe Elementary" loading="lazy"></div>
+        <div class="footer__address">260 Madrid Street<br>San Francisco, CA 94112<br><span style="color:var(--poppy);font-weight:700;">(415) 469-4736</span></div>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color:var(--cyan);">Our School &amp; Programs</div>
+        <ul class="footer__links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="beforeaftercare.html">Before &amp; After Care</a></li>
+          <li><a href="facultyandstaff.html">Faculty &amp; Staff</a></li>
+          <li><a href="PTA.html">PTA</a></li>
+          <li><a href="familyliaisons.html">Family Liaisons</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color:var(--marigold);">Families</div>
+        <ul class="footer__links">
+          <li><a href="communityhub.html">Community Hub</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="parentsquare.html" style="color:var(--monarch);">ParentSquare</a></li>        </ul>
+      </div>
+      <div>
+        <div class="footer__col-label" style="color:var(--magenta);">Visit</div>
+        <ul class="footer__links">
+          <li><a href="tour.html">Schedule a Tour</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Enrollment</a></li>
+          <li><a href="donate.html">Give</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Monroe Elementary · A San Francisco Public School</div>
+      <div class="footer__legal"><a href="https://www.sfusd.edu/" target="_blank" rel="noopener">SFUSD ↗</a></div>
+    </div>
+  </footer>
+
+  <script defer src="assets/grain.js"></script>
+  <script>
+    function switchTab(tab) {
+      var phonePanel = document.getElementById('panel-phone');
+      var computerPanel = document.getElementById('panel-computer');
+      var phoneBtn = document.getElementById('tab-phone');
+      var computerBtn = document.getElementById('tab-computer');
+
+      if (tab === 'phone') {
+        phonePanel.removeAttribute('hidden');
+        computerPanel.setAttribute('hidden', '');
+        phoneBtn.classList.add('active');
+        phoneBtn.setAttribute('aria-selected', 'true');
+        computerBtn.classList.remove('active');
+        computerBtn.setAttribute('aria-selected', 'false');
+      } else {
+        computerPanel.removeAttribute('hidden');
+        phonePanel.setAttribute('hidden', '');
+        computerBtn.classList.add('active');
+        computerBtn.setAttribute('aria-selected', 'true');
+        phoneBtn.classList.remove('active');
+        phoneBtn.setAttribute('aria-selected', 'false');
+      }
+    }
+
+    document.getElementById('hero-cta').addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById('tutorial');
+      if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+    document.getElementById('hero-cta-use').addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById('navigate');
+      if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+
+    function switchUseTab(tab) {
+      var phonePanel = document.getElementById('panel-use-phone');
+      var computerPanel = document.getElementById('panel-use-computer');
+      var phoneBtn = document.getElementById('tab-use-phone');
+      var computerBtn = document.getElementById('tab-use-computer');
+      if (tab === 'phone') {
+        phonePanel.removeAttribute('hidden');
+        computerPanel.setAttribute('hidden', '');
+        phoneBtn.classList.add('active'); phoneBtn.setAttribute('aria-selected', 'true');
+        computerBtn.classList.remove('active'); computerBtn.setAttribute('aria-selected', 'false');
+      } else {
+        computerPanel.removeAttribute('hidden');
+        phonePanel.setAttribute('hidden', '');
+        computerBtn.classList.add('active'); computerBtn.setAttribute('aria-selected', 'true');
+        phoneBtn.classList.remove('active'); phoneBtn.setAttribute('aria-selected', 'false');
+      }
+    }
+  </script>
+
+  <div id="google_translate_element" style="position:fixed;top:-999px;left:-999px;"></div>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,zh-TW'
+      }, 'google_translate_element');
+    }
+    function monroeLang(lang) {
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function(btn) {
+        btn.classList.remove('lang-active');
+        if (btn.dataset.lang === lang) btn.classList.add('lang-active');
+      });
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+        return;
+      }
+      var tries = 0;
+      (function attempt() {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (!sel && tries++ < 30) { setTimeout(attempt, 300); return; }
+        if (!sel) return;
+        sel.value = lang;
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        sel.dispatchEvent(e);
+      })();
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -28,6 +28,7 @@ body {
   line-height: 1.5;
 }
 a { text-decoration: none; color: inherit; cursor: pointer; }
+a:not([class]):hover { color: var(--monarch); text-decoration: underline; text-underline-offset: 3px; }
 em { font-style: normal; }
 img { display: block; max-width: 100%; }
 
@@ -83,8 +84,10 @@ body                    { top: 0 !important; }
   background: var(--marigold); color: var(--ink);
   font-weight: 700; padding: 4px 10px;
   border: 1.5px solid var(--ink);
-  font-size: 12px;
+  font-size: 12px; transition: background .15s;
 }
+.parentsquare-btn:hover { background: var(--monarch); color: var(--cream); }
+.util-bar .lang-btn:hover { color: var(--monarch); }
 
 /* ── Masthead + nav ──────────────────────────────────────────────────── */
 .masthead {
@@ -107,8 +110,11 @@ body                    { top: 0 !important; }
   padding: 10px 14px;
   border-bottom: 3px solid transparent;
   display: inline-flex; align-items: center; gap: 4px;
+  transition: border-color .15s, color .15s;
 }
+.masthead__nav > .nav-item > a:hover { color: var(--monarch); }
 .masthead__nav > .nav-item.active > a { border-bottom-color: var(--cyan); }
+.masthead__nav > .nav-item.active > a:hover { color: inherit; }
 .nav-item__caret { font-size: 9px; opacity: .6; transform: translateY(1px); }
 
 /* Dropdown */
@@ -157,14 +163,18 @@ body                    { top: 0 !important; }
   border: 1.5px solid var(--ink); border-radius: 999px;
   padding: 9px 16px;
   font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  transition: background .15s, color .15s;
 }
+.btn-tour:hover { background: var(--ink); color: var(--cream); }
 .btn-give {
   background: var(--monarch); color: var(--cream);
   border: 1.5px solid var(--ink); border-radius: 999px;
   padding: 10px 18px;
   font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
   box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s;
 }
+.btn-give:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
 
 /* ── Footer ──────────────────────────────────────────────────────────── */
 .footer {

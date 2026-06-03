@@ -18,7 +18,7 @@
     .hero {
       background: #fef5ec;
       color: var(--ink);
-      padding: 72px 40px 100px;
+      padding: 16px 40px 20px;
       position: relative;
       overflow: visible;
       z-index: 1;
@@ -37,10 +37,12 @@
 
     .hero__inner {
       position: relative; z-index: 2;
-      max-width: 1240px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
+      text-align: center;
     }
     .hero__inner > div {
-      max-width: 620px;
+      max-width: 780px;
+      margin: 0 auto;
     }
     .crumbs {
       font-size: 12px; font-weight: 800;
@@ -53,28 +55,30 @@
     .crumbs .sep { color: rgba(26,20,16,.2); }
     .crumbs .current { color: var(--ink); }
     .hero__kicker {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11.5px; font-weight: 800;
-      letter-spacing: .22em; text-transform: uppercase;
-      color: var(--monarch);
-      margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: clamp(36px, 5vw, 68px); font-weight: 900;
+      letter-spacing: -.02em; text-transform: none;
+      color: var(--ink);
+      margin-bottom: 12px;
     }
     .hero__kicker-dot {
-      width: 8px; height: 8px; background: var(--monarch);
+      width: 10px; height: 10px; background: var(--monarch);
+      flex-shrink: 0;
     }
     .hero__h1 {
       font-family: 'Outfit', system-ui, sans-serif;
       font-weight: 900;
-      font-size: clamp(52px, 5.5vw, 88px);
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
+      font-size: clamp(30px, 3.2vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
       color: var(--ink);
     }
     .hero__lead {
-      font-size: 18px; line-height: 1.55;
+      font-size: 18px; line-height: 1.6;
       color: rgba(26,20,16,.65);
-      max-width: 520px;
+      max-width: 640px;
+      margin: 0 auto;
     }
     .hero__lead strong { color: var(--ink); font-weight: 700; }
 
@@ -136,7 +140,7 @@
     }
     .footer__stripe span { flex: 1; }
 
-    .hero__h1 em { font-style: normal; }
+    .hero__h1 em { font-style: normal; color: var(--monarch); }
 
     /* ── Stat cards — colored left border accent ── */
     .hero__stats {
@@ -1637,6 +1641,7 @@
       background: transparent;
       border: none;
       border-top: 4px solid transparent;
+      border-left: 1px solid rgba(26,20,16,.12);
       color: rgba(26,20,16,0.35);
       font-family: 'Outfit', system-ui, sans-serif;
       font-size: 13px;
@@ -1782,10 +1787,16 @@
     .hub-explainer__dot { color: rgba(26,20,16,.25); font-size: 18px; line-height: 1; }
 
     /* ── Dashboard explainer ─────────────────────────────────────── */
+    .dash-explainer-wrap {
+      background: #fff;
+      position: relative;
+      border-top: 2px solid rgba(26,20,16,.12);
+      border-bottom: 1px solid rgba(26,20,16,.12);
+    }
     .dash-explainer {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 52px 40px 44px;
+      padding: 28px 40px 24px;
       position: relative;
       overflow: hidden;
       display: grid;
@@ -1850,7 +1861,7 @@
     .hero__stripe {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 6px;
+      height: 3px;
       display: flex;
       z-index: 4;
     }
@@ -1961,69 +1972,11 @@
 
     <!-- ── Hero ─────────────────────────────────────── -->
     <section class="hero" data-screen-label="01 Hero">
-      <!-- decorative half circles -->
-      <img src="assets/images/chinese-half-circles.png" alt="" aria-hidden="true" style="position:absolute;top:-30px;right:-20px;width:260px;opacity:0.10;transform:rotate(12deg);pointer-events:none;z-index:1;" loading="lazy">
-      <img src="assets/images/chinese-half-circles.png" alt="" aria-hidden="true" style="position:absolute;bottom:-40px;left:-10px;width:200px;opacity:0.08;transform:rotate(-160deg);pointer-events:none;z-index:1;" loading="lazy">
-      <!-- decorative flowers -->
-      <img src="assets/images/chinese-flower-4.png" alt="" aria-hidden="true" style="position:absolute;top:40px;right:18%;width:80px;opacity:0.13;transform:rotate(18deg);pointer-events:none;z-index:1;" loading="lazy">
-      <img src="assets/images/chinese-flower-6.png" alt="" aria-hidden="true" style="position:absolute;bottom:60px;right:8%;width:60px;opacity:0.12;transform:rotate(-12deg);pointer-events:none;z-index:1;" loading="lazy">
-      <img src="assets/images/chinese-flower-4.png" alt="" aria-hidden="true" style="position:absolute;top:20px;left:52%;width:50px;opacity:0.10;transform:rotate(-25deg);pointer-events:none;z-index:1;" loading="lazy">
-      <div class="hero__dots" aria-hidden="true">
-        <span style="--x:58%;--y:10%;--s:14px;--c:var(--cyan);--op:.32"></span>
-        <span style="--x:73%;--y:6%;--s:8px;--c:var(--marigold);--op:.5"></span>
-        <span style="--x:86%;--y:18%;--s:11px;--c:var(--poppy);--op:.28"></span>
-        <span style="--x:64%;--y:32%;--s:6px;--c:var(--plum);--op:.42"></span>
-        <span style="--x:80%;--y:42%;--s:13px;--c:var(--jade);--op:.26"></span>
-        <span style="--x:91%;--y:28%;--s:18px;--c:var(--monarch);--op:.18;--r:3px"></span>
-        <span style="--x:55%;--y:58%;--s:7px;--c:var(--magenta);--op:.38"></span>
-        <span style="--x:84%;--y:62%;--s:10px;--c:var(--cyan);--op:.3"></span>
-        <span style="--x:70%;--y:75%;--s:6px;--c:var(--poppy);--op:.45"></span>
-        <span style="--x:76%;--y:20%;--s:5px;--c:var(--magenta);--op:.5"></span>
-        <span style="--x:93%;--y:50%;--s:8px;--c:var(--marigold);--op:.4;--r:2px"></span>
-        <span style="--x:61%;--y:85%;--s:9px;--c:var(--monarch);--op:.28"></span>
-        <span style="--x:88%;--y:78%;--s:5px;--c:var(--plum);--op:.44"></span>
-        <span style="--x:67%;--y:48%;--s:4px;--c:var(--jade);--op:.5"></span>
-        <span style="--x:95%;--y:10%;--s:6px;--c:var(--cyan);--op:.35"></span>
-        <!-- butterflies -->
-        <div class="hero__butterfly hero__butterfly--b1"
-             style="--x:62%;--y:6%;--s:80px;--c:var(--cyan);--op:.8;--rot:-14deg;--flip:1"></div>
-        <div class="hero__butterfly hero__butterfly--b2"
-             style="--x:79%;--y:26%;--s:96px;--c:var(--monarch);--op:.82;--rot:8deg;--flip:-1"></div>
-        <div class="hero__butterfly hero__butterfly--b1"
-             style="--x:87%;--y:63%;--s:68px;--c:var(--magenta);--op:.78;--rot:20deg;--flip:1"></div>
-        <div class="hero__butterfly hero__butterfly--b2"
-             style="--x:55%;--y:68%;--s:72px;--c:var(--jade);--op:.75;--rot:-6deg;--flip:1"></div>
-        <div class="hero__butterfly hero__butterfly--b1"
-             style="--x:91%;--y:4%;--s:50px;--c:var(--marigold);--op:.8;--rot:30deg;--flip:-1"></div>
-        <div class="hero__butterfly hero__butterfly--b2"
-             style="--x:70%;--y:46%;--s:58px;--c:var(--plum);--op:.72;--rot:-20deg;--flip:1"></div>
-      </div>
-      <div class="hero__stripe">
-        <span style="background:var(--poppy)"></span>
-        <span style="background:var(--monarch)"></span>
-        <span style="background:var(--marigold)"></span>
-        <span style="background:var(--jade)"></span>
-        <span style="background:var(--cyan)"></span>
-        <span style="background:var(--plum)"></span>
-        <span style="background:var(--magenta)"></span>
-        <span style="background:var(--poppy)"></span>
-        <span style="background:var(--monarch)"></span>
-        <span style="background:var(--marigold)"></span>
-        <span style="background:var(--jade)"></span>
-        <span style="background:var(--cyan)"></span>
-        <span style="background:var(--plum)"></span>
-        <span style="background:var(--magenta)"></span>
-      </div>
       <div class="hero__inner">
           <div class="hero__kicker">
-            <span class="hero__kicker-dot"></span>
-            Monroe Elementary · Community Hub
+            Community Hub<img src="assets/images/butterfly2.png" alt="" aria-hidden="true" style="width:36px; display:inline-block; vertical-align:middle; margin-left:-10px; position:relative; top:-10px; filter:brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(600%) hue-rotate(345deg) brightness(98%);">
           </div>
-          <h1 class="hero__h1">We take care<br>of <span class="brush-wrap"><em>each other.</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-ch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="0.5" filter="url(#bs-rough-ch)"/></svg></span></span></h1>
-          <p class="hero__lead">
-            Need something? We've got you.<br>Want to help? We'll find a match.<br>
-            <span style="color:rgba(26,20,16,.45); font-size:16px;">Free. Confidential. In English, Spanish, and Cantonese.</span>
-          </p>
+          <h1 class="hero__h1">We take care of <span class="brush-wrap"><em>each other.</em><span class="hero__brush"><svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><filter id="bs-rough-ch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs><path d="M 6 36 C 60 20, 130 16, 200 24 S 320 44, 354 30 L 352 38 C 300 50, 200 42, 130 38 S 40 50, 8 44 Z" fill="#e26a1f" opacity="1" filter="url(#bs-rough-ch)"/></svg></span></span></h1>
       </div>
     </section>
 
@@ -2031,13 +1984,15 @@
     <!-- ── Three pillars ─────────────────────────── -->
     <!-- ── Dashboard panels ─────────────────────────────────────────────── -->
     <section class="dashboard">
-      <div class="dash-explainer">
-        <p class="dash-explainer__p">
-          The Community Hub brings together <strong>community care, resources, and volunteer opportunities</strong> for Monroe families — all in one place, free, and available in English, Spanish, and Chinese.
-        </p>
-        <p class="dash-explainer__p">
-          Use the tabs below to find <strong>support and services</strong>, connect with the equity fund, browse curated resources, volunteer, or check the school lunch menu.
-        </p>
+      <div class="dash-explainer-wrap">
+        <div class="dash-explainer">
+          <p class="dash-explainer__p">
+            The Community Hub brings together <strong>community care, resources, and volunteer opportunities</strong> for Monroe families — all in one place, free, and available in English, Spanish, and Chinese.
+          </p>
+          <p class="dash-explainer__p">
+            Use the tabs below to find <strong>support and services</strong>, connect with the equity fund, browse curated resources, volunteer, or check the school lunch menu.
+          </p>
+        </div>
       </div>
       <nav class="hub-tabs-bar hub-tabs-bar--inline" aria-label="Community Hub sections">
         <div class="hub-tabs-inner">

@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monroe Elementary — Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #fdf8f2;
+      --cream2:   #f5ede0;
+      --ink:      #1a1410;
+      --monarch:  #e26a1f;
+      --cyan:     #2bb8d4;
+      --marigold: #f0a82e;
+      --magenta:  #d83a6d;
+      --poppy:    #d8392e;
+      --jade:     #4d8c5c;
+      --plum:     #7c3f88;
+      --mid-gray: #cccccc;
+      --light-gray: #f2f2f2;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Outfit', system-ui, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; }
+    a { color: var(--monarch); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Sidebar nav ─────────────────────────────────────── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 240px;
+      background: var(--ink);
+      color: var(--cream);
+      overflow-y: auto;
+      z-index: 100;
+      display: flex; flex-direction: column;
+    }
+    .sidebar__logo {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .sidebar__logo-name {
+      font-size: 13px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--monarch); line-height: 1.2;
+    }
+    .sidebar__logo-sub {
+      font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(253,248,242,.45); margin-top: 4px;
+    }
+    .sidebar__nav { padding: 16px 0; flex: 1; }
+    .sidebar__nav a {
+      display: block; padding: 9px 24px;
+      font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(253,248,242,.55);
+      border-left: 3px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .sidebar__nav a:hover { color: var(--cream); text-decoration: none; }
+    .sidebar__nav a.active { color: var(--cream); border-left-color: var(--monarch); background: rgba(255,255,255,.05); }
+    .sidebar__stripe {
+      height: 5px; display: flex; flex-shrink: 0;
+    }
+    .sidebar__stripe span { flex: 1; }
+
+    /* ── Main ────────────────────────────────────────────── */
+    .main { margin-left: 240px; }
+
+    /* ── Cover ───────────────────────────────────────────── */
+    .cover {
+      background: var(--ink); color: var(--cream);
+      padding: 80px 72px;
+      min-height: 380px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .cover__stripe {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 6px; display: flex;
+    }
+    .cover__stripe span { flex: 1; }
+    .cover__eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--monarch); margin-bottom: 16px;
+    }
+    .cover__title {
+      font-size: clamp(48px, 6vw, 80px); font-weight: 900;
+      letter-spacing: -.03em; line-height: 1;
+      color: var(--cream); margin-bottom: 8px;
+    }
+    .cover__title span { color: var(--monarch); }
+    .cover__sub {
+      font-size: 20px; font-weight: 400; color: rgba(253,248,242,.6);
+      margin-bottom: 32px;
+    }
+    .cover__meta {
+      font-size: 12px; font-weight: 600; letter-spacing: .08em;
+      color: rgba(253,248,242,.35); text-transform: uppercase;
+    }
+
+    /* ── Sections ────────────────────────────────────────── */
+    .section {
+      padding: 64px 72px;
+      border-bottom: 1.5px solid rgba(26,20,16,.1);
+    }
+    .section:last-child { border-bottom: none; }
+    .section__label {
+      font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--poppy); margin-bottom: 8px;
+    }
+    .section__title {
+      font-size: clamp(32px, 4vw, 52px); font-weight: 900;
+      letter-spacing: -.02em; line-height: 1.05;
+      color: var(--ink); margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .section__title em { font-style: normal; color: var(--monarch); }
+    .section__intro {
+      font-size: 17px; line-height: 1.65; color: rgba(26,20,16,.7);
+      max-width: 720px; margin-bottom: 40px;
+    }
+
+    h2.sub { font-size: 20px; font-weight: 800; color: var(--monarch); margin: 40px 0 12px; }
+    h3.sub { font-size: 16px; font-weight: 700; color: var(--ink); margin: 28px 0 8px; }
+    p.body { font-size: 15px; line-height: 1.7; color: rgba(26,20,16,.75); margin-bottom: 12px; max-width: 740px; }
+    ul.body-list { list-style: none; padding: 0; margin: 0 0 20px; }
+    ul.body-list li {
+      font-size: 15px; line-height: 1.6; color: rgba(26,20,16,.75);
+      padding: 4px 0 4px 20px; position: relative;
+    }
+    ul.body-list li::before { content: '·'; position: absolute; left: 4px; color: var(--monarch); font-weight: 800; }
+
+    /* ── Color swatches ──────────────────────────────────── */
+    .swatch-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px; margin: 24px 0 40px;
+    }
+    .swatch {
+      border: 1.5px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      overflow: hidden;
+    }
+    .swatch__color { height: 72px; }
+    .swatch__info { padding: 12px 14px; background: var(--cream); }
+    .swatch__name { font-size: 13px; font-weight: 800; color: var(--ink); }
+    .swatch__hex { font-size: 12px; font-weight: 600; color: rgba(26,20,16,.5); margin-top: 2px; font-family: 'Courier New', monospace; }
+    .swatch__var { font-size: 11px; color: var(--monarch); font-family: 'Courier New', monospace; margin-top: 2px; }
+    .swatch__role { font-size: 11px; color: rgba(26,20,16,.55); margin-top: 4px; line-height: 1.4; }
+
+    /* ── Typography specimens ────────────────────────────── */
+    .type-specimens { display: grid; gap: 2px; margin: 24px 0 40px; }
+    .type-row {
+      display: grid; grid-template-columns: 160px 1fr 120px;
+      gap: 0;
+      border: 1px solid rgba(26,20,16,.1);
+      background: white;
+    }
+    .type-row__label {
+      padding: 14px 16px; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(26,20,16,.45);
+      border-right: 1px solid rgba(26,20,16,.1);
+      display: flex; align-items: center;
+    }
+    .type-row__sample { padding: 14px 20px; display: flex; align-items: center; }
+    .type-row__spec {
+      padding: 14px 16px; font-size: 11px; color: rgba(26,20,16,.4);
+      border-left: 1px solid rgba(26,20,16,.1);
+      display: flex; align-items: center;
+    }
+
+    /* ── Hub tabs ────────────────────────────────────────── */
+    .hub-tabs { display: flex; gap: 0; margin: 24px 0 40px; border: 1.5px solid var(--ink); }
+    .hub-tab {
+      flex: 1; padding: 16px 12px;
+      border-right: 1.5px solid var(--ink);
+      text-align: center;
+    }
+    .hub-tab:last-child { border-right: none; }
+    .hub-tab__num { font-size: 11px; opacity: .45; font-weight: 400; display: block; }
+    .hub-tab__name { font-size: 13px; font-weight: 800; display: block; margin-top: 4px; }
+    .hub-tab__bar { height: 4px; margin-top: 12px; }
+
+    /* ── Do / Don't ──────────────────────────────────────── */
+    .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 20px 0 36px; border: 1.5px solid var(--ink); }
+    .dos-donts__header { padding: 10px 20px; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .dos-donts__header--do { background: var(--jade); color: white; }
+    .dos-donts__header--dont { background: var(--poppy); color: white; border-left: 1.5px solid var(--ink); }
+    .dos-donts__col { padding: 0; }
+    .dos-donts__item {
+      padding: 11px 20px; font-size: 14px; line-height: 1.5;
+      border-top: 1px solid rgba(26,20,16,.1);
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .dos-donts__col--do .dos-donts__item { background: #f0faf3; }
+    .dos-donts__col--dont .dos-donts__item { background: #fff0ef; border-left: 1.5px solid var(--ink); }
+    .dos-donts__icon { font-weight: 800; flex-shrink: 0; }
+    .dos-donts__col--do .dos-donts__icon { color: var(--jade); }
+    .dos-donts__col--dont .dos-donts__icon { color: var(--poppy); }
+
+    /* ── CSS var table ───────────────────────────────────── */
+    .var-table { width: 100%; border-collapse: collapse; margin: 20px 0 36px; font-size: 14px; }
+    .var-table th { background: var(--ink); color: var(--cream); padding: 10px 16px; text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .var-table td { padding: 10px 16px; border-bottom: 1px solid rgba(26,20,16,.1); vertical-align: middle; }
+    .var-table tr:nth-child(even) td { background: var(--light-gray); }
+    .var-table code { font-family: 'Courier New', monospace; color: var(--monarch); font-size: 13px; }
+    .var-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.15); vertical-align: middle; margin-right: 8px; }
+
+    /* ── Quote block ─────────────────────────────────────── */
+    .quote-block {
+      border-left: 5px solid var(--monarch);
+      background: white;
+      padding: 24px 28px;
+      margin: 24px 0 32px;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .quote-block p { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.4; }
+    .quote-block span { display: block; margin-top: 8px; font-size: 14px; color: rgba(26,20,16,.5); font-weight: 400; }
+
+    /* ── Context table ───────────────────────────────────── */
+    .ctx-table { width: 100%; border-collapse: collapse; margin: 20px 0 36px; font-size: 14px; }
+    .ctx-table th { background: var(--ink); color: var(--cream); padding: 10px 16px; text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .ctx-table td { padding: 12px 16px; border-bottom: 1px solid rgba(26,20,16,.1); vertical-align: top; }
+    .ctx-table tr:hover td { background: var(--cream2); }
+    .ctx-table .example { font-style: italic; color: rgba(26,20,16,.5); }
+
+    /* ── Quick ref ───────────────────────────────────────── */
+    .quick-ref { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); margin-top: 24px; }
+    .quick-ref__item { padding: 14px 20px; border-bottom: 1px solid rgba(26,20,16,.1); border-right: 1px solid rgba(26,20,16,.1); display: flex; gap: 16px; }
+    .quick-ref__item:nth-child(even) { border-right: none; }
+    .quick-ref__key { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(26,20,16,.4); min-width: 100px; padding-top: 2px; }
+    .quick-ref__val { font-size: 14px; font-weight: 600; color: var(--ink); }
+
+    /* ── Chip row ────────────────────────────────────────── */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 28px; }
+    .chip {
+      padding: 4px 12px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      border-left: 3px solid var(--c, var(--monarch));
+      background: white; border-top: 1px solid rgba(26,20,16,.1);
+      border-bottom: 1px solid rgba(26,20,16,.1); border-right: 1px solid rgba(26,20,16,.1);
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { position: static; width: 100%; min-height: auto; flex-direction: row; flex-wrap: wrap; }
+      .sidebar__nav { display: flex; flex-wrap: wrap; padding: 8px 12px; }
+      .sidebar__nav a { padding: 6px 12px; font-size: 11px; }
+      .main { margin-left: 0; }
+      .section { padding: 40px 24px; }
+      .cover { padding: 48px 24px; }
+      .dos-donts { grid-template-columns: 1fr; }
+      .dos-donts__col--dont .dos-donts__item { border-left: none; }
+      .dos-donts__header--dont { border-left: none; border-top: 1.5px solid var(--ink); }
+      .quick-ref { grid-template-columns: 1fr; }
+      .quick-ref__item { border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Sidebar ──────────────────────────────────────────────────── -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar__logo">
+    <div class="sidebar__logo-name">Monroe<br>Elementary</div>
+    <div class="sidebar__logo-sub">Brand Guidelines 2026</div>
+  </div>
+  <div class="sidebar__nav">
+    <a href="#who-we-are">1. Who We Are</a>
+    <a href="#voice-tone">2. Voice & Tone</a>
+    <a href="#color">3. Color Palette</a>
+    <a href="#typography">4. Typography</a>
+    <a href="#design-elements">5. Design Elements</a>
+    <a href="#community-hub">6. Community Hub</a>
+    <a href="#multilingual">7. Multilingual</a>
+    <a href="#web">8. Web Implementation</a>
+    <a href="#imagery">9. Imagery</a>
+    <a href="#quick-ref">10. Quick Reference</a>
+  </div>
+  <div class="sidebar__stripe">
+    <span style="background:var(--poppy)"></span>
+    <span style="background:var(--monarch)"></span>
+    <span style="background:var(--marigold)"></span>
+    <span style="background:var(--jade)"></span>
+    <span style="background:var(--cyan)"></span>
+    <span style="background:var(--plum)"></span>
+    <span style="background:var(--magenta)"></span>
+  </div>
+</nav>
+
+<!-- ── Main ─────────────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover__stripe">
+      <span style="background:var(--poppy)"></span><span style="background:var(--monarch)"></span>
+      <span style="background:var(--marigold)"></span><span style="background:var(--jade)"></span>
+      <span style="background:var(--cyan)"></span><span style="background:var(--plum)"></span>
+      <span style="background:var(--magenta)"></span><span style="background:var(--poppy)"></span>
+      <span style="background:var(--monarch)"></span><span style="background:var(--marigold)"></span>
+      <span style="background:var(--jade)"></span><span style="background:var(--cyan)"></span>
+      <span style="background:var(--plum)"></span><span style="background:var(--magenta)"></span>
+    </div>
+    <div class="cover__eyebrow">Brand Guidelines · 2026</div>
+    <div class="cover__title">Monroe<br><span>Elementary</span></div>
+    <div class="cover__sub">Visual identity, voice &amp; design standards</div>
+    <div class="cover__meta">260 Madrid Street · San Francisco, CA · SFUSD · English · Español · 中文</div>
+  </div>
+
+  <!-- 1. Who We Are -->
+  <section class="section" id="who-we-are">
+    <div class="section__label">01</div>
+    <h1 class="section__title">Who We <em>Are</em></h1>
+    <p class="section__intro">Monroe Elementary is a joyful, multilingual public school in San Francisco's Excelsior neighborhood, committed to community, equity, and belonging for every family.</p>
+
+    <h2 class="sub">Mission</h2>
+    <p class="body">We serve a diverse community of families — in English, Spanish, and Cantonese — and are committed to building a school where every child belongs, every family is welcomed, and the community takes care of each other.</p>
+
+    <h2 class="sub">Core Values</h2>
+    <ul class="body-list">
+      <li>Community over institution — we center families, not bureaucracy</li>
+      <li>Liberation and equity — anti-racist, culturally affirming, justice-minded</li>
+      <li>Radical welcome — every family deserves access, information, and belonging</li>
+      <li>Social-emotional learning — the whole child matters</li>
+      <li>Multilingual identity — English, Spanish, and Cantonese are equally honored</li>
+      <li>Mutual aid — we look out for each other</li>
+    </ul>
+
+    <h2 class="sub">Our Audiences</h2>
+    <div class="chip-row">
+      <span class="chip" style="--c:var(--monarch)">Current Monroe Families</span>
+      <span class="chip" style="--c:var(--monarch)">Students</span>
+      <span class="chip" style="--c:var(--cyan)">Prospective Families</span>
+      <span class="chip" style="--c:var(--jade)">Community Partners</span>
+      <span class="chip" style="--c:var(--plum)">Volunteers</span>
+      <span class="chip" style="--c:var(--magenta)">SFUSD Staff</span>
+    </div>
+  </section>
+
+  <!-- 2. Voice & Tone -->
+  <section class="section" id="voice-tone">
+    <div class="section__label">02</div>
+    <h1 class="section__title">Voice &amp; <em>Tone</em></h1>
+    <p class="section__intro">Our voice is the personality behind everything we write and say. It stays consistent. Our tone shifts with context — warmer in community messages, clearer in resource documents.</p>
+
+    <div class="quote-block">
+      <p>"We take care of each other."</p>
+      <span>Monroe's north star — everything we write should feel like this.</span>
+    </div>
+
+    <h2 class="sub">Voice Principles</h2>
+    <h3 class="sub">Warm and Direct</h3>
+    <p class="body">We speak like a trusted neighbor, not a government office. We say "We've got you" not "Please be advised."</p>
+    <h3 class="sub">Community-First</h3>
+    <p class="body">Language centers the reader: "You can find..." not "Parents are encouraged to..." We avoid institutional distance.</p>
+    <h3 class="sub">Hopeful and Real</h3>
+    <p class="body">We acknowledge difficulty honestly while holding space for possibility. No empty positivity — but always pointing toward what's possible.</p>
+    <h3 class="sub">Multilingual by Default</h3>
+    <p class="body">All primary communications are available in English, Spanish, and Cantonese. Translation is never an afterthought.</p>
+    <h3 class="sub">Inclusive and Liberatory</h3>
+    <p class="body">Gender-neutral language. No default assumptions of ability, housing status, or immigration status. We reflect the full humanity of our community.</p>
+
+    <h2 class="sub">Tone by Context</h2>
+    <table class="ctx-table">
+      <thead><tr><th>Context</th><th>Tone</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Homepage / hero</td><td>Confident, welcoming, energetic</td><td class="example">"We take care of each other."</td></tr>
+        <tr><td>Community Hub</td><td>Warm, practical, non-judgmental</td><td class="example">"Need something? We've got you."</td></tr>
+        <tr><td>Event announcements</td><td>Friendly, clear, action-oriented</td><td class="example">"Join us Thursday — food provided."</td></tr>
+        <tr><td>Resource documents</td><td>Clear, accessible, plain language</td><td class="example">"To apply, bring two forms of ID."</td></tr>
+        <tr><td>Fundraising</td><td>Gratitude-first, community-minded</td><td class="example">"Every dollar stays at Monroe."</td></tr>
+        <tr><td>Emergency / urgent</td><td>Calm, clear, direct</td><td class="example">"School is closed tomorrow, May 20."</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sub">Voice Do's and Don'ts</h2>
+    <div class="dos-donts">
+      <div>
+        <div class="dos-donts__header dos-donts__header--do">DO</div>
+        <div class="dos-donts__col dos-donts__col--do">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use plain language families can act on</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Center the reader: "You can..."</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use "caregivers" or "families" (inclusive)</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Acknowledge difficulty honestly</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Translate all primary content upfront</div>
+        </div>
+      </div>
+      <div>
+        <div class="dos-donts__header dos-donts__header--dont">DON'T</div>
+        <div class="dos-donts__col dos-donts__col--dont">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use bureaucratic or legalistic language</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Center the institution: "Monroe provides..."</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Default to "parents" (excludes guardians)</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Paper over real challenges with positivity</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Add "Translation available upon request"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Color -->
+  <section class="section" id="color">
+    <div class="section__label">03</div>
+    <h1 class="section__title">Color <em>Palette</em></h1>
+    <p class="section__intro">Warm, vibrant, rooted in community energy. Cream and Ink form the neutral foundation. Monarch Orange is the primary brand accent. Supporting colors are used for Community Hub sections, labels, and accents.</p>
+
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch__color" style="background:#e26a1f"></div><div class="swatch__info"><div class="swatch__name">Monarch Orange</div><div class="swatch__hex">#E26A1F</div><div class="swatch__var">--monarch</div><div class="swatch__role">Primary CTAs, active states, accents</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#1a1410"></div><div class="swatch__info"><div class="swatch__name">Ink</div><div class="swatch__hex">#1A1410</div><div class="swatch__var">--ink</div><div class="swatch__role">Body text, borders, shadows</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fdf8f2; border-bottom:1px solid #eee"></div><div class="swatch__info"><div class="swatch__name">Cream</div><div class="swatch__hex">#FDF8F2</div><div class="swatch__var">--cream</div><div class="swatch__role">Page background</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f5ede0; border-bottom:1px solid #eee"></div><div class="swatch__info"><div class="swatch__name">Cream 2</div><div class="swatch__hex">#F5EDE0</div><div class="swatch__var">--cream2</div><div class="swatch__role">Tab bars, hover states</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#2bb8d4"></div><div class="swatch__info"><div class="swatch__name">Cyan</div><div class="swatch__hex">#2BB8D4</div><div class="swatch__var">--cyan</div><div class="swatch__role">Get Connected tab</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f0a82e"></div><div class="swatch__info"><div class="swatch__name">Marigold</div><div class="swatch__hex">#F0A82E</div><div class="swatch__var">--marigold</div><div class="swatch__role">Secondary accent, ParentSquare</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#d83a6d"></div><div class="swatch__info"><div class="swatch__name">Magenta</div><div class="swatch__hex">#D83A6D</div><div class="swatch__var">--magenta</div><div class="swatch__role">Community Care tab</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#d8392e"></div><div class="swatch__info"><div class="swatch__name">Poppy Red</div><div class="swatch__hex">#D8392E</div><div class="swatch__var">--poppy</div><div class="swatch__role">Labels, alerts, kicker dots</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#4d8c5c"></div><div class="swatch__info"><div class="swatch__name">Jade</div><div class="swatch__hex">#4D8C5C</div><div class="swatch__var">--jade</div><div class="swatch__role">Resources tab</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#7c3f88"></div><div class="swatch__info"><div class="swatch__name">Plum</div><div class="swatch__hex">#7C3F88</div><div class="swatch__var">--plum</div><div class="swatch__role">Lunch Menu tab</div></div></div>
+    </div>
+
+    <h2 class="sub">Color Do's and Don'ts</h2>
+    <div class="dos-donts">
+      <div>
+        <div class="dos-donts__header dos-donts__header--do">DO</div>
+        <div class="dos-donts__col dos-donts__col--do">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use Monarch Orange for primary CTAs and active states</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Maintain contrast: dark text on light, light on dark</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use Hub accent colors only within their section</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use ink borders to create clean structure</div>
+        </div>
+      </div>
+      <div>
+        <div class="dos-donts__header dos-donts__header--dont">DON'T</div>
+        <div class="dos-donts__col dos-donts__col--dont">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use multiple accent colors in the same element</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Place cream text on white or very light backgrounds</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use Magenta or Plum as general brand colors</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use gradients or drop-shadow blur (off-brand)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Typography -->
+  <section class="section" id="typography">
+    <div class="section__label">04</div>
+    <h1 class="section__title"><em>Typography</em></h1>
+    <p class="section__intro">Outfit is our primary typeface — clean, geometric, friendly. ZCOOL XiaoWei and Noto Serif TC handle all Chinese-language content.</p>
+
+    <h2 class="sub">Type Scale — Outfit</h2>
+    <div class="type-specimens">
+      <div class="type-row">
+        <div class="type-row__label">Hero</div>
+        <div class="type-row__sample"><span style="font-size:52px;font-weight:900;letter-spacing:-.03em;line-height:1">Monroe</span></div>
+        <div class="type-row__spec">900 · 52–88px<br>−0.03em</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__label">Heading 1</div>
+        <div class="type-row__sample"><span style="font-size:36px;font-weight:900;letter-spacing:-.02em">Community</span></div>
+        <div class="type-row__spec">900 · 36–52px<br>−0.02em</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__label">Heading 2</div>
+        <div class="type-row__sample"><span style="font-size:24px;font-weight:800">Get Connected</span></div>
+        <div class="type-row__spec">800 · 22–28px</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__label">Body</div>
+        <div class="type-row__sample"><span style="font-size:16px;font-weight:400;line-height:1.7">We take care of each other, every day.</span></div>
+        <div class="type-row__spec">400 · 15–18px<br>1.55–1.7 lh</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__label">Label</div>
+        <div class="type-row__sample"><span style="font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#d8392e">Community Hub</span></div>
+        <div class="type-row__spec">800 · 11px<br>0.22em</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__label">Nav</div>
+        <div class="type-row__sample"><span style="font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Our School &amp; Programs</span></div>
+        <div class="type-row__spec">700 · 13px<br>0.04em</div>
+      </div>
+    </div>
+
+    <h2 class="sub">Chinese Typefaces</h2>
+    <p class="body">For Cantonese/Traditional Chinese content, use ZCOOL XiaoWei (display) and Noto Serif TC (body/fallback) via the <code>.f-zh</code> utility class.</p>
+    <div style="margin: 16px 0 32px; padding: 20px 24px; background: white; border: 1.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);">
+      <span style="font-family:'ZCOOL XiaoWei',serif;font-size:32px;color:var(--magenta)">門羅小學</span>
+      <span style="font-size:12px;color:rgba(26,20,16,.4);margin-left:16px;font-weight:600;letter-spacing:.1em;text-transform:uppercase">ZCOOL XiaoWei · Display</span>
+    </div>
+  </section>
+
+  <!-- 5. Design Elements -->
+  <section class="section" id="design-elements">
+    <div class="section__label">05</div>
+    <h1 class="section__title">Design <em>Elements</em></h1>
+    <p class="section__intro">Monroe's visual language is warm, handcrafted, and energetic. These recurring elements create cohesion across all pages.</p>
+
+    <h2 class="sub">Flat Box Shadows</h2>
+    <p class="body">Buttons and key UI elements use flat, offset solid shadows — no blur, no gradient. Tactile, print-like quality.</p>
+    <div style="display:flex;gap:20px;margin:16px 0 32px;flex-wrap:wrap">
+      <button style="background:var(--monarch);color:white;border:1.5px solid var(--ink);padding:12px 24px;font:700 12px/1 'Outfit',sans-serif;letter-spacing:.06em;text-transform:uppercase;box-shadow:4px 4px 0 var(--ink);cursor:default">Give →</button>
+      <button style="background:var(--cream);color:var(--ink);border:1.5px solid var(--ink);padding:12px 24px;font:700 12px/1 'Outfit',sans-serif;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;cursor:default">Tour the School</button>
+      <button style="background:var(--marigold);color:var(--ink);border:1.5px solid var(--ink);padding:8px 14px;font:700 12px/1 'Outfit',sans-serif;cursor:default">ParentSquare ↗</button>
+    </div>
+
+    <h2 class="sub">Brush Stroke Underlines</h2>
+    <p class="body">Key words in hero headings get SVG brush stroke underlines using feTurbulence filters. Organic, hand-painted feel. Always Monarch Orange, full opacity.</p>
+    <div style="font-size:40px;font-weight:900;letter-spacing:-.02em;margin:16px 0 32px;padding:20px 24px;background:white;border:1.5px solid var(--ink)">
+      We take care of
+      <span style="position:relative;display:inline-block">
+        <em style="font-style:normal;color:var(--monarch)">each other.</em>
+        <svg viewBox="0 0 360 40" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;bottom:-10px;width:100%;height:auto" aria-hidden="true">
+          <defs><filter id="bsr"><feTurbulence baseFrequency="1.4" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs>
+          <path d="M 6 24 C 60 12, 130 8, 200 16 S 320 32, 354 20 L 352 28 C 300 38, 200 32, 130 28 S 40 38, 8 32 Z" fill="#e26a1f" filter="url(#bsr)"/>
+        </svg>
+      </span>
+    </div>
+
+    <h2 class="sub">Rainbow Stripe</h2>
+    <p class="body">Horizontal stripe of all brand colors — decorative accent, typically at section tops or as a footer divider. Color order: Poppy · Monarch · Marigold · Jade · Cyan · Plum · Magenta.</p>
+    <div style="height:6px;display:flex;margin:16px 0 32px;border:1px solid rgba(0,0,0,.08)">
+      <span style="flex:1;background:var(--poppy)"></span><span style="flex:1;background:var(--monarch)"></span>
+      <span style="flex:1;background:var(--marigold)"></span><span style="flex:1;background:var(--jade)"></span>
+      <span style="flex:1;background:var(--cyan)"></span><span style="flex:1;background:var(--plum)"></span>
+      <span style="flex:1;background:var(--magenta)"></span><span style="flex:1;background:var(--poppy)"></span>
+      <span style="flex:1;background:var(--monarch)"></span><span style="flex:1;background:var(--marigold)"></span>
+      <span style="flex:1;background:var(--jade)"></span><span style="flex:1;background:var(--cyan)"></span>
+      <span style="flex:1;background:var(--plum)"></span><span style="flex:1;background:var(--magenta)"></span>
+    </div>
+
+    <h2 class="sub">Ink Borders &amp; Structure</h2>
+    <ul class="body-list">
+      <li>Standard border: 1.5px solid #1A1410 (full ink)</li>
+      <li>Subtle dividers: rgba(26,20,16, 0.12–0.20)</li>
+      <li>Dashed: used for internal footer dividers only</li>
+      <li>Never use border-radius on primary UI boxes (cards, panels, buttons use pill-radius or none)</li>
+    </ul>
+
+    <h2 class="sub">Decorative Motifs</h2>
+    <ul class="body-list">
+      <li>Butterflies — black silhouette, tinted to brand colors via CSS filter; used as small accent illustrations</li>
+      <li>Chinese lattice — subtle background texture at 0.04 opacity</li>
+      <li>Half-circles — geometric decorative accents at section edges</li>
+      <li>Always secondary — never let motifs compete with content</li>
+    </ul>
+  </section>
+
+  <!-- 6. Community Hub -->
+  <section class="section" id="community-hub">
+    <div class="section__label">06</div>
+    <h1 class="section__title">Community <em>Hub</em></h1>
+    <p class="section__intro">The Community Hub is Monroe's most distinctive feature — a multilingual, community-centered resource portal with its own visual sub-identity.</p>
+
+    <div class="quote-block" style="border-left-color:var(--cyan)">
+      <p>"Need something? We've got you.<br>Want to help? We'll find a match."</p>
+      <span>The Hub's voice — held, practical, never judgmental.</span>
+    </div>
+
+    <h2 class="sub">Five Sections</h2>
+    <div class="hub-tabs">
+      <div class="hub-tab"><span class="hub-tab__num">i.</span><span class="hub-tab__name">Get Connected</span><div class="hub-tab__bar" style="background:var(--cyan)"></div></div>
+      <div class="hub-tab"><span class="hub-tab__num">ii.</span><span class="hub-tab__name">Community Care</span><div class="hub-tab__bar" style="background:var(--magenta)"></div></div>
+      <div class="hub-tab"><span class="hub-tab__num">iii.</span><span class="hub-tab__name">Resources</span><div class="hub-tab__bar" style="background:var(--jade)"></div></div>
+      <div class="hub-tab"><span class="hub-tab__num">iv.</span><span class="hub-tab__name">Volunteer</span><div class="hub-tab__bar" style="background:var(--monarch)"></div></div>
+      <div class="hub-tab"><span class="hub-tab__num">v.</span><span class="hub-tab__name">Lunch Menu</span><div class="hub-tab__bar" style="background:var(--plum)"></div></div>
+    </div>
+
+    <h2 class="sub">Hub Values</h2>
+    <ul class="body-list">
+      <li><strong>Free</strong> — all services and resources at no cost</li>
+      <li><strong>Confidential</strong> — information shared stays within the community</li>
+      <li><strong>Multilingual</strong> — fully available in English, Spanish, and Cantonese</li>
+      <li><strong>Non-judgmental</strong> — every family's situation is valid</li>
+      <li><strong>Community-built</strong> — driven by what Monroe families actually need</li>
+    </ul>
+
+    <h2 class="sub">Hub Voice Rules</h2>
+    <ul class="body-list">
+      <li>Language is trauma-informed and non-stigmatizing</li>
+      <li>Instructions are clear and step-by-step — families in stress need low cognitive load</li>
+      <li>Say "We'll find a match" not "Volunteer opportunities are available"</li>
+      <li>Speak more softly than the main site — held, not energetic</li>
+    </ul>
+  </section>
+
+  <!-- 7. Multilingual -->
+  <section class="section" id="multilingual">
+    <div class="section__label">07</div>
+    <h1 class="section__title"><em>Multilingual</em> Standards</h1>
+    <p class="section__intro">Language access is a right, not a courtesy. These standards ensure we honor that across all communications.</p>
+
+    <div class="chip-row">
+      <span class="chip" style="--c:var(--cyan)">English</span>
+      <span class="chip" style="--c:var(--marigold)">Español</span>
+      <span class="chip" style="--c:var(--magenta);font-family:'ZCOOL XiaoWei',serif;font-size:14px;letter-spacing:0">中文</span>
+    </div>
+
+    <ul class="body-list">
+      <li>All primary web pages have content available in all three languages via Google Translate</li>
+      <li>High-stakes content (enrollment, Hub resources, emergency notices) must be human-translated</li>
+      <li>Language switcher always visible in the utility bar at the top of every page</li>
+      <li>Language labels use each language's own script: English · Español · 中文</li>
+      <li>Chinese label uses ZCOOL XiaoWei font and Magenta color in the utility bar</li>
+      <li>Spanish label uses Marigold color in the utility bar</li>
+      <li>Design for text expansion — Spanish and Chinese text can be 20–40% longer than English</li>
+    </ul>
+
+    <h2 class="sub">Multilingual Do's and Don'ts</h2>
+    <div class="dos-donts">
+      <div>
+        <div class="dos-donts__header dos-donts__header--do">DO</div>
+        <div class="dos-donts__col dos-donts__col--do">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Translate all primary content before publishing</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use human translation for Hub and enrollment content</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Display language labels in their own scripts</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Design flexible layouts that handle text expansion</div>
+        </div>
+      </div>
+      <div>
+        <div class="dos-donts__header dos-donts__header--dont">DON'T</div>
+        <div class="dos-donts__col dos-donts__col--dont">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Launch in English only and add translations later</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Rely on machine translation for high-stakes content</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Write "Chinese" instead of "中文"</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Design tight layouts that break in other languages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Web Implementation -->
+  <section class="section" id="web">
+    <div class="section__label">08</div>
+    <h1 class="section__title">Web <em>Implementation</em></h1>
+    <p class="section__intro">Monroe's website is a static HTML site. These standards ensure visual and technical consistency across all pages.</p>
+
+    <h2 class="sub">CSS Custom Properties</h2>
+    <table class="var-table">
+      <thead><tr><th>Variable</th><th>Value</th><th>Swatch</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>--cream</code></td><td>#FDF8F2</td><td><span class="var-dot" style="background:#fdf8f2;border-color:#ddd"></span></td><td>Page background</td></tr>
+        <tr><td><code>--cream2</code></td><td>#F5EDE0</td><td><span class="var-dot" style="background:#f5ede0;border-color:#ddd"></span></td><td>Secondary bg, tab bars</td></tr>
+        <tr><td><code>--ink</code></td><td>#1A1410</td><td><span class="var-dot" style="background:#1a1410"></span></td><td>Text, borders, shadows</td></tr>
+        <tr><td><code>--monarch</code></td><td>#E26A1F</td><td><span class="var-dot" style="background:#e26a1f"></span></td><td>Primary accent, CTAs</td></tr>
+        <tr><td><code>--cyan</code></td><td>#2BB8D4</td><td><span class="var-dot" style="background:#2bb8d4"></span></td><td>Get Connected</td></tr>
+        <tr><td><code>--marigold</code></td><td>#F0A82E</td><td><span class="var-dot" style="background:#f0a82e"></span></td><td>Secondary accent</td></tr>
+        <tr><td><code>--magenta</code></td><td>#D83A6D</td><td><span class="var-dot" style="background:#d83a6d"></span></td><td>Community Care</td></tr>
+        <tr><td><code>--poppy</code></td><td>#D8392E</td><td><span class="var-dot" style="background:#d8392e"></span></td><td>Labels, alerts</td></tr>
+        <tr><td><code>--jade</code></td><td>#4D8C5C</td><td><span class="var-dot" style="background:#4d8c5c"></span></td><td>Resources</td></tr>
+        <tr><td><code>--plum</code></td><td>#7C3F88</td><td><span class="var-dot" style="background:#7c3f88"></span></td><td>Lunch Menu</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sub">Page Structure</h2>
+    <ul class="body-list">
+      <li>Every page: Utility Bar → Masthead/Nav → Content → Footer</li>
+      <li>Utility bar: address, phone, ParentSquare button, language switcher</li>
+      <li>Masthead: logo (200px), centered nav, Tour + Give buttons</li>
+      <li>Mobile nav: hamburger → full-screen overlay</li>
+    </ul>
+
+    <h2 class="sub">Navigation Rules</h2>
+    <ul class="body-list">
+      <li>Active page: bottom border in Cyan on the nav link</li>
+      <li>Hover: color shifts to Monarch Orange (no underline on nav)</li>
+      <li>Dropdowns: 260px min-width, 1.5px solid Ink border, 5px flat box-shadow</li>
+      <li>Home is always the first nav item</li>
+    </ul>
+
+    <h2 class="sub">Accessibility</h2>
+    <ul class="body-list">
+      <li>All images: alt text or aria-hidden="true" for decorative</li>
+      <li>Color is never the sole means of conveying information</li>
+      <li>Minimum contrast: 4.5:1 body text, 3:1 large text</li>
+      <li>All interactive elements have visible focus states</li>
+    </ul>
+
+    <h2 class="sub">Performance</h2>
+    <ul class="body-list">
+      <li>Non-hero images: loading="lazy"</li>
+      <li>Google Translate script: async</li>
+      <li>Google Fonts: preconnect + display=swap</li>
+      <li>Grain overlay: single fixed-position SVG via grain.js — never duplicated</li>
+    </ul>
+  </section>
+
+  <!-- 9. Imagery -->
+  <section class="section" id="imagery">
+    <div class="section__label">09</div>
+    <h1 class="section__title"><em>Imagery</em> Guidelines</h1>
+    <p class="section__intro">Authentic community photography over stock. Warm, diverse, candid. Every image should feel like Monroe.</p>
+
+    <h2 class="sub">Photography</h2>
+    <ul class="body-list">
+      <li>Authentic community photography preferred over stock images</li>
+      <li>Images reflect the full diversity of Monroe families</li>
+      <li>Warm, natural lighting — avoid cold or clinical looks</li>
+      <li>Candid moments over posed — community energy over performance</li>
+      <li>Student images require proper media release consent</li>
+    </ul>
+
+    <h2 class="sub">Illustrations & Icons</h2>
+    <ul class="body-list">
+      <li>Butterfly motifs: black silhouette, tinted to brand colors via CSS filter</li>
+      <li>Cultural patterns (Chinese lattice) used as subtle texture only</li>
+      <li>Icons: thin-stroke, consistent weight — avoid filled or cartoonish styles</li>
+      <li>All decorative images: aria-hidden="true"</li>
+    </ul>
+
+    <h2 class="sub">Imagery Do's and Don'ts</h2>
+    <div class="dos-donts">
+      <div>
+        <div class="dos-donts__header dos-donts__header--do">DO</div>
+        <div class="dos-donts__col dos-donts__col--do">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use authentic photos of Monroe students and families</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Show diversity across race, family structure, ability</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Use warm, community-centered images</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✓</span>Scale decorative motifs to complement content</div>
+        </div>
+      </div>
+      <div>
+        <div class="dos-donts__header dos-donts__header--dont">DON'T</div>
+        <div class="dos-donts__col dos-donts__col--dont">
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use generic stock photography of children</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Default to imagery centering white, nuclear families</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Use clinical, institutional, or test-focused imagery</div>
+          <div class="dos-donts__item"><span class="dos-donts__icon">✗</span>Let decorative elements overpower content</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Quick Reference -->
+  <section class="section" id="quick-ref">
+    <div class="section__label">10</div>
+    <h1 class="section__title">Quick <em>Reference</em></h1>
+    <p class="section__intro">Everything you need on one page.</p>
+
+    <div class="quick-ref">
+      <div class="quick-ref__item"><div class="quick-ref__key">School</div><div class="quick-ref__val">Monroe Elementary School</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Tagline</div><div class="quick-ref__val">"We take care of each other."</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Address</div><div class="quick-ref__val">260 Madrid St, San Francisco, CA 94112</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Phone</div><div class="quick-ref__val">(415) 469-4736</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">District</div><div class="quick-ref__val">San Francisco Unified School District</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Languages</div><div class="quick-ref__val">English · Español · 中文</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Primary Font</div><div class="quick-ref__val">Outfit (Google Fonts), 300–900</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Chinese Font</div><div class="quick-ref__val">ZCOOL XiaoWei / Noto Serif TC</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Brand Orange</div><div class="quick-ref__val" style="color:var(--monarch)">#E26A1F (--monarch)</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Ink / Text</div><div class="quick-ref__val">#1A1410 (--ink)</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Background</div><div class="quick-ref__val">#FDF8F2 (--cream)</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Primary CTA</div><div class="quick-ref__val">Monarch Orange, 4px flat ink shadow</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Hover Pattern</div><div class="quick-ref__val">Translate 2px, shadow collapses</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Border</div><div class="quick-ref__val">1.5px solid #1A1410</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Shadow</div><div class="quick-ref__val">3–5px offset, 0 blur, ink color</div></div>
+      <div class="quick-ref__item"><div class="quick-ref__key">Active Nav</div><div class="quick-ref__val">Cyan bottom border (--cyan)</div></div>
+    </div>
+
+    <p style="margin-top:48px;font-size:12px;color:rgba(26,20,16,.35);text-align:center;letter-spacing:.08em;text-transform:uppercase">Monroe Elementary · Brand Guidelines · 2026</p>
+  </section>
+
+</main>
+
+<script>
+  // Active sidebar link on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks = document.querySelectorAll('.sidebar__nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.sidebar__nav a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
